@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLRK 1015 · Healthcare Communication</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f0efeb;
+  --border: #e0deda;
+  --border2: #cccac4;
+  --text: #1a1917;
+  --text2: #6b6860;
+  --text3: #9e9c97;
+  --teal: #0f6e56;
+  --teal-bg: #e1f5ee;
+  --blue: #185fa5;
+  --blue-bg: #e6f1fb;
+  --amber: #854f0b;
+  --amber-bg: #faeeda;
+  --coral: #993c1d;
+  --coral-bg: #faece7;
+  --purple: #534ab7;
+  --purple-bg: #eeedfe;
+  --green: #3b6d11;
+  --green-bg: #eaf3de;
+  --warn-bg: #faeeda;
+  --warn: #854f0b;
+  --info-bg: #e6f1fb;
+  --info: #185fa5;
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'IBM Plex Sans KR', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 15px; line-height: 1.6; }
+header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1.25rem 1.5rem; position: sticky; top: 0; z-index: 100; }
+.header-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.header-title { font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 500; color: var(--text); letter-spacing: .02em; }
+.header-sub { font-size: 12px; color: var(--text3); }
+.main-nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 1.5rem; position: sticky; top: 57px; z-index: 99; }
+.main-nav-inner { max-width: 900px; margin: 0 auto; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+.main-nav-inner::-webkit-scrollbar { display: none; }
+.main-tab { font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 12px 16px; border: none; background: transparent; color: var(--text3); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: color .15s, border-color .15s; letter-spacing: .02em; }
+.main-tab:hover { color: var(--text2); }
+.main-tab.active { color: var(--text); border-bottom-color: var(--text); }
+.content { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+.page { display: none; }
+.page.active { display: block; }
+.section-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text3); margin-bottom: .75rem; margin-top: 1.5rem; }
+.section-label:first-child { margin-top: 0; }
+.sub-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.sub-tab { padding: 5px 13px; border-radius: 999px; border: 1px solid var(--border2); background: transparent; color: var(--text2); font-size: 12px; font-family: 'IBM Plex Sans KR', sans-serif; cursor: pointer; transition: all .15s; }
+.sub-tab:hover { border-color: var(--text3); color: var(--text); }
+.sub-tab.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+.sub-section { display: none; }
+.sub-section.active { display: block; }
+.level-list { display: flex; flex-direction: column; gap: 8px; }
+.level-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: border-color .15s; }
+.level-card:hover { border-color: var(--border2); }
+.level-card.open { border-color: var(--border2); }
+.level-header { padding: 13px 16px; display: flex; align-items: center; gap: 12px; }
+.level-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.level-title-wrap { flex: 1; }
+.level-title { font-size: 14px; font-weight: 500; color: var(--text); }
+.level-sub { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.level-chevron { width: 16px; height: 16px; color: var(--text3); transition: transform .2s; flex-shrink: 0; }
+.level-card.open .level-chevron { transform: rotate(180deg); }
+.level-detail { display: none; padding: 12px 16px 14px 16px; font-size: 13px; line-height: 1.7; color: var(--text2); border-top: 1px solid var(--border); }
+.level-card.open .level-detail { display: block; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.flip-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; cursor: pointer; transition: border-color .15s; min-height: 88px; display: flex; flex-direction: column; gap: 5px; }
+.flip-card:hover { border-color: var(--border2); }
+.flip-card.open { background: var(--surface2); border-color: var(--border2); }
+.card-chip { font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 999px; display: inline-block; margin-bottom: 3px; font-family: 'IBM Plex Mono', monospace; letter-spacing: .03em; }
+.chip-mem { background: var(--warn-bg); color: var(--warn); }
+.chip-info { background: var(--info-bg); color: var(--info); }
+.card-label { font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--text3); font-family: 'IBM Plex Mono', monospace; }
+.card-en { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.4; }
+.card-ko { font-size: 12px; color: var(--text2); display: none; }
+.flip-card.open .card-ko { display: block; }
+.card-detail { font-size: 12px; color: var(--text2); line-height: 1.6; display: none; margin-top: 6px; padding-top: 8px; border-top: 1px solid var(--border); }
+.flip-card.open .card-detail { display: block; }
+.tip-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--text3); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 10px 14px; font-size: 13px; color: var(--text2); margin: 1rem 0; }
+.tip-box strong { color: var(--text); font-family: 'IBM Plex Mono', monospace; font-size: 13px; }
+.tip-box.teal { border-left-color: var(--teal); }
+.tip-box.blue { border-left-color: var(--blue); }
+.tip-box.amber { border-left-color: var(--amber); }
+.tip-box.coral { border-left-color: var(--coral); }
+.tip-box.purple { border-left-color: var(--purple); }
+.info-box { border-radius: var(--radius-sm); padding: 10px 14px; font-size: 13px; line-height: 1.7; margin: .75rem 0; }
+.ib-blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid rgba(24,95,165,.2);  }
+.ib-teal   { background: var(--teal-bg);   color: var(--teal);   border: 1px solid rgba(15,110,86,.2);  }
+.ib-amber  { background: var(--amber-bg);  color: var(--amber);  border: 1px solid rgba(133,79,11,.2);  }
+.ib-coral  { background: var(--coral-bg);  color: var(--coral);  border: 1px solid rgba(153,60,29,.2);  }
+.ib-purple { background: var(--purple-bg); color: var(--purple); border: 1px solid rgba(83,74,183,.2);  }
+.ib-green  { background: var(--green-bg);  color: var(--green);  border: 1px solid rgba(59,109,17,.2);  }
+.ib-title  { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing:.05em; text-transform:uppercase; margin-bottom:5px; opacity:.8; }
+.cmp-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: .75rem 0 1.25rem; }
+.cmp-table th { text-align: left; padding: 8px 12px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; color: var(--text3); border-bottom: 1px solid var(--border2); background: var(--surface2); }
+.cmp-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: top; line-height: 1.55; }
+.cmp-table tr:last-child td { border-bottom: none; }
+.cmp-table .td-k { color: var(--text); font-weight: 500; }
+.triangle-wrap { display: flex; justify-content: center; margin: 1rem 0 1.5rem; }
+.divider { height: 1px; background: var(--border); margin: .75rem 0; }
+.hint { font-size: 12px; color: var(--text3); margin-bottom: 1rem; }
+.mk-block { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+.mk-block-title { padding: 10px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; border-bottom: 1px solid var(--border); background: var(--surface2); color: var(--text2); }
+.mk-row { display: flex; gap: 12px; padding: 9px 14px; border-bottom: 1px solid var(--border); align-items: flex-start; }
+.mk-row:last-child { border-bottom: none; }
+.mk-term { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; color: var(--warn); min-width: 180px; flex-shrink: 0; line-height: 1.5; padding-top: 1px; }
+.mk-def { font-size: 13px; color: var(--text2); line-height: 1.65; }
+.mk-def strong { color: var(--text); font-weight: 500; }
+.quiz-list { display: flex; flex-direction: column; gap: 12px; }
+.quiz-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.quiz-q { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 12px; line-height: 1.5; }
+.quiz-q-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text3); margin-bottom: 4px; }
+.quiz-opts { display: flex; flex-direction: column; gap: 7px; }
+.quiz-opt { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 13px; cursor: pointer; font-size: 13px; color: var(--text2); transition: all .14s; text-align: left; font-family: 'IBM Plex Sans KR', sans-serif; }
+.quiz-opt:hover { border-color: var(--border2); color: var(--text); }
+.quiz-opt.correct { border-color: var(--teal); background: var(--teal-bg); color: var(--teal); }
+.quiz-opt.wrong   { border-color: var(--coral); background: var(--coral-bg); color: var(--coral); }
+.quiz-fb { margin-top: 10px; font-size: 12px; color: var(--text2); line-height: 1.6; display: none; }
+.quiz-fb.show { display: block; }
+.quiz-score { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--text3); margin-bottom: 14px; }
+.btn-reset { font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border2); background: var(--surface); color: var(--text2); cursor: pointer; margin-top: 10px; transition: all .14s; }
+.btn-reset:hover { border-color: var(--text3); color: var(--text); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
+@media (max-width: 600px) { .card-grid { grid-template-columns: 1fr 1fr; } .content { padding: 1rem; } .mk-term { min-width: 130px; } .two-col { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <span class="header-title">CLRK 1015 · Healthcare Communication</span>
+    <span class="header-sub">Spring/Summer 2026 · Weeks 1–3</span>
+  </div>
+</header>
+
+<nav class="main-nav">
+  <div class="main-nav-inner">
+    <button class="main-tab active" onclick="showPage('overview',this)">📋 코스 개요</button>
+    <button class="main-tab" onclick="showPage('w1',this)">📝 W1 · Technical Writing</button>
+    <button class="main-tab" onclick="showPage('w2',this)">🤝 W2 · Interpersonal</button>
+    <button class="main-tab" onclick="showPage('w3',this)">🗣️ W3 · Rhetoric</button>
+    <button class="main-tab" onclick="showPage('mustknow',this)">⭐ 필수암기</button>
+    <button class="main-tab" onclick="showPage('quiz',this)">📝 퀴즈</button>
+  </div>
+</nav>
+
+<div class="content">
+
+<div class="page active" id="page-overview">
+  <div class="section-label">코스 개요</div>
+  <div class="two-col" style="grid-template-columns:repeat(auto-fill,minmax(270px,1fr))">
+    <div class="info-box ib-purple"><div class="ib-title">📌 과목 목표</div>의료 행정 역할에서 환자 안전을 위한 효과적 커뮤니케이션 정의·실천·촉진<br><strong>기술 작문(Technical Writing)</strong> 중심</div>
+    <div class="info-box ib-blue"><div class="ib-title">📊 성적 배분 · 합격 65%</div>Team Charter <strong>15%</strong> · Message of Request (Claim Message) <strong>20%</strong><br>Incident Report <strong>20%</strong> · Presentation Draft <strong>10%</strong><br>Team Presentation <strong>30%</strong> · Peer Evaluation <strong>5%</strong></div>
+    <div class="info-box ib-amber"><div class="ib-title">⚠️ 왜 커뮤니케이션이 중요?</div>WHO 2021: 연간 <strong>300만 명</strong> 이상 환자 안전 사고 사망<br>CIHI 2024: 입원 <strong>17건 중 1건</strong> 유해 사건 발생<br>커뮤니케이션 실패가 주요 원인</div>
+    <div class="info-box ib-teal"><div class="ib-title">🏥 Unit Clerk 역할</div>병원 행정 & 커뮤니케이션 <strong>허브</strong><br>의사·간호사·환자 사이 중개자<br>기록 관리·오더 조정·환자 소통</div>
+  </div>
+  <div class="section-label">주차별 일정</div>
+  <table class="cmp-table">
+    <thead><tr><th>Week</th><th>Date</th><th>주제</th><th>과제 마감</th></tr></thead>
+    <tbody>
+      <tr><td class="td-k">1</td><td>Thu Apr 9</td><td>Course Introduction · Defining Healthcare Communication · Introduction to Technical Writing<br><small style="color:var(--text-dim)">📖 숙제: Technical Writing Style Handbook 읽기 (Week 2 전)</small></td><td>—</td></tr>
+      <tr><td class="td-k">2</td><td>Apr 16</td><td>Importance of Collaborative Teamwork in Healthcare · Overview of Team Project · Introduction to Team Charter (15%) · Introduction to Interpersonal Communication</td><td>—</td></tr>
+      <tr><td class="td-k">3</td><td>Apr 23</td><td>Rhetoric and Evidence-Based Reasoning</td><td>—</td></tr>
+      <tr><td class="td-k">4</td><td>Apr 30</td><td>Introduction to Argumentation</td><td><strong style="color:var(--accent)">Team Charter 15%</strong><br><small>수업 시작 전 Learning Hub 제출</small></td></tr>
+      <tr><td class="td-k">5</td><td>May 7</td><td>Workplace Writing: Messages of Request — Claim Messages<br><small style="color:var(--text-dim)">📖 숙제: Claim Message 작성 시작 → Week 7 마감</small></td><td>—</td></tr>
+      <tr><td class="td-k">6</td><td>May 14</td><td>Workplace Writing Cont'd · Importance of Professional Empathy in Healthcare</td><td>—</td></tr>
+      <tr><td class="td-k">7</td><td>May 21</td><td>Introduction to Intercultural Communication</td><td><strong style="color:var(--accent)">Message of Request (Claim Message) 20%</strong><br><small>수업 시작 전 Learning Hub 제출</small></td></tr>
+      <tr><td class="td-k">8</td><td>May 28</td><td>Introduction to Conflict Resolution · Writing Incident Reports<br><small style="color:var(--text-dim)">📖 숙제: Incident Report 작성 시작 → Week 10 마감</small></td><td>—</td></tr>
+      <tr><td class="td-k">9</td><td>Jun 4</td><td>Introduction to Presenting Information · Evaluation Criteria for Final Presentations</td><td><strong style="color:var(--accent)">Presentation Draft 10%</strong><br><small>수업 시작 전 Learning Hub 제출</small></td></tr>
+      <tr><td class="td-k">10</td><td>Jun 11</td><td>⚠️ 수업 없음 — 팀 프레젠테이션 자율 준비<br><small style="color:var(--text-dim)">강사는 정규 수업 시간 중 질문 대응 가능</small></td><td><strong style="color:var(--accent)">Incident Report 20%</strong><br><small>수업 시작 전 Learning Hub 제출</small></td></tr>
+      <tr><td class="td-k">11</td><td>Jun 18</td><td>🎤 Team Presentations — Round 1</td><td><strong style="color:var(--accent)">Team Presentations 30%</strong><br><small style="color:var(--red)">연장 없음 · 미발표 시 자동 0점</small></td></tr>
+      <tr><td class="td-k">12</td><td>Jun 25</td><td>🎤 Team Presentations — Round 2</td><td><strong style="color:var(--accent)">Team Presentations 30%</strong><br><small style="color:var(--red)">연장 없음 · 미발표 시 자동 0점</small></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="page" id="page-w1">
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('comm','w1',this)">커뮤니케이션 기초</button>
+    <button class="sub-tab" onclick="showSub('models','w1',this)">커뮤니케이션 모델</button>
+    <button class="sub-tab" onclick="showSub('tw','w1',this)">Academic vs Technical</button>
+    <button class="sub-tab" onclick="showSub('guidelines','w1',this)">Top 10 Guidelines</button>
+  </div>
+  <div class="sub-section active" id="w1-comm">
+    <div class="section-label">커뮤니케이션 기초</div>
+    <div class="tip-box amber"><strong>Communication 정의 (암기)</strong><br>정보(information)를 <strong>발신자(source)</strong>와 <strong>수신자(receiver)</strong> 사이에서 전달하는 과정<br>방법: <strong>언어(verbal)</strong> + <strong>비언어(non-verbal)</strong><br>성공 조건: 수신자가 발신자의 <em>의도대로</em> 해석해야 함</div>
+    <div class="section-label">2026 디지털 환경</div>
+    <div class="two-col">
+      <div class="info-box ib-teal"><div class="ib-title">장점 Benefits</div>정보(Information) 증가<br>연결성(Connectivity) 증가</div>
+      <div class="info-box ib-coral"><div class="ib-title">단점 Disadvantages</div>콘텐츠 경쟁 증가<br><strong>건강 문맹(Health Illiteracy)</strong><br>가짜 뉴스 · 반지성주의(Anti-intellectualism)</div>
+    </div>
+    <div class="section-label">NOISE — 커뮤니케이션 방해 요소</div>
+    <div class="level-list">
+      <div class="level-card" onclick="toggleLevel(this)">
+        <div class="level-header">
+          <div class="level-dot" style="background:var(--coral)"></div>
+          <div class="level-title-wrap"><div class="level-title">커뮤니케이션 완전 모델 + Noise 심리 3가지</div><div class="level-sub">Sender · Encoding · Message · Medium · Receiver · Decoding · Context · Noise</div></div>
+          <svg class="level-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="level-detail">
+          <strong>Noise 심리적 요인 3가지 (암기):</strong><br>
+          • <strong>Confirmation Bias (확증 편향)</strong> — 기존 믿음을 확인하는 정보만 선택적 수용<br>
+          • <strong>Sunk Cost Fallacy (매몰 비용의 오류)</strong> — 이미 투자한 것 때문에 잘못된 결정 지속<br>
+          • <strong>Availability Heuristic (가용성 발견법)</strong> — 쉽게 떠오르는 정보를 더 중요하게 여기는 편향
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sub-section" id="w1-models">
+    <div class="section-label">커뮤니케이션 모델 2가지</div>
+    <div class="level-list">
+      <div class="level-card" onclick="toggleLevel(this)">
+        <div class="level-header">
+          <div class="level-dot" style="background:var(--blue)"></div>
+          <div class="level-title-wrap"><div class="level-title">Linear Model — 선형 모델</div><div class="level-sub">일방향 · Sender → Receiver · 발신자 중심</div></div>
+          <svg class="level-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="level-detail"><strong>구성:</strong> Sender → Message/Channel → Receiver<br><strong>특징:</strong> 발신자(Sender) 중심, 수신자는 "목표점"만, 상호작용 없음<br><strong>한계:</strong> 실제 소통은 이보다 복잡 (Noise 존재, 피드백 없음)</div>
+      </div>
+      <div class="level-card" onclick="toggleLevel(this)">
+        <div class="level-header">
+          <div class="level-dot" style="background:var(--teal)"></div>
+          <div class="level-title-wrap"><div class="level-title">Transaction Model — 거래 모델</div><div class="level-sub">양방향 · 동시 쌍방 소통 · 의료 현장에서 사용</div></div>
+          <svg class="level-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="level-detail"><strong>핵심 차이:</strong> Sender/Receiver → <strong>Communicators</strong> (동시에 역할 수행)<br>메시지를 보내면서 동시에 상대방 반응 수신 → 실시간 조정<br>목적: 관계 형성 / 동맹 구축 / 자아 개념 형성 / 참여</div>
+      </div>
+    </div>
+    <div class="tip-box blue" style="margin-top:1rem"><strong>핵심 차이 (암기)</strong><br>Linear = 일방향, Sender 중심, 수신자는 끝점<br>Transaction = 양방향, 동시, 참여자 = <strong>Communicators</strong>, 실시간 조정 가능</div>
+  </div>
+  <div class="sub-section" id="w1-tw">
+    <div class="section-label">Academic Writing vs Technical Writing</div>
+    <table class="cmp-table">
+      <thead><tr><th>항목</th><th>Academic Writing</th><th>Technical Writing</th></tr></thead>
+      <tbody>
+        <tr><td class="td-k">목적</td><td>지식 시연</td><td>교육·설득 · <strong>action/results driven</strong></td></tr>
+        <tr><td class="td-k">지식 수준</td><td>독자(강사)가 더 많이 앎</td><td><strong>작성자</strong>가 더 많이 앎</td></tr>
+        <tr><td class="td-k">독자</td><td>강사 1명, 처음부터 끝까지 읽음</td><td>다수, 다양한 배경과 지식 수준</td></tr>
+        <tr><td class="td-k">평가 기준</td><td>깊이·논리·맞춤법·문법</td><td><strong>독자의 필요 충족</strong> (명확·간결)</td></tr>
+        <tr><td class="td-k">스타일</td><td>정교한 산문 OK</td><td>간결·직접·능동태 선호</td></tr>
+      </tbody>
+    </table>
+    <div class="tip-box amber"><strong>Technical Writing 핵심 원칙 (암기)</strong><br>"Do not overestimate your audience's education while underestimating their intelligence."<br>독자의 <strong>교육 수준</strong>은 과대평가하지 말되, <strong>지능</strong>은 과소평가하지 말라</div>
+  </div>
+  <div class="sub-section" id="w1-guidelines">
+    <div class="section-label">Top 10 Guidelines for Technical Writing</div>
+    <div class="level-list" id="guidelinesList"></div>
+  </div>
+</div>
+
+<div class="page" id="page-w2">
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('def','w2',this)">정의 &amp; 중요성</button>
+    <button class="sub-tab" onclick="showSub('types','w2',this)">유형 6가지</button>
+    <button class="sub-tab" onclick="showSub('barriers','w2',this)">장벽 6가지</button>
+    <button class="sub-tab" onclick="showSub('charter','w2',this)">Team Charter</button>
+  </div>
+  <div class="sub-section active" id="w2-def">
+    <div class="section-label">대인 커뮤니케이션 정의</div>
+    <div class="tip-box purple"><strong>Interpersonal Communication 정의 (암기)</strong><br>두 명 이상의 사람 간에 <strong>언어·비언어 방식</strong>으로 <strong>정보, 아이디어, 감정</strong>을 교환하는 것<br>기술 수준 = 메시지를 <strong>얼마나 효과적으로 전달</strong>했는지로 판단</div>
+    <div class="tip-box blue"><strong>Beaulieu (2011) — 의료에서 대인 소통</strong><br>"환자의 우려를 이끌어내고 이해하며, 의료 문제를 설명하고, 공유된 의사결정에 참여하는 능력"</div>
+    <div class="section-label">의료에서 중요한 이유</div>
+    <div class="two-col">
+      <div class="info-box ib-teal"><div class="ib-title">환자 혜택 Patient Benefits (7가지)</div>환자 만족도 ↑ · 치료 준수율 ↑<br>우울·불안 감소 · 자기효능감 ↑<br>증상 감소 · 삶의 질 향상<br><strong>생존율 증가</strong> (Kwame &amp; Petrucka, 2021)</div>
+      <div class="info-box ib-blue"><div class="ib-title">팀 혜택 Team Benefits</div>협업(Collaboration) ↑<br>사기(Morale) ↑<br>효율(Efficiency) ↑<br>오류 방지 · 직원 유지율 ↑</div>
+    </div>
+  </div>
+  <div class="sub-section" id="w2-types">
+    <div class="section-label">대인 커뮤니케이션 유형 6가지</div>
+    <div class="hint">클릭하여 자세히 보기</div>
+    <div class="level-list" id="icTypesList"></div>
+  </div>
+  <div class="sub-section" id="w2-barriers">
+    <div class="section-label">커뮤니케이션 장벽 6가지</div>
+    <div class="tip-box coral"><strong>핵심 통계 (Journal of Family Medicine, 2019)</strong><br>의료 현장의 약 <strong>80%</strong>에서 커뮤니케이션 장벽 보고 · <strong>언어 장벽</strong>이 가장 흔함</div>
+    <div class="level-list" id="barriersList"></div>
+  </div>
+  <div class="sub-section" id="w2-charter">
+    <div class="section-label">Team Charter — 팀 헌법</div>
+    <div class="tip-box purple"><strong>Team Charter 정의 (암기)</strong><br>팀의 <strong>헌법(constitution)</strong> — ① 공유 가치 ② 커뮤니케이션 프로토콜 ③ 의사결정 과정 ④ 갈등 해결 ⑤ 약속 불이행 결과</div>
+    <div class="section-label">Responsibility vs Accountability (암기!)</div>
+    <div class="level-card" onclick="toggleLevel(this)">
+      <div class="level-header">
+        <div class="level-dot" style="background:var(--amber)"></div>
+        <div class="level-title-wrap"><div class="level-title">Responsibility vs Accountability 차이</div><div class="level-sub">시험 자주 출제</div></div>
+        <svg class="level-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="level-detail"><strong>Responsibility</strong> = 수행하는 업무·과제 (tasks you perform)<br><strong>Accountability</strong> = 결과에 대해 사람에게 답해야 하는 의무<br><br><em>"You are responsible for <strong>things</strong>, but accountable to <strong>people</strong> for the outcomes."</em></div>
+    </div>
+    <div class="section-label">Team Charter 5가지 구성요소 (과제 필수)</div>
+    <div class="level-card" onclick="toggleLevel(this)">
+      <div class="level-header">
+        <div class="level-dot" style="background:var(--purple)"></div>
+        <div class="level-title-wrap"><div class="level-title">Team Charter 필수 구성요소</div><div class="level-sub">마감: Week 4 · Thu Apr 30 · 수업 시작 전 Learning Hub 제출 (팀당 1개)</div></div>
+        <svg class="level-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="level-detail">1. <strong>Mission and Objectives</strong> — 팀의 목표와 사명<br>2. <strong>Roles and Responsibilities</strong> — 역할 분담 (명확하고 측정 가능하게)<br>3. <strong>Team Operations</strong> — 운영 방식<br>4. <strong>Activities and Milestones</strong> — 일정<br>5. <strong>Contingency Plans/Consequences</strong> — 갈등 해결 전략</div>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="page-w3">
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('persuasion','w3',this)">설득 &amp; 수사학</button>
+    <button class="sub-tab" onclick="showSub('triangle','w3',this)">Rhetorical Triangle</button>
+    <button class="sub-tab" onclick="showSub('canons','w3',this)">4 Canons</button>
+    <button class="sub-tab" onclick="showSub('apply','w3',this)">UC 적용 사례</button>
+  </div>
+  <div class="sub-section active" id="w3-persuasion">
+    <div class="section-label">설득 (Persuasion) &amp; 수사학 (Rhetoric)</div>
+    <div class="tip-box amber"><strong>핵심 전제 (암기)</strong><br>Technical Writing = <strong>action/results driven</strong> → 행동을 이끌어내야 함<br>이를 위해 <strong>설득(Persuasion)</strong>이 필수 → 도구 = <strong>Rhetoric(수사학)</strong></div>
+    <div class="section-label">설득의 4가지 공통 특징</div>
+    <div class="level-list">
+      <div class="level-card" onclick="toggleLevel(this)">
+        <div class="level-header">
+          <div class="level-dot" style="background:var(--amber)"></div>
+          <div class="level-title-wrap"><div class="level-title">Persuasion의 정의와 특징</div><div class="level-sub">설득자가 피설득자의 정신 상태를 변화시키는 것</div></div>
+          <svg class="level-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="level-detail">1. 설득자가 피설득자에게 <strong>영향을 주려 의도</strong>함<br>2. 효과는 <strong>커뮤니케이션(언어=Rhetoric)</strong>으로 달성<br>3. 성공의 개념 내포됨<br>4. 피설득자에게 <strong>자유의지</strong>(free will) 존재<br><br><em>행동 변화를 위해 먼저 <strong>생각(think)</strong>을 바꿔야 함</em></div>
+      </div>
+      <div class="level-card" onclick="toggleLevel(this)">
+        <div class="level-header">
+          <div class="level-dot" style="background:var(--purple)"></div>
+          <div class="level-title-wrap"><div class="level-title">Rhetoric 정의 (아리스토텔레스)</div><div class="level-sub">언어를 사용해 청중의 생각·감정·행동을 변화시키는 기술</div></div>
+          <svg class="level-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="level-detail">"실용적 토론 도구 — 일반 청중을 설득해 실용적 문제를 해결하는 수단"<br><br><strong>진정한 수사학을 위해:</strong><br>• 지식(Knowledgeable) · 윤리(Ethical) · 높은 도덕적 성품<br><br><strong>수사학의 과정:</strong> ① 의식적 ② 전략적 ③ 특정 결과 의도 ④ 기술(Skill) 필요<br><em>항상 타겟 청중의 입장에서 스스로를 바라볼 것</em></div>
+      </div>
+    </div>
+  </div>
+  <div class="sub-section" id="w3-triangle">
+    <div class="section-label">Aristotle's Rhetorical Triangle</div>
+    <div class="hint">에토스·파토스·로고스·카이로스 — 에파로카 순서로 암기</div>
+    <div class="triangle-wrap">
+      <svg viewBox="0 0 480 340" xmlns="http://www.w3.org/2000/svg" style="max-width:480px;width:100%">
+        <polygon points="240,24 40,312 440,312" fill="rgba(83,74,183,0.04)" stroke="#cccac4" stroke-width="1.5"/>
+        <circle cx="240" cy="24" r="40" fill="#e6f1fb" stroke="#185fa5" stroke-width="1.5"/>
+        <text x="240" y="18" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="13" font-weight="500" fill="#185fa5">ETHOS</text>
+        <text x="240" y="32" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif" font-size="10" fill="#6b6860">신뢰·신용</text>
+        <text x="240" y="44" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif" font-size="10" fill="#9e9c97">Credibility</text>
+        <circle cx="58" cy="300" r="40" fill="#faece7" stroke="#993c1d" stroke-width="1.5"/>
+        <text x="58" y="294" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="13" font-weight="500" fill="#993c1d">PATHOS</text>
+        <text x="58" y="308" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif" font-size="10" fill="#6b6860">감정·공감</text>
+        <text x="58" y="320" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif" font-size="10" fill="#9e9c97">Emotion</text>
+        <circle cx="422" cy="300" r="40" fill="#e1f5ee" stroke="#0f6e56" stroke-width="1.5"/>
+        <text x="422" y="294" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="13" font-weight="500" fill="#0f6e56">LOGOS</text>
+        <text x="422" y="308" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif" font-size="10" fill="#6b6860">논리·이성</text>
+        <text x="422" y="320" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif" font-size="10" fill="#9e9c97">Logic</text>
+        <circle cx="240" cy="180" r="38" fill="#eeedfe" stroke="#534ab7" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="240" y="173" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="13" font-weight="500" fill="#534ab7">KAIROS</text>
+        <text x="240" y="187" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif" font-size="10" fill="#6b6860">적시성·맥락</text>
+        <text x="240" y="199" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif" font-size="10" fill="#9e9c97">Timing</text>
+      </svg>
+    </div>
+    <div class="level-list" id="appealsList"></div>
+  </div>
+  <div class="sub-section" id="w3-canons">
+    <div class="section-label">수사학의 4 Canon (정준)</div>
+    <div class="hint">Invention · Arrangement · Style · Delivery — IASD</div>
+    <div class="card-grid" id="canonGrid"></div>
+  </div>
+  <div class="sub-section" id="w3-apply">
+    <div class="section-label">Unit Clerk에서의 수사학 4가지 적용</div>
+    <table class="cmp-table">
+      <thead><tr><th>Appeal</th><th>핵심</th><th>Unit Clerk 적용 예시</th></tr></thead>
+      <tbody>
+        <tr><td class="td-k" style="color:var(--blue)">Ethos</td><td>신뢰·신용</td><td>의학 용어 마스터, 환자 기밀 준수, 의사-간호사 신뢰 중개자</td></tr>
+        <tr><td class="td-k" style="color:var(--coral)">Pathos</td><td>감정·공감</td><td>불안한 환자 가족 진정, 입원 과정 따뜻한 소통</td></tr>
+        <tr><td class="td-k" style="color:var(--teal)">Logos</td><td>논리·이성</td><td>데이터 기반 스케줄 관리, 의사 오더 우선순위, 객관적 결정</td></tr>
+        <tr><td class="td-k" style="color:var(--purple)">Kairos</td><td>적시성</td><td>긴급 검사 결과 적절한 시점 전달, 의사에게 서류 요청하는 "적절한 순간"</td></tr>
+      </tbody>
+    </table>
+    <div class="tip-box purple"><strong>기억 방법 — 에파로카</strong><br>에토스(신뢰) · 파토스(감정) · 로고스(논리) · 카이로스(타이밍)</div>
+  </div>
+</div>
+
+<div class="page" id="page-mustknow">
+  <div class="section-label">⭐ 필수 암기</div>
+  <div id="mustknowContent"></div>
+</div>
+
+<div class="page" id="page-quiz">
+  <div class="section-label">📝 연습 퀴즈</div>
+  <div class="hint">클릭으로 답 선택 · 즉시 피드백 · 총 10문제</div>
+  <div class="quiz-score" id="quizScore">점수: 0 / 0 · 총 10문제</div>
+  <div class="quiz-list" id="quizContent"></div>
+  <button class="btn-reset" onclick="resetQuiz()">↺ 다시 시작</button>
+</div>
+
+</div>
+
+<script>
+const GUIDELINES=[{num:'01',title:'Know Your Purpose 목적 파악',sub:'행동/결과 중심 글쓰기',detail:'당신의 목적은 독자를 교육하는 것.<br><strong>"독자의 교육 수준을 과대평가하되, 지능을 과소평가하지 말라."</strong><br>글은 정보적이고 action/results driven이어야 함.'},{num:'02',title:'Know Your Audience 독자 파악',sub:'Audience Analysis 4가지 질문',detail:'<strong>Audience Analysis:</strong><br>• 누구에게 쓰는가?<br>• 이미 무엇을 아는가?<br>• 무엇을 알아야 하는가?<br>• 정보를 어떻게 사용할 것인가?'},{num:'03',title:'Put Your Main Idea First 핵심 먼저',sub:'가장 중요한 것을 먼저 제시',detail:'독자가 즉시 무엇에 관한 글인지 알도록 주요 아이디어를 먼저 제시. 이후 논리적으로 안내.'},{num:'04',title:'Use Short Words and Sentences 짧은 단어·문장',sub:'Plain Language + 1문장 = 1아이디어',detail:'<strong>Plain Language (암기):</strong><br>terminate→end / utilize→use / substantiate→prove / optimum→best<br><br><strong>문장:</strong> 한 문장 = 한 아이디어 / 복잡한 아이디어 → 여러 문장<br>빈 서두 구문 제거 ("I would like to begin by stating that…")'},{num:'05',title:'Be Concise 간결하게',sub:'Concise ≠ Short',detail:'최소 단어로 최대 정보 전달.<br><strong>피해야 할 것:</strong><br>a) Padding/Filler — 의미 없는 채우기<br>b) Redundant Prepositional Phrases → "at this point in time" = <strong>now</strong><br>c) Verbosity (장황함)'},{num:'06',title:'Use Active Voice 능동태 사용',sub:'기술 작문의 표준 — 예외 있음',detail:'능동태: 누가 무엇을 하는지 명확.<br>예: <strong>"The student edits the file."</strong> (능동)<br>"The file is edited by the student." (수동)<br><br><strong>수동태 예외:</strong> 행위자 불명확하거나 결과가 더 중요할 때'},{num:'07',title:'Focus on Specifics 구체성',sub:'정확한 숫자·이름·날짜·시간·위치',detail:'모호함과 혼란 방지. 독자의 모든 질문에 답하라.<br>"a few patients" → <strong>"8 patients"</strong>'},{num:'08',title:'Be Consistent 일관성',sub:'같은 문서 내 표기 통일',detail:'<strong>숫자 규칙 (암기):</strong><br>1~10 → 영어로 (one, two … ten)<br>11+ → 숫자 (11, 12…)<br>문장 시작 → 항상 영어로 (Eight patients…)'},{num:'09',title:'Create User-Friendly Text 독자 친화적',sub:'제목·목록·단락 길이·폰트',detail:'좋은 페이지 디자인:<br>• 제목·부제목 · 번호·불릿 목록<br>• 적절한 단락 길이<br>• 11~12pt Times New Roman (표준 원고 폰트)'},{num:'10',title:'Use Visuals 시각 자료',sub:'figures · tables 활용',detail:'해당되는 경우 관련 시각 자료 포함. 독자가 메시지를 빠르고 쉽게 이해하도록 도움.'}];
+const IC_TYPES=[{term:'Verbal Communication',ko:'언어 소통',color:'var(--blue)',def:'명확하고 자신감 있게 상황에 맞게 말하는 능력',detail:'발음·어조·속도·단어 선택 포함. 의료 현장에서 환자·의사·팀원과 명확 소통'},{term:'Body Language',ko:'신체 언어',color:'var(--amber)',def:'자세, 표정, 제스처 — 말만큼 강한 메시지 전달',detail:'언어와 비언어 모두 "텍스트"로 읽힘. 모순된 신호 주의'},{term:'Active Listening',ko:'적극적 경청',color:'var(--teal)',def:'상대방 말에 완전히 집중, 신체 언어·시각 단서까지 파악',detail:'단순히 듣는 게 아님. 이해하고 공감하며 반응. 환자 요구 파악에 필수'},{term:'Teamwork',ko:'팀워크',color:'var(--green)',def:'함께 잘 소통하고 공동 목표를 달성하는 능력',detail:'갈등 방지, 생산성 향상. 의료팀 효율성과 환자 안전에 직결'},{term:'Empathy',ko:'공감',color:'var(--coral)',def:'타인의 감정·필요·아이디어를 그 사람의 관점에서 이해',detail:'직장 내 사기와 생산성 향상, 오해 방지. 환자 중심 케어의 핵심'},{term:'Intercultural Communication',ko:'문화 간 소통',color:'var(--purple)',def:'다른 문화권 사람들 간 언어·비언어 메시지 교환',detail:'의료 현장은 매우 다양한 문화 배경. 문화적 감수성 없으면 소통 실패 위험'}];
+const BARRIERS=[{term:'Language Barriers',ko:'언어 장벽',color:'var(--coral)',sub:'가장 흔함 — 의료 현장 80%에서 보고',detail:'같은 언어여도 숙련도 차이·전문 용어/jargon이 장벽. 언어 클릭(language clique) 형성도 문제'},{term:'Cultural Barriers',ko:'문화 장벽',color:'var(--amber)',sub:'문화마다 다른 상호작용 규범·감정 표현 방식',detail:'성별 고정관념, 가정된 역할 포함. 팀원 문화 배경 모르면 오해 발생'},{term:'Psychological/Emotional Barriers',ko:'심리·감정 장벽',color:'var(--purple)',sub:'스트레스·불안·분노·번아웃이 소통 능력 제한',detail:'특정 약물도 인지 능력에 영향. 심리 상태가 피드백 수용 방식에 영향'},{term:'Physical Barriers',ko:'물리적 장벽',color:'var(--blue)',sub:'지리적 거리·원격 근무·청각 문제',detail:'온라인 단점: 연결 문제·방해 환경·음향 간섭. 청력·언어 장애도 해당'},{term:'Systematic Barriers',ko:'체계적 장벽',color:'var(--green)',sub:'비효율적 정보 시스템·역할 불명확',detail:'소통에서 자신의 역할을 모르는 사람들 → 기대치 불이행'},{term:'Systemic Barriers',ko:'시스템적 장벽',color:'var(--teal)',sub:'정책·관행·절차로 인한 불평등한 접근',detail:'성별 장벽: 성별에 따라 다른 소통 방식 기대. 젠더 고정관념이 소통 격차 초래'}];
+const APPEALS=[{term:'ETHOS',ko:'에토스',color:'var(--blue)',sub:'신뢰·신용 (Credibility)',detail:'저자의 성격·신뢰성·윤리적 호소에 기반<br><strong>UC 예:</strong> 의학 용어 마스터, 환자 기밀 준수, 의사-간호사 신뢰 중개자'},{term:'PATHOS',ko:'파토스',color:'var(--coral)',sub:'감정·공감 (Emotion)',detail:'청중의 감정과 가치를 자극하는 호소<br><strong>UC 예:</strong> 불안한 환자 가족 안심, 입원 과정 따뜻한 소통'},{term:'LOGOS',ko:'로고스',color:'var(--teal)',sub:'논리·이성·데이터 (Logic)',detail:'사실·통계·논리적 추론에 기반<br><strong>UC 예:</strong> 데이터 기반 스케줄 관리, 오더 우선순위, 객관적 의료 필요에 따른 결정'},{term:'KAIROS',ko:'카이로스',color:'var(--purple)',sub:'"적절한 순간" — 타이밍과 맥락',detail:'"Opportune moment" — 논증 배치 시점이 논증 자체만큼 중요<br><strong>UC 예:</strong> 긴급 검사 결과 적절한 시점 전달, 의사에게 서류 요청하는 자연스러운 전환점'}];
+const CANONS=[{term:'INVENTION',ko:'발명·발견',color:'var(--blue)',sub:'Discovery · Brainstorming · Research',detail:'무엇을 말할지 결정. 아이디어 발견과 브레인스토밍. Heuristics(발견법) 사용'},{term:'ARRANGEMENT',ko:'배열·구성',color:'var(--teal)',sub:'정보를 청중이 받을 수 있도록 배열',detail:'논증의 순서와 구조 결정. 가장 중요한 것 먼저 (Technical Writing 원칙과 일치)'},{term:'STYLE',ko:'스타일·문체',color:'var(--amber)',sub:'Formality · Tone · Word Choice · Sentence Structure',detail:'Voice, Appearance, Body Language도 고려. 상황·청중에 따라 격식 수준 조정'},{term:'DELIVERY',ko:'전달',color:'var(--coral)',sub:'실제 전달 방식',detail:'음성, 제스처, 시각 보조 자료 등. 준비된 내용을 청중에게 실제로 전달하는 방법'}];
+const MUSTKNOW=[{title:'핵심 정의 — 반드시 암기',items:[['Communication','정보를 발신자와 수신자 사이에서 <strong>언어+비언어</strong>로 전달. 성공=발신자 의도대로 해석'],['Technical Writing','<strong>action/results driven</strong> 교육·설득 작문. 작성자가 독자보다 더 잘 앎. 명확·간결·독자 중심'],['Interpersonal Communication','두 명 이상 간 언어·비언어로 <strong>정보·아이디어·감정</strong> 교환. 기술 수준=전달 효과성'],['Rhetoric','언어로 청중의 <strong>생각·감정·행동</strong>을 변화시키는 기술 (아리스토텔레스)'],['Persuasion','설득자가 피설득자의 정신 상태 변화. <strong>행동 전에 생각부터</strong> 바꿔야 함'],['Team Charter','팀의 <strong>헌법(constitution)</strong>. 공유 가치·소통 프로토콜·의사결정·갈등 해결·약속 불이행 결과'],['Responsibility vs Accountability','Responsibility=<strong>tasks</strong>(업무) / Accountability=결과에 대해 <strong>사람에게</strong> 답하는 것']]},{title:'Technical Writing Top 10 핵심',items:[['#1 Know Purpose','교육·행동/결과 중심. "교육 수준 과대평가 말되, 지능 과소평가 말라"'],['#2 Know Audience','Audience Analysis: 누구? 무엇을 아는가? 무엇이 필요한가? 어떻게 사용하나?'],['#3 Main Idea First','가장 중요한 것을 먼저 제시 → 논리적으로 안내'],['#4 Short Words','terminate→end / utilize→use / substantiate→prove / optimum→best'],['#5 Concise','Concise≠Short. 최소 단어로 최대 정보. Padding/Redundancy/Verbosity 제거'],['#6 Active Voice','능동태가 표준. 수동태: 행위자 불명확하거나 결과가 더 중요할 때'],['#8 숫자 규칙','1~10: 영어 (one~ten). 11+: 숫자. 문장 시작: 항상 영어로']]},{title:'의료 커뮤니케이션 통계 — 시험 자주 출제',items:[['WHO 2021','전 세계 연간 <strong>300만 명</strong> 이상 환자 안전 사고 사망. 10명 중 1명 피해'],['CIHI 2024','캐나다 입원 <strong>17건 중 1건</strong> (146,000/240만) 유해 사건. 2021-22 대비 6,000건↑'],['JFM 2019','의료 현장 약 <strong>80%</strong>에서 커뮤니케이션 장벽 보고. <strong>언어 장벽</strong>이 가장 흔함'],['Beaulieu 2011','의료 대인 소통 = "환자 우려 이끌어내고, 공유된 의사결정에 참여하는 능력"']]},{title:'Aristotle 수사학 4요소 — 에파로카 (암기)',items:[['Ethos 에토스','<strong>신뢰·신용</strong>. UC: 의학 용어 마스터, 환자 기밀 준수'],['Pathos 파토스','<strong>감정·공감</strong>. UC: 불안한 환자 가족 안심'],['Logos 로고스','<strong>논리·이성·데이터</strong>. UC: 스케줄 관리, 오더 우선순위'],['Kairos 카이로스','<strong>적시성·적절한 순간</strong>. UC: 긴급 결과 타이밍'],['기억법','<strong>에-파-로-카</strong> (에토스·파토스·로고스·카이로스)']]},{title:'커뮤니케이션 장벽 6가지',items:[['Language 언어','가장 흔함 (80%). 숙련도 차이·전문 용어·언어 클릭 포함'],['Cultural 문화','문화마다 다른 규범·감정 표현. 성별 고정관념 포함'],['Psychological/Emotional','스트레스·불안·분노·번아웃이 소통 능력 제한'],['Physical 물리적','지리적 거리·원격 근무·청각 문제'],['Systematic 체계적','비효율적 정보 시스템, 역할·책임 불명확'],['Systemic 시스템적','정책·관행으로 인한 불평등한 접근. 성별 장벽 포함']]},{title:'Team Charter 5가지 구성요소',items:[['1. Mission & Objectives','팀의 목표와 사명'],['2. Roles & Responsibilities','역할 분담 — 명확하고 측정 가능하게'],['3. Team Operations','운영 방식: 회의·의사결정·변화 대응'],['4. Activities & Milestones','일정과 주요 마일스톤'],['5. Contingency/Consequences','갈등 해결 전략 및 약속 불이행 결과'],['마감 (15%)','<strong>Week 4 · Thu Apr 30</strong> · 수업 시작 전 Learning Hub 제출 · 팀당 1개']]},
+{title:'⚠️ 과제 데드라인 전체 — 반드시 암기',items:[
+['Team Charter (15%)','<strong>Week 4 · Thu Apr 30</strong> · 수업 시작 전 Learning Hub 제출 · 팀당 1개'],
+['Message of Request — Claim Message (20%)','<strong>Week 7 · Thu May 21</strong> · 수업 시작 전 Learning Hub 제출'],
+['Presentation Draft (10%)','<strong>Week 9 · Thu Jun 4</strong> · 수업 시작 전 Learning Hub 제출'],
+['Incident Report (20%)','<strong>Week 10 · Thu Jun 11</strong> · 수업 시작 전 Learning Hub 제출'],
+['Team Presentation (30%) Round 1','<strong>Week 11 · Thu Jun 18</strong> · 연장 없음 · 미발표 시 자동 0점'],
+['Team Presentation (30%) Round 2','<strong>Week 12 · Thu Jun 25</strong> · 연장 없음 · 미발표 시 자동 0점'],
+['Peer Evaluation (5%)','팀 프레젠테이션 후 제출 (별도 안내)'],
+['⚠️ 지각 제출 패널티','승인된 연장 없을 시 하루 10% 감점 (주말=1일로 계산)'],
+['⚠️ 72시간 규칙','마감 72시간 전까지만 강사 초안 리뷰 요청 가능'],
+['Week 10 특이사항','수업 없음 — 팀 발표 자율 준비. 강사는 정규 시간에 질문 대응']
+]}];
+const QUIZ=[{q:'기술 작문(Technical Writing)의 핵심 원칙은?',opts:['독자의 교육 수준과 지능 모두 과소평가한다','독자의 교육 수준을 과대평가하되, 지능을 과소평가하지 말라','독자보다 더 많이 알 필요가 없다','항상 학술 작문 스타일을 따른다'],ans:1,fb:'기술 작문: 독자의 교육 수준(전문 지식)은 과대평가하지 말되, 지능(이해력)은 과소평가하지 말라.'},
+{q:'Transaction Model이 Linear Model과 다른 가장 큰 차이점은?',opts:['메시지가 한 방향으로만 흐른다','발신자만 중요하다','양방향 동시 소통이 가능하며 참여자를 "Communicators"라 부른다','수신자는 "목표점"으로만 본다'],ans:2,fb:'Transaction = 양방향 동시 소통. 모두 "Communicators". 메시지를 보내면서 상대 반응 수신·조정 가능.'},
+{q:'Plain Language에서 "optimum"의 올바른 대체어는?',opts:['superior','maximum','best','optimal'],ans:2,fb:'optimum → best. 4쌍 암기: terminate/end · utilize/use · substantiate/prove · optimum/best'},
+{q:'캐나다 입원 몇 건 중 1건에서 유해 사건? (CIHI 2024)',opts:['5건 중 1건','10건 중 1건','17건 중 1건','100건 중 1건'],ans:2,fb:'CIHI 2024: 입원 17건 중 1건 (146,000 / 240만). 2021-22 대비 6,000건 증가.'},
+{q:'수사학 삼각형에서 "신뢰·신용(Credibility)"에 해당하는 것은?',opts:['Pathos','Logos','Ethos','Kairos'],ans:2,fb:'Ethos(에토스)=신뢰·신용. 에파로카 순서: 에토스·파토스·로고스·카이로스'},
+{q:'Team Charter에서 Responsibility vs Accountability의 차이는?',opts:['동일한 의미','Responsibility=결과, Accountability=업무','Responsibility=수행하는 업무, Accountability=결과에 대해 사람에게 답하는 것','둘 다 팀에만 적용'],ans:2,fb:'"Responsible for things, accountable to people for outcomes."'},
+{q:'의료 현장에서 가장 흔한 커뮤니케이션 장벽은? (JFM 2019)',opts:['Physical Barriers','Psychological Barriers','Language Barriers','Systematic Barriers'],ans:2,fb:'Language Barriers가 가장 흔함. 의료 현장 약 80%에서 커뮤니케이션 장벽 보고.'},
+{q:'수사학의 4 Canon 중 "정보를 청중이 받을 수 있도록 배열하는 과정"은?',opts:['Invention','Arrangement','Style','Delivery'],ans:1,fb:'Arrangement=정보 배열. IASD: Invention·Arrangement·Style·Delivery'},
+{q:'"Kairos"가 수사학에서 의미하는 것은?',opts:['논리적 근거 사용','청중의 감정 자극','설득자의 신뢰도','적절한 순간 — 타이밍과 맥락'],ans:3,fb:'Kairos="Opportune moment". 논증 배치 시점이 논증 자체만큼 중요.'},
+{q:'Technical Writing에서 숫자 "8"을 문장 중간에 쓸 때?',opts:['8','eight','VIII','viii'],ans:1,fb:'1~10 → 영어로 (eight). 11+는 숫자. 문장 시작 숫자는 항상 영어로 ("Eight patients…")'}];
+
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('guidelinesList').innerHTML=GUIDELINES.map(g=>`<div class="level-card" onclick="toggleLevel(this)"><div class="level-header"><div class="level-dot" style="background:var(--amber)"></div><div class="level-title-wrap"><div class="level-title">Guideline ${g.num} · ${g.title}</div><div class="level-sub">${g.sub}</div></div><svg class="level-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="level-detail">${g.detail}</div></div>`).join('');
+  document.getElementById('icTypesList').innerHTML=IC_TYPES.map(c=>`<div class="level-card" onclick="toggleLevel(this)"><div class="level-header"><div class="level-dot" style="background:${c.color}"></div><div class="level-title-wrap"><div class="level-title">${c.term} <span style="font-size:12px;color:var(--text3);font-weight:400">— ${c.ko}</span></div><div class="level-sub">${c.def}</div></div><svg class="level-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="level-detail">${c.detail}</div></div>`).join('');
+  document.getElementById('barriersList').innerHTML=BARRIERS.map(b=>`<div class="level-card" onclick="toggleLevel(this)"><div class="level-header"><div class="level-dot" style="background:${b.color}"></div><div class="level-title-wrap"><div class="level-title">${b.term} <span style="font-size:12px;color:var(--text3);font-weight:400">— ${b.ko}</span></div><div class="level-sub">${b.sub}</div></div><svg class="level-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="level-detail">${b.detail}</div></div>`).join('');
+  document.getElementById('appealsList').innerHTML=APPEALS.map(a=>`<div class="level-card" onclick="toggleLevel(this)"><div class="level-header"><div class="level-dot" style="background:${a.color}"></div><div class="level-title-wrap"><div class="level-title">${a.term} <span style="font-size:12px;color:var(--text3);font-weight:400">— ${a.ko}</span></div><div class="level-sub">${a.sub}</div></div><svg class="level-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="level-detail">${a.detail}</div></div>`).join('');
+  document.getElementById('canonGrid').innerHTML=CANONS.map(c=>`<div class="flip-card" onclick="flipCard(this)"><div class="card-label">${c.ko}</div><div class="card-en" style="color:${c.color}">${c.term}</div><div class="card-ko">${c.sub}</div><div class="card-detail">${c.detail}</div></div>`).join('');
+  document.getElementById('mustknowContent').innerHTML=MUSTKNOW.map(b=>`<div class="mk-block"><div class="mk-block-title">${b.title}</div>${b.items.map(([t,d])=>`<div class="mk-row"><div class="mk-term">${t}</div><div class="mk-def">${d}</div></div>`).join('')}</div>`).join('');
+  renderQuiz();
+});
+
+let qS=0,qA=0;
+function renderQuiz(){
+  document.getElementById('quizContent').innerHTML=QUIZ.map((q,qi)=>`<div class="quiz-card" id="qc${qi}"><div class="quiz-q-num">Q${qi+1} / ${QUIZ.length}</div><div class="quiz-q">${q.q}</div><div class="quiz-opts">${q.opts.map((o,oi)=>`<button class="quiz-opt" onclick="answerQ(${qi},${oi})">${o}</button>`).join('')}</div><div class="quiz-fb" id="qf${qi}"></div></div>`).join('');
+  updateScore();
+}
+function answerQ(qi,oi){
+  const card=document.getElementById('qc'+qi);
+  if(card.dataset.done)return;
+  card.dataset.done='1';
+  card.querySelectorAll('.quiz-opt').forEach((o,i)=>{
+    if(i===QUIZ[qi].ans)o.classList.add('correct');
+    else if(i===oi&&oi!==QUIZ[qi].ans)o.classList.add('wrong');
+    o.style.pointerEvents='none';
+  });
+  const fb=document.getElementById('qf'+qi);
+  fb.style.color=oi===QUIZ[qi].ans?'var(--teal)':'var(--coral)';
+  fb.innerHTML=(oi===QUIZ[qi].ans?'✓ 정답! ':'✗ 오답. ')+QUIZ[qi].fb;
+  fb.classList.add('show');
+  if(oi===QUIZ[qi].ans)qS++;
+  qA++;updateScore();
+}
+function updateScore(){document.getElementById('quizScore').textContent=`점수: ${qS} / ${qA} · 총 ${QUIZ.length}문제`;}
+function resetQuiz(){qS=0;qA=0;renderQuiz();}
+function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.main-tab').forEach(t=>t.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');btn.classList.add('active');}
+function showSub(id,page,btn){const parent=document.getElementById('page-'+page);parent.querySelectorAll('.sub-section').forEach(s=>s.classList.remove('active'));parent.querySelectorAll('.sub-tab').forEach(t=>t.classList.remove('active'));document.getElementById(page+'-'+id).classList.add('active');btn.classList.add('active');}
+function toggleLevel(el){el.classList.toggle('open');}
+function flipCard(el){el.classList.toggle('open');}
+</script>
+</body>
+</html>
