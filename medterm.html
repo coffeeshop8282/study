@@ -1015,6 +1015,10 @@ header {
       <button class="ch-filter-btn" data-chfilter="4" id="ch4">Ch.4</button>
       <button class="ch-filter-btn" data-chfilter="5" id="ch5">Ch.5</button>
       <button class="ch-filter-btn" data-chfilter="6" id="ch6">Ch.6</button>
+      <button class="ch-filter-btn" data-chfilter="7" id="ch7">Ch.7</button>
+      <button class="ch-filter-btn" data-chfilter="8" id="ch8">Ch.8</button>
+      <button class="ch-filter-btn" data-chfilter="9" id="ch9">Ch.9</button>
+      <button class="ch-filter-btn" data-chfilter="10" id="ch10">Ch.10</button>
     </div>
     <div class="mode-bar">
       <span class="mode-label">MODE</span>
@@ -1796,7 +1800,324 @@ const DATA = [
   { term:'-chezia', type:'suffix', ko:'배변/대변 배출', en:'defecation, elimination of wastes', es:'defecación', pronun:'케-지-아', chapter:5,
     examples:[{en:'hematochezia',ko:'혈변(선홍색)',es:'hematoquecia'},{en:'acholia',ko:'담즙 없음',es:'acolia'}]},
   { term:'-prandial', type:'suffix', ko:'식사 관련', en:'meal', es:'relacionado a comida', pronun:'프-란-디-알', chapter:5,
-    examples:[{en:'postprandial',ko:'식후의',es:'postprandial'},{en:'preprandial',ko:'식전의',es:'preprandial'}]},];
+    examples:[{en:'postprandial',ko:'식후의',es:'postprandial'},{en:'preprandial',ko:'식전의',es:'preprandial'}]},
+  // ── CH.7 URINARY SYSTEM ──────────────────────────────────────
+  { term:'cyst/o', type:'combining', ko:'방광', en:'urinary bladder', pronun:'시-스토', chapter:7,
+    examples:[{en:'cystitis',ko:'방광염'},{en:'cystectomy',ko:'방광절제술'},{en:'cystoscopy',ko:'방광경검사'}]},
+  { term:'nephr/o', type:'combining', ko:'신장(콩팥)', en:'kidney', pronun:'네-프로', chapter:7,
+    examples:[{en:'nephritis',ko:'신장염'},{en:'nephrectomy',ko:'신장절제술'},{en:'hydronephrosis',ko:'수신증'},{en:'nephropathy',ko:'신장질환'}]},
+  { term:'ren/o', type:'combining', ko:'신장', en:'kidney', pronun:'레-노', chapter:7,
+    examples:[{en:'renal artery',ko:'신장동맥'},{en:'renal failure',ko:'신부전'},{en:'renal colic',ko:'신산통'}]},
+  { term:'ureter/o', type:'combining', ko:'요관', en:'ureter', pronun:'유-레-테-로', chapter:7,
+    examples:[{en:'ureteroplasty',ko:'요관성형술'},{en:'ureteroileostomy',ko:'요관-회장루'}]},
+  { term:'urethr/o', type:'combining', ko:'요도', en:'urethra', pronun:'유-리-스로', chapter:7,
+    examples:[{en:'urethritis',ko:'요도염'},{en:'urethral stricture',ko:'요도협착'}]},
+  { term:'pyel/o', type:'combining', ko:'신우', en:'renal pelvis', pronun:'파이-엘-로', chapter:7,
+    examples:[{en:'pyelonephritis',ko:'신우신염'},{en:'pyelolithotomy',ko:'신우절석술'}]},
+  { term:'vesic/o', type:'combining', ko:'방광', en:'urinary bladder', pronun:'베-식-오', chapter:7,
+    examples:[{en:'intravesical',ko:'방광 내'},{en:'vesicoureteral reflux',ko:'방광요관역류'}]},
+  { term:'glomerul/o', type:'combining', ko:'사구체', en:'glomerulus (tiny ball of capillaries)', pronun:'글로-메-룰-로', chapter:7,
+    examples:[{en:'glomerulonephritis',ko:'사구체신염'},{en:'glomerular capsule (Bowman)',ko:'사구체낭(보먼낭)'}]},
+  { term:'lith/o', type:'combining', ko:'결석(돌)', en:'stone / calculus', pronun:'리-쏘', chapter:7,
+    examples:[{en:'nephrolithiasis',ko:'신장결석'},{en:'lithotripsy (ESWL)',ko:'체외충격파쇄석술'}]},
+  { term:'azot/o', type:'combining', ko:'질소', en:'nitrogen', pronun:'아-조-토', chapter:7,
+    examples:[{en:'azotemia',ko:'질소혈증(uremia)'}]},
+  { term:'ur/o', type:'combining', ko:'소변/요소', en:'urine / urea', pronun:'유-로', chapter:7,
+    examples:[{en:'uremia',ko:'요독증'},{en:'enuresis',ko:'야뇨증(불수의적)'},{en:'diuresis',ko:'이뇨'}]},
+  { term:'urin/o', type:'combining', ko:'소변', en:'urine', pronun:'유-리-노', chapter:7,
+    examples:[{en:'urinalysis (UA)',ko:'요검사'},{en:'urinary incontinence',ko:'요실금'},{en:'urinary retention',ko:'요폐'}]},
+  { term:'py/o', type:'combining', ko:'고름(농)', en:'pus', pronun:'파이-오', chapter:7,
+    examples:[{en:'pyuria',ko:'농뇨 — sign of UTI'}]},
+  { term:'noct/o', type:'combining', ko:'밤', en:'night', pronun:'녹-토', chapter:7,
+    examples:[{en:'nocturia',ko:'야간뇨(자발적·빈번)'}]},
+  { term:'olig/o', type:'combining', ko:'소량/희박', en:'scanty / few', pronun:'올-리-고', chapter:7,
+    examples:[{en:'oliguria',ko:'핍뇨'},{en:'oligospermia',ko:'정자감소증'}]},
+  { term:'kal/i', type:'combining', ko:'칼륨(K+)', en:'potassium', pronun:'칼-리', chapter:7,
+    examples:[{en:'hyperkalemia',ko:'고칼륨혈증'},{en:'hypokalemia',ko:'저칼륨혈증'}]},
+  { term:'natr/o', type:'combining', ko:'나트륨(Na+)', en:'sodium', pronun:'나-트로', chapter:7,
+    examples:[{en:'hyponatremia',ko:'저나트륨혈증'},{en:'hypernatremia',ko:'고나트륨혈증'}]},
+  { term:'albumin/o', type:'combining', ko:'알부민(혈장단백)', en:'albumin (protein)', pronun:'알-뷰-민-오', chapter:7,
+    examples:[{en:'albuminuria / proteinuria',ko:'단백뇨 — 손상된 사구체 지표'},{en:'microalbuminuria',ko:'미세단백뇨 — DM 신장 이상 초기'}]},
+  { term:'ket/o, keton/o', type:'combining', ko:'케톤체', en:'ketone bodies', pronun:'키-토', chapter:7,
+    examples:[{en:'ketonuria',ko:'케톤뇨'},{en:'ketoacidosis',ko:'케톤산증'}]},
+  { term:'dips/o', type:'combining', ko:'갈증', en:'thirst', pronun:'딥-소', chapter:7,
+    examples:[{en:'polydipsia',ko:'다음증(심한 갈증)'}]},
+  { term:'bacteri/o', type:'combining', ko:'세균', en:'bacteria', pronun:'박-테-리-오', chapter:7,
+    examples:[{en:'bacteriuria',ko:'세균뇨 — UTI 징후'}]},
+  // CH.7 KEY VOCAB
+  { term:'nephron', type:'vocab', ko:'네프론 — 신장의 기능 단위', en:'functional unit of kidney = glomerulus + renal tubule; 1 million per kidney', pronun:'네-프론', chapter:7,
+    examples:[{en:'3 steps: filtration → reabsorption → secretion',ko:'3단계: 여과 → 재흡수 → 분비'}]},
+  { term:'urea / creatinine / uric acid', type:'vocab', ko:'요소/크레아티닌/요산 — 질소 노폐물', en:'nitrogenous wastes filtered by kidneys; measured by BUN + creatinine clearance', pronun:'유-리-아/크리-아-티-닌', chapter:7,
+    examples:[{en:'BUN elevated in renal failure',ko:'BUN 상승 → 신부전'}]},
+  { term:'renin', type:'vocab', ko:'레닌(혈압 상승 효소)', en:'enzyme secreted by kidney → raises BP via vasoconstriction', pronun:'레-닌', chapter:7,
+    examples:[]},
+  { term:'erythropoietin (EPO)', type:'vocab', ko:'에리스로포이에틴(조혈 호르몬)', en:'hormone from kidney stimulating RBC production in bone marrow', pronun:'에-리-스로-포이-에-틴', chapter:7,
+    examples:[]},
+  { term:'ADH (antidiuretic hormone)', type:'vocab', ko:'항이뇨호르몬(바소프레신)', en:'pituitary hormone → promotes water reabsorption in renal tubules', pronun:'에이-디-에이치', chapter:7,
+    examples:[{en:'deficiency → diabetes insipidus',ko:'결핍 → 요붕증(다뇨·다음)'}]},
+  { term:'hematuria', type:'vocab', ko:'혈뇨', en:'blood in urine; gross (visible) or micro (microscopic)', pronun:'헤-마-튜-리-아', chapter:7, examples:[]},
+  { term:'glycosuria', type:'vocab', ko:'당뇨(소변의 포도당)', en:'glucose in urine → sign of diabetes mellitus (hyperglycemia)', pronun:'글라이-코-슈-리-아', chapter:7, examples:[]},
+  { term:'polyuria', type:'vocab', ko:'다뇨', en:'excessive urine; sign of DI and DM', pronun:'폴-리-유-리-아', chapter:7, examples:[]},
+  { term:'oliguria', type:'vocab', ko:'핍뇨', en:'scanty urine output', pronun:'올-리-규-리-아', chapter:7, examples:[]},
+  { term:'dysuria', type:'vocab', ko:'배뇨통', en:'painful urination', pronun:'디-슈-리-아', chapter:7, examples:[]},
+  { term:'anuria', type:'vocab', ko:'무뇨', en:'absence of urine — renal failure or obstruction', pronun:'아-뉴-리-아', chapter:7, examples:[]},
+  { term:'nocturia', type:'vocab', ko:'야간뇨(자발적)', en:'voluntary frequent urination at night; vs enuresis = involuntary bedwetting', pronun:'녹-튜-리-아', chapter:7, examples:[]},
+  { term:'urinary incontinence', type:'vocab', ko:'요실금', en:'loss of bladder control; stress type (coughing/sneezing) or urgency type', pronun:'인-콘-티-넌스', chapter:7, examples:[]},
+  { term:'glomerulonephritis', type:'vocab', ko:'사구체신염', en:'inflamed glomeruli → hematuria, albuminuria, possible renal failure', pronun:'글로-메-룰-로-네-프-라이-티스', chapter:7,
+    examples:[{en:'can follow streptococcal infection',ko:'연쇄구균 감염 후 발생 가능'}]},
+  { term:'pyelonephritis', type:'vocab', ko:'신우신염', en:'bacterial infection of renal pelvis + parenchyma → pyuria; tx: antibiotics', pronun:'파이-엘-로-네-프-라이-티스', chapter:7, examples:[]},
+  { term:'nephrotic syndrome', type:'vocab', ko:'신증후군', en:'massive protein loss in urine → edema + hypoalbuminemia', pronun:'네-프-로-틱', chapter:7, examples:[]},
+  { term:'nephrolithiasis (renal calculi)', type:'vocab', ko:'신장결석', en:'kidney stones (uric acid or calcium salts) → renal colic, hematuria', pronun:'네-프-로-리-씨-아-시스', chapter:7,
+    examples:[{en:'tx: ESWL or surgery',ko:'치료: 체외충격파 또는 수술'}]},
+  { term:'polycystic kidney disease (PKD)', type:'vocab', ko:'다낭성 신장질환', en:'hereditary; multiple fluid-filled cysts → massively enlarged kidneys → renal failure', pronun:'폴-리-시-스-틱', chapter:7, examples:[]},
+  { term:'renal cell carcinoma', type:'vocab', ko:'신장세포암', en:'malignant kidney tumor in adulthood; hematuria + pain; tx: nephrectomy', pronun:'리-널 셀 카-시-노-마', chapter:7, examples:[]},
+  { term:'Wilms tumor', type:'vocab', ko:'윌름스 종양(소아 신장암)', en:'malignant kidney tumor in childhood; tx: surgery + radiation + chemo', pronun:'윌-므스', chapter:7, examples:[]},
+  { term:'diabetes insipidus (DI)', type:'vocab', ko:'요붕증', en:'ADH deficiency → polyuria + polydipsia; insipidus = tasteless (dilute urine)', pronun:'다이-아-비-티-즈 인-십-이-더스', chapter:7, examples:[]},
+  { term:'diabetes mellitus (DM)', type:'vocab', ko:'당뇨병', en:'insulin deficiency → hyperglycemia, glycosuria, polyuria, polydipsia; mellitus = sweet', pronun:'다이-아-비-티-즈 멜-리-터스', chapter:7,
+    examples:[{en:'microalbuminuria = earliest renal sign',ko:'미세단백뇨 = 신장 이상의 초기 징후'}]},
+  // CH.7 PROCEDURES
+  { term:'urinalysis (UA)', type:'vocab', ko:'요검사', en:'tests: color, pH, protein, glucose, ketones, specific gravity, sediment, bilirubin', pronun:'유-리-날-리-시스', chapter:7, examples:[]},
+  { term:'hemodialysis (HD)', type:'vocab', ko:'혈액투석', en:'artificial kidney machine filters nitrogenous waste; AV fistula for access', pronun:'히-모-다이-알-리-시스', chapter:7, examples:[]},
+  { term:'peritoneal dialysis / CAPD', type:'vocab', ko:'복막투석', en:'fluid into peritoneal cavity removes waste; CAPD = continuous ambulatory PD', pronun:'페-리-토-니-알', chapter:7, examples:[]},
+  { term:'lithotripsy (ESWL)', type:'vocab', ko:'체외충격파쇄석술', en:'extracorporeal shock waves crush urinary stones → pass in urine', pronun:'리-쏘-트-립-시', chapter:7, examples:[]},
+  { term:'cystoscopy', type:'vocab', ko:'방광경검사', en:'endoscope visualizes urethra + bladder; rigid or flexible; biopsy/polyp removal', pronun:'시-스-토-스-코-피', chapter:7, examples:[]},
+  { term:'BUN (blood urea nitrogen)', type:'vocab', ko:'혈중 요소 질소', en:'measures urea in blood; elevated = kidney disease / renal failure', pronun:'비-유-엔', chapter:7, examples:[]},
+  { term:'GFR / CKD stages', type:'vocab', ko:'사구체여과율 / 만성신장병 단계', en:'eGFR >90=Stage1, 60-90=S2, 30-60=S3, 15-30=S4, <15=ESRD (Stage5)', pronun:'지-에프-아', chapter:7, examples:[]},
+  // ── CH.8 FEMALE REPRODUCTIVE SYSTEM ─────────────────────────
+  { term:'amni/o', type:'combining', ko:'양막', en:'amnion (innermost fetal membrane)', pronun:'암-니-오', chapter:8,
+    examples:[{en:'amniocentesis',ko:'양수천자'},{en:'amniotic fluid',ko:'양수'}]},
+  { term:'cervic/o', type:'combining', ko:'자궁경부/목', en:'cervix / neck', pronun:'서-비-코', chapter:8,
+    examples:[{en:'cervicitis',ko:'자궁경부염'},{en:'endocervicitis',ko:'내자궁경부염'}]},
+  { term:'colp/o', type:'combining', ko:'질', en:'vagina', pronun:'콜-포', chapter:8,
+    examples:[{en:'colposcopy',ko:'질경검사'}]},
+  { term:'chori/o', type:'combining', ko:'융모막(바깥 태아막)', en:'chorion (outermost fetal membrane)', pronun:'코-리-오', chapter:8,
+    examples:[{en:'chorionic villus sampling (CVS)',ko:'융모막 융모 표본채취'}]},
+  { term:'episi/o', type:'combining', ko:'외음부', en:'vulva', pronun:'에-피-지-오', chapter:8,
+    examples:[{en:'episiotomy',ko:'회음절개술'}]},
+  { term:'galact/o', type:'combining', ko:'젖/유즙', en:'milk', pronun:'갈-락-토', chapter:8,
+    examples:[{en:'galactorrhea',ko:'유루증(비정상적 유즙 분비)'}]},
+  { term:'gynec/o', type:'combining', ko:'여성', en:'woman / female', pronun:'가이-네-코', chapter:8,
+    examples:[{en:'gynecology',ko:'부인과학'},{en:'gynecomastia',ko:'여성형 유방증(남성에서)'}]},
+  { term:'hyster/o', type:'combining', ko:'자궁', en:'uterus / womb', pronun:'히-스테-로', chapter:8,
+    examples:[{en:'hysterectomy (TAH, VH)',ko:'자궁절제술'},{en:'hysteroscopy',ko:'자궁경검사'}]},
+  { term:'lact/o', type:'combining', ko:'젖/유즙', en:'milk', pronun:'락-토', chapter:8,
+    examples:[{en:'lactation',ko:'수유'},{en:'lactiferous ducts',ko:'유관'}]},
+  { term:'mamm/o', type:'combining', ko:'유방', en:'breast', pronun:'맘-모', chapter:8,
+    examples:[{en:'mammography',ko:'유방촬영술'},{en:'mammoplasty',ko:'유방성형술'}]},
+  { term:'mast/o', type:'combining', ko:'유방', en:'breast', pronun:'마-스토', chapter:8,
+    examples:[{en:'mastectomy',ko:'유방절제술'},{en:'mastitis',ko:'유방염'}]},
+  { term:'men/o', type:'combining', ko:'월경', en:'menses / menstruation', pronun:'메-노', chapter:8,
+    examples:[{en:'amenorrhea',ko:'무월경'},{en:'dysmenorrhea',ko:'월경통'},{en:'menorrhagia',ko:'과다월경(주요 원인: 자궁근종)'}]},
+  { term:'metr/o, metri/o', type:'combining', ko:'자궁', en:'uterus', pronun:'메-트로', chapter:8,
+    examples:[{en:'metrorrhagia',ko:'자궁출혈(월경 외)'},{en:'menometrorrhagia',ko:'월경 중·외 과다출혈'}]},
+  { term:'oophor/o', type:'combining', ko:'난소', en:'ovary (bears eggs)', pronun:'오-오-포-로', chapter:8,
+    examples:[{en:'oophorectomy',ko:'난소절제술'},{en:'oophoritis',ko:'난소염'}]},
+  { term:'salping/o / -salpinx', type:'combining', ko:'난관(나팔관)', en:'fallopian tube', pronun:'살-핑-고', chapter:8,
+    examples:[{en:'salpingectomy',ko:'난관절제술'},{en:'pyosalpinx',ko:'난관농양'}]},
+  { term:'hyster/o = metr/o = uter/o', type:'combining', ko:'자궁(세 가지 combining form)', en:'all mean uterus', pronun:'히-스테-로/메-트로/유-테-로', chapter:8,
+    examples:[{en:'hysterectomy / metrorrhagia / uterine prolapse',ko:'자궁절제술/자궁출혈/자궁탈출증'}]},
+  { term:'mamm/o = mast/o', type:'combining', ko:'유방(두 가지 combining form)', en:'both mean breast', pronun:'맘-모/마-스토', chapter:8,
+    examples:[{en:'mammography / mastectomy',ko:'유방촬영술/유방절제술'}]},
+  { term:'colp/o = vagin/o', type:'combining', ko:'질(두 가지 combining form)', en:'both mean vagina', pronun:'콜-포/바지-노', chapter:8,
+    examples:[{en:'colposcopy / vaginitis',ko:'질경검사/질염'}]},
+  // CH.8 SUFFIXES
+  { term:'-arche', type:'suffix', ko:'시작', en:'beginning', pronun:'아-키', chapter:8,
+    examples:[{en:'menarche',ko:'초경(첫 월경 시작)'}]},
+  { term:'-cyesis', type:'suffix', ko:'임신', en:'pregnancy', pronun:'사이-에-시스', chapter:8,
+    examples:[{en:'pseudocyesis',ko:'상상임신'}]},
+  { term:'-gravida', type:'suffix', ko:'임신부', en:'pregnant woman', pronun:'그-라-비-다', chapter:8,
+    examples:[{en:'primigravida',ko:'초임부'},{en:'multigravida',ko:'경임부'},{en:'G2P2',ko:'임신 2회·분만 2회'}]},
+  { term:'-parous', type:'suffix', ko:'분만/출산', en:'bearing forth (has given birth)', pronun:'페-러스', chapter:8,
+    examples:[{en:'primiparous',ko:'초산부'},{en:'nullipara (para 0)',ko:'미경산부'}]},
+  { term:'-tocia', type:'suffix', ko:'분만/출산', en:'labor / birth', pronun:'토-시-아', chapter:8,
+    examples:[{en:'dystocia',ko:'난산'},{en:'oxytocin triggers uterine contractions',ko:'옥시토신이 분만 촉진'}]},
+  // CH.8 KEY VOCAB
+  { term:'ovulation', type:'vocab', ko:'배란 — 주기 14일째', en:'rupture of follicle; LH surge triggers ovulation ~24 hrs later', pronun:'오-뷰-레이-션', chapter:8, examples:[]},
+  { term:'corpus luteum', type:'vocab', ko:'황체 — 빈 난포 → 에스트로겐+프로게스테론 분비', en:'ruptured follicle → secretes estrogen + progesterone; luteum = yellow', pronun:'코-퍼스 루-티-엄', chapter:8, examples:[]},
+  { term:'estrogen', type:'vocab', ko:'에스트로겐', en:'ovarian hormone; builds endometrial lining; female secondary sex characteristics', pronun:'에-스-트로-젠', chapter:8, examples:[]},
+  { term:'progesterone', type:'vocab', ko:'프로게스테론', en:'corpus luteum hormone; sustains uterine lining during pregnancy; low = menstruation', pronun:'프-로-제-스-테-론', chapter:8, examples:[]},
+  { term:'FSH / LH', type:'vocab', ko:'난포자극호르몬 / 황체형성호르몬', en:'FSH = stimulates ovum maturation | LH surge = triggers ovulation', pronun:'에프-에스-에이치/엘-에이치', chapter:8, examples:[]},
+  { term:'hCG', type:'vocab', ko:'인간 융모성 생식선 자극호르몬', en:'placental hormone; detected by pregnancy test; sustains corpus luteum', pronun:'에이치-씨-지', chapter:8, examples:[]},
+  { term:'placenta', type:'vocab', ko:'태반', en:'vascular organ; exchanges O2/nutrients/waste; derived from chorion + endometrium', pronun:'플-라-센-타', chapter:8, examples:[]},
+  { term:'amnion', type:'vocab', ko:'양막(안쪽)', en:'innermost membrane; contains amniotic fluid (bag of waters)', pronun:'암-니-온', chapter:8, examples:[]},
+  { term:'chorion', type:'vocab', ko:'융모막(바깥쪽)', en:'outermost fetal membrane; forms fetal part of placenta', pronun:'코-리-온', chapter:8, examples:[]},
+  { term:'menarche / menopause', type:'vocab', ko:'초경 / 폐경', en:'menarche = first period | menopause = gradual end of periods when all ova released', pronun:'메-나-키/메-노-포-즈', chapter:8, examples:[]},
+  // CH.8 PATHOLOGIES
+  { term:'endometriosis', type:'vocab', ko:'자궁내막증', en:'endometrial tissue outside uterus (ovary, fallopian tube) → dysmenorrhea, infertility', pronun:'엔-도-미-트-리-오-시스', chapter:8, examples:[]},
+  { term:'fibroids / leiomyomata', type:'vocab', ko:'자궁근종(평활근 양성 종양)', en:'benign smooth muscle tumors; most common cause of menorrhagia', pronun:'파이-브-로이-즈', chapter:8,
+    examples:[{en:'tx: myomectomy, UAE, hysterectomy',ko:'치료: 근종절제술, 자궁동맥색전술, 자궁절제술'}]},
+  { term:'cervical cancer + HPV', type:'vocab', ko:'자궁경부암 + HPV', en:'HPV causes CIN (cervical intraepithelial neoplasia) → invasive cancer', pronun:'서-비-칼/에이치-피-브이', chapter:8,
+    examples:[{en:'Gardasil 9 vaccine',ko:'가다실 9 백신'},{en:'Pap test detects CIN',ko:'세포진 검사로 CIN 감지'}]},
+  { term:'ectopic pregnancy', type:'vocab', ko:'자궁외임신', en:'fertilized egg implants in fallopian tube (95%) → surgical emergency if rupture', pronun:'엑-토-픽', chapter:8, examples:[]},
+  { term:'placenta previa', type:'vocab', ko:'전치태반', en:'placenta over cervical os → painless bleeding; cesarean required', pronun:'프-리-비-아', chapter:8, examples:[]},
+  { term:'preeclampsia / eclampsia', type:'vocab', ko:'전자간증 / 자간증', en:'preeclampsia = HTN + proteinuria + edema; eclampsia = seizures (fatal risk)', pronun:'프-리-이-클-람-프-지-아', chapter:8, examples:[]},
+  { term:'BRCA1/BRCA2', type:'vocab', ko:'유방암 유전자 돌연변이', en:'genetic mutations increasing breast + ovarian cancer risk; prophylactic mastectomy option', pronun:'브-라-카', chapter:8, examples:[]},
+  { term:'invasive ductal carcinoma (IDC)', type:'vocab', ko:'침윤성 유관암(가장 흔한 유방암)', en:'most common breast cancer; lumpectomy or mastectomy + sentinel node biopsy', pronun:'인-베이-시브 덕-털', chapter:8,
+    examples:[{en:'ER+ tumors: tamoxifen or aromatase inhibitors',ko:'에스트로겐 수용체 양성: 타목시펜 또는 방향화효소 억제제'}]},
+  // CH.8 PROCEDURES
+  { term:'Pap test (Pap smear)', type:'vocab', ko:'자궁경부 세포진 검사', en:'microscopic exam of cervical/vaginal cells; 95% accurate for early cervical cancer', pronun:'팝 테스트', chapter:8, examples:[]},
+  { term:'amniocentesis', type:'vocab', ko:'양수천자', en:'needle puncture of amniotic sac; fetal chromosome analysis; ~15-20 weeks', pronun:'암-니-오-센-티-시스', chapter:8,
+    examples:[{en:'detects Down syndrome, spina bifida',ko:'다운증후군·척추이분증 감지'}]},
+  { term:'chorionic villus sampling (CVS)', type:'vocab', ko:'융모막 융모 표본채취', en:'placental tissue sampling; earlier than amniocentesis (10+ weeks)', pronun:'씨-브이-에스', chapter:8, examples:[]},
+  { term:'D&C (dilation and curettage)', type:'vocab', ko:'자궁경부 확장 및 소파술', en:'widens cervix; scrapes endometrium; diagnoses uterine disease; treats bleeding/abortion', pronun:'디-앤-씨', chapter:8, examples:[]},
+  { term:'cesarean section (C-section)', type:'vocab', ko:'제왕절개', en:'abdominal incision to deliver fetus; indications: placenta previa, CPD, fetal distress', pronun:'시-제-리-언', chapter:8, examples:[]},
+  { term:'mammography / 3D tomosynthesis', type:'vocab', ko:'유방촬영술', en:'x-ray of breast; baseline 40-44 yrs; 3D tomosynthesis improves detection in dense breast', pronun:'마-모-그-라-피', chapter:8, examples:[]},
+  { term:'colposcopy', type:'vocab', ko:'질경검사(확대경)', en:'magnified visual exam of vagina/cervix; used after abnormal Pap test', pronun:'콜-포-스-코-피', chapter:8, examples:[]},
+  { term:'hysterectomy types', type:'vocab', ko:'자궁절제술 종류', en:'TAH = total abdominal | VH = vaginal | laparoscopic supracervical (preserves cervix)', pronun:'히-스-테-렉-토-미', chapter:8, examples:[]},
+  { term:'in vitro fertilization (IVF)', type:'vocab', ko:'체외수정', en:'egg + sperm combined outside body in lab dish; embryos implanted into uterus', pronun:'인 비-트-로', chapter:8, examples:[]},
+  // ── CH.9 MALE REPRODUCTIVE SYSTEM ────────────────────────────
+  { term:'andr/o', type:'combining', ko:'남성', en:'male', pronun:'안-드로', chapter:9,
+    examples:[{en:'androgen (testosterone)',ko:'안드로겐 = 남성 호르몬'}]},
+  { term:'balan/o', type:'combining', ko:'귀두(음경 끝)', en:'glans penis', pronun:'발-란-오', chapter:9,
+    examples:[{en:'balanitis',ko:'귀두염'}]},
+  { term:'crypt/o', type:'combining', ko:'숨겨진', en:'hidden', pronun:'크립-토', chapter:9,
+    examples:[{en:'cryptorchidism',ko:'잠복고환(미하강 고환)'}]},
+  { term:'epididym/o', type:'combining', ko:'부고환', en:'epididymis', pronun:'에-피-디-딤-오', chapter:9,
+    examples:[{en:'epididymitis',ko:'부고환염'}]},
+  { term:'orch/o, orchi/o, orchid/o', type:'combining', ko:'고환(세 가지 combining form)', en:'testis / testicle', pronun:'오-크-오', chapter:9,
+    examples:[{en:'orchiectomy (castration)',ko:'고환절제술'},{en:'orchitis',ko:'고환염'},{en:'orchiopexy',ko:'고환고정술'}]},
+  { term:'prostat/o', type:'combining', ko:'전립선', en:'prostate gland', pronun:'프-로-스타-토', chapter:9,
+    examples:[{en:'prostatitis',ko:'전립선염'},{en:'prostatectomy',ko:'전립선절제술'}]},
+  { term:'semin/i', type:'combining', ko:'정액/씨앗', en:'semen / seed', pronun:'세-미-니', chapter:9,
+    examples:[{en:'seminiferous tubules',ko:'세정관'},{en:'seminoma',ko:'정상피종(고환암의 가장 흔한 유형)'}]},
+  { term:'sperm/o, spermat/o', type:'combining', ko:'정자/정액', en:'spermatozoa / semen', pronun:'스-퍼-모', chapter:9,
+    examples:[{en:'azoospermia',ko:'무정자증'},{en:'oligospermia',ko:'정자감소증'},{en:'spermatogenesis',ko:'정자 생성'}]},
+  { term:'vas/o', type:'combining', ko:'관/정관', en:'vessel / ductus deferens', pronun:'바-조', chapter:9,
+    examples:[{en:'vasectomy',ko:'정관수술'},{en:'vasovasostomy',ko:'정관복원술'}]},
+  { term:'varic/o', type:'combining', ko:'정맥류', en:'varicose veins', pronun:'바-리-코', chapter:9,
+    examples:[{en:'varicocele',ko:'정계정맥류'}]},
+  { term:'zo/o', type:'combining', ko:'동물생명(정자)', en:'animal life (used for sperm)', pronun:'조-오', chapter:9,
+    examples:[{en:'azoospermia = no sperm in semen',ko:'무정자증 = 정액에 정자 없음'},{en:'vs aspermia = no semen at all',ko:'vs 무정액증 = 정액 자체 없음'}]},
+  // CH.9 KEY VOCAB
+  { term:'testosterone', type:'vocab', ko:'테스토스테론(안드로겐)', en:'produced by Leydig (interstitial) cells; responsible for male sex characteristics', pronun:'테-스-토-스-테-론', chapter:9, examples:[]},
+  { term:'spermatogenesis', type:'vocab', ko:'정자 생성', en:'sperm formed in seminiferous tubules; requires lower temperature → scrotum', pronun:'스-퍼-마-토-제-네-시스', chapter:9, examples:[]},
+  { term:'path of sperm', type:'vocab', ko:'정자의 경로', en:'seminiferous tubules → epididymis (store) → vas deferens → ejaculatory duct → urethra → outside', pronun:'스-퍼-므 패-쓰', chapter:9, examples:[]},
+  { term:'semen vs sperm', type:'vocab', ko:'정액 vs 정자', en:'semen = sperm + seminal fluid (from seminal vesicles + prostate + bulbourethral glands)', pronun:'시-멘/스-퍼-름', chapter:9, examples:[]},
+  { term:'BPH (benign prostatic hyperplasia)', type:'vocab', ko:'전립선 비대증', en:'benign prostate growth → urinary obstruction; common >60 yrs', pronun:'비-피-에이치', chapter:9,
+    examples:[{en:'tx: TURP, finasteride, tamsulosin',ko:'치료: TURP, 피나스테리드, 탐술로신'}]},
+  { term:'prostate cancer / PSA', type:'vocab', ko:'전립선암 / PSA 검사', en:'adenocarcinoma; PSA test detects; Gleason score grades severity', pronun:'피-에스-에이', chapter:9,
+    examples:[{en:'PSA normal <4.0 ng/mL',ko:'PSA 정상 <4.0 ng/mL'},{en:'brachytherapy = radioactive seeds',ko:'근접치료 = 방사성 씨앗 이식'}]},
+  { term:'cryptorchidism', type:'vocab', ko:'잠복고환', en:'undescended testis; risk of infertility + testicular cancer; tx: orchiopexy', pronun:'크-립-토-키-디-즘', chapter:9, examples:[]},
+  { term:'testicular cancer', type:'vocab', ko:'고환암', en:'most common in men 15-35; seminoma most common; markers: hCG, AFP', pronun:'테-스-티-큘-러', chapter:9, examples:[]},
+  { term:'varicocele', type:'vocab', ko:'정계정맥류', en:'enlarged veins above testis; causes oligospermia; tx: varicocelectomy', pronun:'바-리-코-실', chapter:9, examples:[]},
+  { term:'hydrocele', type:'vocab', ko:'음낭수종', en:'sac of clear fluid in scrotum; often idiopathic; tx: aspiration or hydrocelectomy', pronun:'하이-드-로-실', chapter:9, examples:[]},
+  { term:'testicular torsion', type:'vocab', ko:'고환 염전', en:'twisting of spermatic cord cuts blood supply; surgical emergency within hours', pronun:'토-전', chapter:9, examples:[]},
+  { term:'azoospermia vs aspermia', type:'vocab', ko:'무정자증 vs 무정액증', en:'azoospermia = no sperm in semen | aspermia = no semen at all', pronun:'아-조-오-스-퍼-미-아', chapter:9, examples:[]},
+  { term:'hypospadias', type:'vocab', ko:'요도하열', en:'urethral opening on undersurface of penis (congenital); surgical repair', pronun:'하이-포-스-페이-디-아스', chapter:9, examples:[]},
+  { term:'phimosis', type:'vocab', ko:'포경(포피협착)', en:'narrowing of prepuce opening; tx: circumcision', pronun:'파이-모-시스', chapter:9, examples:[]},
+  // CH.9 STIs
+  { term:'gonorrhea', type:'vocab', ko:'임질', en:'bacterial STI (gonococcal); mucopurulent urethral discharge + dysuria; tx: antibiotics', pronun:'고-노-리-아', chapter:9, examples:[]},
+  { term:'chlamydia', type:'vocab', ko:'클라미디아', en:'most common STI; often asymptomatic; can cause PID/infertility in women; tx: antibiotics', pronun:'클-라-미-디-아', chapter:9, examples:[]},
+  { term:'syphilis', type:'vocab', ko:'매독', en:'spirochete STI; primary = chancre; secondary = rash; tertiary = CNS/heart damage; tx: penicillin', pronun:'시-필-리스', chapter:9, examples:[]},
+  { term:'herpes genitalis (HSV-2)', type:'vocab', ko:'생식기 헤르페스', en:'blisters/ulcers; no cure (antiviral management); neonatal herpes risk', pronun:'허-피-즈', chapter:9, examples:[]},
+  { term:'HPV', type:'vocab', ko:'인유두종바이러스', en:'>100 types; genital warts; oncogenic types → cervical cancer; Gardasil 9 vaccine', pronun:'에이치-피-브이', chapter:9, examples:[]},
+  // CH.9 PROCEDURES
+  { term:'TURP', type:'vocab', ko:'경요도 전립선 절제술', en:'transurethral resection of prostate; electrical hot loop removes obstructing tissue; treats BPH', pronun:'터-프', chapter:9, examples:[]},
+  { term:'vasectomy', type:'vocab', ko:'정관수술', en:'bilateral vas deferens removal → sterilization; reversible by vasovasostomy; no effect on libido', pronun:'바-섹-토-미', chapter:9, examples:[]},
+  { term:'PSA test', type:'vocab', ko:'전립선 특이항원 검사', en:'blood test; elevated = BPH or prostate cancer; normal <4.0 ng/mL', pronun:'피-에스-에이', chapter:9, examples:[]},
+  { term:'DRE (digital rectal examination)', type:'vocab', ko:'직장 수지 검사', en:'finger palpation through rectum to examine prostate gland', pronun:'디-알-이', chapter:9, examples:[]},
+  { term:'semen analysis', type:'vocab', ko:'정액 분석', en:'sperm count, motility, shape; fertility assessment; post-vasectomy check', pronun:'시-멘 아-날-리-시스', chapter:9, examples:[]},
+  // ── CH.10 NERVOUS SYSTEM ─────────────────────────────────────
+  { term:'neur/o', type:'combining', ko:'신경', en:'nerve', pronun:'뉴-로', chapter:10,
+    examples:[{en:'neuropathy',ko:'신경병증'},{en:'polyneuritis',ko:'다발신경염'},{en:'neuralgia',ko:'신경통'}]},
+  { term:'encephal/o', type:'combining', ko:'뇌', en:'brain', pronun:'엔-세-팔-로', chapter:10,
+    examples:[{en:'encephalitis',ko:'뇌염'},{en:'encephalopathy',ko:'뇌병증'},{en:'anencephaly',ko:'무뇌증(선천성)'}]},
+  { term:'cerebell/o', type:'combining', ko:'소뇌', en:'cerebellum', pronun:'세-레-벨-로', chapter:10,
+    examples:[{en:'cerebellar',ko:'소뇌의'},{en:'ataxia (cerebellar)',ko:'소뇌성 운동실조'}]},
+  { term:'cerebr/o', type:'combining', ko:'대뇌', en:'cerebrum', pronun:'세-레-브로', chapter:10,
+    examples:[{en:'cerebrospinal fluid (CSF)',ko:'뇌척수액'},{en:'cerebral cortex',ko:'대뇌피질'},{en:'cerebrovascular accident (CVA)',ko:'뇌혈관사고(뇌졸중)'}]},
+  { term:'dur/o', type:'combining', ko:'경막(硬膜)', en:'dura mater (outermost meninges)', pronun:'듀-로', chapter:10,
+    examples:[{en:'subdural hematoma',ko:'경막하혈종'},{en:'epidural anesthesia',ko:'경막외 마취'}]},
+  { term:'gli/o', type:'combining', ko:'신경교(지지세포)', en:'glial cells (CNS support cells; do NOT carry impulses)', pronun:'글-리-오', chapter:10,
+    examples:[{en:'glioblastoma (malignant)',ko:'교모세포종'},{en:'glioma',ko:'신경교종'}]},
+  { term:'mening/o, meningi/o', type:'combining', ko:'수막(뇌막)', en:'meninges (3 protective membranes around brain/spinal cord)', pronun:'메-닝-고', chapter:10,
+    examples:[{en:'meningitis',ko:'수막염'},{en:'myelomeningocele',ko:'척수수막류'}]},
+  { term:'myel/o', type:'combining', ko:'척수 (또는 골수)', en:'spinal cord (also bone marrow in other contexts)', pronun:'마이-엘-로', chapter:10,
+    examples:[{en:'myelopathy',ko:'척수병증'},{en:'poliomyelitis',ko:'소아마비(회색질 침범)'},{en:'myelomeningocele',ko:'척수수막류'}]},
+  { term:'radicul/o', type:'combining', ko:'신경근(척수신경 뿌리)', en:'nerve root of spinal nerves', pronun:'라-딕-율-로', chapter:10,
+    examples:[{en:'radiculopathy (e.g. sciatica)',ko:'신경근병증(예: 좌골신경통)'}]},
+  { term:'thalam/o', type:'combining', ko:'시상', en:'thalamus (sensory relay center)', pronun:'쌜-라-모', chapter:10,
+    examples:[{en:'thalamic',ko:'시상의'}]},
+  { term:'thec/o', type:'combining', ko:'수막/덮개', en:'sheath (meninges)', pronun:'씨-코', chapter:10,
+    examples:[{en:'intrathecal injection',ko:'척수강내 주사'}]},
+  { term:'kines/o', type:'combining', ko:'운동', en:'movement', pronun:'키-니-조', chapter:10,
+    examples:[{en:'bradykinesia',ko:'서동증(파킨슨)'},{en:'dyskinesia',ko:'이상운동증'},{en:'hyperkinesis',ko:'과운동증'}]},
+  { term:'alges/o', type:'combining', ko:'통증 감수성', en:'sensitivity to pain', pronun:'알-제-조', chapter:10,
+    examples:[{en:'analgesia',ko:'통증 소실'},{en:'hyperalgesia',ko:'통각과민'}]},
+  { term:'esthesi/o', type:'combining', ko:'감각', en:'feeling / nervous sensation', pronun:'에-스-씨-지-오', chapter:10,
+    examples:[{en:'anesthesia',ko:'마취(감각 소실)'},{en:'hyperesthesia',ko:'감각과민'},{en:'paresthesia',ko:'이상감각(저림·화끈)'}]},
+  { term:'tax/o', type:'combining', ko:'조화/협응', en:'order / coordination', pronun:'탁-소', chapter:10,
+    examples:[{en:'ataxia',ko:'운동실조증'}]},
+  { term:'syncop/o', type:'combining', ko:'차단/끊기', en:'to cut off / cut short', pronun:'신-코-포', chapter:10,
+    examples:[{en:'syncopal episode = fainting',ko:'실신 발작'}]},
+  // CH.10 SUFFIXES
+  { term:'-plegia', type:'suffix', ko:'마비', en:'paralysis', pronun:'플-리-지-아', chapter:10,
+    examples:[{en:'hemiplegia',ko:'반신마비'},{en:'paraplegia',ko:'하반신마비'},{en:'quadriplegia',ko:'사지마비(경추 손상)'}]},
+  { term:'-paresis', type:'suffix', ko:'불완전마비/근력약화', en:'weakness / partial paralysis', pronun:'파-레-시스', chapter:10,
+    examples:[{en:'hemiparesis',ko:'반신불완전마비'}]},
+  { term:'-phasia', type:'suffix', ko:'언어/말', en:'speech', pronun:'파-지-아', chapter:10,
+    examples:[{en:'aphasia',ko:'실어증'},{en:'motor (Broca) aphasia',ko:'표현 실어증'},{en:'sensory (Wernicke) aphasia',ko:'수용 실어증'}]},
+  { term:'-algesia / -algia', type:'suffix', ko:'통증 감수성/통증', en:'-algesia = pain sensitivity | -algia = pain', pronun:'알-지-지-아', chapter:10,
+    examples:[{en:'neuralgia',ko:'신경통'},{en:'analgesia',ko:'통증 소실'},{en:'hypalgesia',ko:'통각감소'}]},
+  { term:'-esthesia', type:'suffix', ko:'감각', en:'sensation / feeling', pronun:'에-스-씨-지-아', chapter:10,
+    examples:[{en:'anesthesia',ko:'마취'},{en:'paresthesia',ko:'이상감각'}]},
+  { term:'-lepsy', type:'suffix', ko:'발작', en:'seizure', pronun:'렙-시', chapter:10,
+    examples:[{en:'epilepsy',ko:'간질(뇌전증)'},{en:'narcolepsy',ko:'수면발작증'}]},
+  { term:'-praxia', type:'suffix', ko:'행동/동작', en:'action', pronun:'프-락-시-아', chapter:10,
+    examples:[{en:'apraxia',ko:'행위실행증(목적 동작 불능)'}]},
+  { term:'-sthenia', type:'suffix', ko:'힘/강도', en:'strength', pronun:'스-씨-니-아', chapter:10,
+    examples:[{en:'neurasthenia',ko:'신경쇠약'},{en:'myasthenia gravis',ko:'중증근무력증'}]},
+  // CH.10 KEY VOCAB — STRUCTURES
+  { term:'neuron (nerve cell)', type:'vocab', ko:'뉴런 — dendrites→cell body→axon→terminal end fibers→synapse', en:'impulse: stimulus → dendrites → cell body → axon → synapse → next neuron', pronun:'뉴-론', chapter:10,
+    examples:[{en:'afferent = sensory (toward CNS)',ko:'구심성 = 감각신경'},{en:'efferent = motor (away from CNS)',ko:'원심성 = 운동신경'}]},
+  { term:'myelin sheath', type:'vocab', ko:'수초 — 축삭의 지방 절연 피복', en:'fatty covering of axon; speeds impulse; WHITE matter; demyelination in MS', pronun:'마이-엘-린', chapter:10, examples:[]},
+  { term:'synapse + neurotransmitters', type:'vocab', ko:'시냅스 + 신경전달물질', en:'acetylcholine, dopamine (deficient in Parkinson), serotonin, norepinephrine, endorphins', pronun:'시-납-스', chapter:10, examples:[]},
+  { term:'meninges 3 layers', type:'vocab', ko:'수막 3겹 (바깥→안)', en:'dura mater (outer, tough) → arachnoid (middle, spider-like) → pia mater (inner, delicate)', pronun:'메-닌-지-즈', chapter:10,
+    examples:[{en:'subarachnoid space = CSF',ko:'지주막하공간 = 뇌척수액 있음'},{en:'subdural space = below dura',ko:'경막하공간 = 경막 아래'}]},
+  { term:'CSF (cerebrospinal fluid)', type:'vocab', ko:'뇌척수액 — 뇌와 척수를 쿠션처럼 보호', en:'clear, colorless; circulates in ventricles and subarachnoid space; withdrawn by LP', pronun:'씨-에스-에프', chapter:10, examples:[]},
+  { term:'brain parts & functions', type:'vocab', ko:'뇌 부위별 기능 요약', en:'cerebrum=thinking/memory | cerebellum=balance/coordination | medulla=vital centers | thalamus=relay | hypothalamus=temperature/sleep/appetite', pronun:'브-레인', chapter:10,
+    examples:[{en:'frontal=personality; parietal=sensation; temporal=hearing; occipital=vision',ko:'전두=성격; 두정=감각; 측두=청각; 후두=시각'}]},
+  { term:'CNS vs PNS vs ANS', type:'vocab', ko:'중추/말초/자율신경계', en:'CNS=brain+spinal cord | PNS=cranial(12 pairs)+spinal(31 pairs) nerves | ANS=sympathetic+parasympathetic', pronun:'씨-엔-에스/피-엔-에스', chapter:10,
+    examples:[{en:'sympathetic = fight or flight',ko:'교감신경 = 투쟁·도주'},{en:'parasympathetic = rest and digest',ko:'부교감신경 = 휴식·소화'}]},
+  { term:'glial cells (4 types)', type:'vocab', ko:'신경교세포 4종류 — 지지세포(임펄스 전달 안함)', en:'astrocytes (star-shaped, BBB) | microglia (phagocyte) | oligodendrocytes (myelin) | ependymal (CSF)', pronun:'글-리-알', chapter:10, examples:[]},
+  // CH.10 PATHOLOGIES
+  { term:'multiple sclerosis (MS)', type:'vocab', ko:'다발성경화증', en:'demyelination of CNS axons → sclerotic plaques → paresthesias, weakness, visual changes; remission/relapse', pronun:'멀-티-플 스클-레-로-시스', chapter:10,
+    examples:[{en:'MRI shows white plaques',ko:'MRI에서 흰색 병변 확인'}]},
+  { term:'Alzheimer disease (AD)', type:'vocab', ko:'알츠하이머병 — 가장 흔한 치매', en:'progressive dementia; senile plaques + neurofibrillary tangles (amyloid); cortex atrophy', pronun:'알-츠-하이-머', chapter:10, examples:[]},
+  { term:'Parkinson disease', type:'vocab', ko:'파킨슨병', en:'dopamine deficiency in basal ganglia → pill-rolling tremor, bradykinesia, shuffling gait, rigidity, masked face', pronun:'파-킨-슨', chapter:10,
+    examples:[{en:'tx: levodopa + carbidopa',ko:'치료: 레보도파+카비도파'}]},
+  { term:'epilepsy (seizure types)', type:'vocab', ko:'간질(뇌전증)', en:'tonic-clonic (grand mal) = convulsions | absence = momentary loss of awareness; tx: anticonvulsants', pronun:'에-필-렙-시', chapter:10,
+    examples:[{en:'aura precedes seizure',ko:'전조 증상이 발작 선행'}]},
+  { term:'CVA (stroke) 3 types', type:'vocab', ko:'뇌졸중 3종류', en:'thrombotic (clot in vessel) | embolic (clot travels) | hemorrhagic (vessel rupture)', pronun:'씨-브이-에이', chapter:10,
+    examples:[{en:'TIA = transient ischemic attack (mini-stroke warning)',ko:'TIA = 일과성 허혈발작'},{en:'thrombotic tx: tPA',ko:'혈전성 치료: tPA'}]},
+  { term:'meningitis', type:'vocab', ko:'수막염', en:'inflamed meninges; bacterial (pyogenic) = fever, stiff neck, headache; viral = aseptic', pronun:'메-닌-자이-티스', chapter:10,
+    examples:[{en:'LP for CSF analysis',ko:'요추천자로 뇌척수액 검사'}]},
+  { term:'myasthenia gravis (MG)', type:'vocab', ko:'중증근무력증', en:'autoimmune; antibodies block acetylcholine receptors → voluntary muscle weakness, ptosis, diplopia', pronun:'마이-아스-씨-니-아 그-라-비스', chapter:10,
+    examples:[{en:'tx: anticholinesterase drugs; thymectomy',ko:'치료: 콜린에스테라아제 억제제; 흉선절제술'}]},
+  { term:'ALS (amyotrophic lateral sclerosis)', type:'vocab', ko:'근위축성측삭경화증(루게릭병)', en:'motor neuron degeneration → progressive muscle weakness/atrophy; unknown cause/cure', pronun:'에이-엘-에스', chapter:10, examples:[]},
+  { term:'hydrocephalus', type:'vocab', ko:'수두증', en:'CSF accumulation in brain ventricles; congenital (spina bifida) or adult (tumor, infection)', pronun:'하이-드-로-세-팔-러스', chapter:10,
+    examples:[{en:'tx: ventriculoperitoneal shunt',ko:'치료: 뇌실-복막 단락술'}]},
+  { term:'spina bifida', type:'vocab', ko:'척추이분증', en:'neural tube defect; occulta (hidden) → meningocele → myelomeningocele (most severe)', pronun:'스-파이-나 비-피-다', chapter:10, examples:[]},
+  { term:'herpes zoster (shingles)', type:'vocab', ko:'대상포진', en:'reactivation of varicella-zoster; painful blisters along dermatome; Shingrix vaccine 50+ yrs', pronun:'허-피-즈 조-스터', chapter:10, examples:[]},
+  { term:'migraine', type:'vocab', ko:'편두통', en:'severe unilateral vascular headache; aura (flashing lights); photophobia; tx: sumatriptan (CGRP inhibitors)', pronun:'마이-그-레인', chapter:10, examples:[]},
+  { term:'cerebral palsy (CP)', type:'vocab', ko:'뇌성마비', en:'partial paralysis from brain hypoxia during birth', pronun:'세-레-브-럴', chapter:10, examples:[]},
+  { term:'Huntington disease', type:'vocab', ko:'헌팅턴병', en:'hereditary (chromosome 4); choreiform movements + dementia; onset in adulthood; no cure', pronun:'헌-팅-턴', chapter:10, examples:[]},
+  // CH.10 KEY SIGNS/SYMPTOMS
+  { term:'hemiplegia / hemiparesis', type:'vocab', ko:'반신마비 / 반신불완전마비', en:'right or left body half paralysis; contralateral to brain lesion (fibers cross in medulla)', pronun:'헤-미-플-리-지-아', chapter:10, examples:[]},
+  { term:'paraplegia / quadriplegia', type:'vocab', ko:'하반신마비 / 사지마비', en:'paraplegia = both legs (spinal cord) | quadriplegia = all 4 limbs (cervical spinal cord)', pronun:'파-라-플-리-지-아', chapter:10, examples:[]},
+  { term:'aphasia (types)', type:'vocab', ko:'실어증(종류)', en:'motor/Broca = knows what to say but cannot | sensory/Wernicke = says words incorrectly', pronun:'아-파-지-아', chapter:10, examples:[]},
+  { term:'ataxia', type:'vocab', ko:'운동실조증', en:'decreased coordination; unsteady gait; cerebellar disorder', pronun:'아-탁-시-아', chapter:10, examples:[]},
+  { term:'paresthesia', type:'vocab', ko:'이상감각', en:'tingling, burning, pins and needles; abnormal sensation (e.g. MS)', pronun:'파-레-스-씨-지-아', chapter:10, examples:[]},
+  { term:'syncope / syncopal', type:'vocab', ko:'실신', en:'sudden temporary loss of consciousness from insufficient blood flow to brain', pronun:'신-코-피', chapter:10, examples:[]},
+  { term:'bradykinesia', type:'vocab', ko:'서동증(느린 운동)', en:'slowness of movement; classic Parkinson symptom', pronun:'브-레이-디-키-니-지-아', chapter:10, examples:[]},
+  // CH.10 PROCEDURES
+  { term:'lumbar puncture (LP) / spinal tap', type:'vocab', ko:'요추천자', en:'CSF withdrawn between L3-L5; diagnoses meningitis, MS, infection; measures CSF pressure', pronun:'럼-버 펑-쳐', chapter:10, examples:[]},
+  { term:'EEG (electroencephalography)', type:'vocab', ko:'뇌파검사', en:'records brain electrical activity; detects seizures, focal brain dysfunction', pronun:'이-이-지', chapter:10, examples:[]},
+  { term:'MRI of brain / MRA', type:'vocab', ko:'뇌 MRI / MR 혈관조영', en:'best for brain parenchyma (MS plaques, tumors, stroke) | MRA = blood vessels', pronun:'엠-아-아이', chapter:10, examples:[]},
+  { term:'PET scan', type:'vocab', ko:'양전자방출단층촬영', en:'radioactive glucose maps metabolic activity; detects cancer, Alzheimer, epilepsy activity', pronun:'펫 스캔', chapter:10, examples:[]},
+  { term:'Gamma Knife / stereotactic radiosurgery', type:'vocab', ko:'감마나이프 / 정위방사선수술', en:'multiple high-energy radiation beams target deep brain tumor without surgical incision', pronun:'스테-레-오-탁-틱', chapter:10, examples:[]},
+  { term:'cerebral angiography', type:'vocab', ko:'뇌혈관조영술', en:'contrast injected into femoral artery → x-ray of cerebral vessels; diagnoses aneurysm, CVA', pronun:'세-레-브-럴 안-지-오-그-라-피', chapter:10, examples:[]},
+];
 
 // ============================================================
 // SPECIALISTS DATA
@@ -2594,7 +2915,452 @@ const FIGURES = [
   <text x="20" y="462" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(200,191,170,0.8)">Stool Guaiac (Hemoccult) — 잠혈검사 (대장암 선별) | LFTs: ALT·AST·alk phos·bilirubin</text>
   <text x="20" y="477" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(200,191,170,0.7)">Barium enema — 하부 GI X선 | Upper GI series — 상부 GI X선 | Paracentesis — 복수 천자</text>
 </svg>`
-  }
+  },
+  // ─── CH.7 URINARY SYSTEM ─────────────────────────────────────
+  {
+    id:'fig7-1', chapter:7,
+    chapterTitle:'Chapter 7: Urinary System',
+    section:'비뇨계 전체 구조 · Male Urinary System',
+    title:'Figure 7-1 · Male Urinary System',
+    desc:{ ko:'남성 비뇨계 — 신장, 요관, 방광, 요도, 신장 내부구조', en:'Male urinary system showing kidneys, ureters, bladder, urethra, and renal internal structures', es:'Sistema urinario masculino' },
+    svg:`<svg viewBox="0 0 620 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="620" height="480" fill="#1e1a14"/>
+  <!-- Spine -->
+  <rect x="295" y="40" width="22" height="340" rx="6" fill="rgba(160,140,100,0.25)" stroke="rgba(180,160,120,0.4)" stroke-width="1.5"/>
+  <!-- L vertebrae marks -->
+  <rect x="297" y="80" width="18" height="8" rx="2" fill="rgba(180,160,120,0.3)"/>
+  <rect x="297" y="120" width="18" height="8" rx="2" fill="rgba(180,160,120,0.3)"/>
+  <rect x="297" y="160" width="18" height="8" rx="2" fill="rgba(180,160,120,0.3)"/>
+  <text x="308" y="380" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(180,160,120,0.5)">spine</text>
+  <!-- Aorta -->
+  <line x1="308" y1="50" x2="308" y2="340" stroke="rgba(220,60,60,0.6)" stroke-width="5"/>
+  <text x="280" y="58" font-family="DM Sans,sans-serif" font-size="9" fill="#e05050">Aorta</text>
+  <!-- Left renal artery -->
+  <path d="M308,130 L240,130" stroke="rgba(220,80,80,0.7)" stroke-width="2.5"/>
+  <!-- Right renal artery -->
+  <path d="M308,140 L380,140" stroke="rgba(220,80,80,0.7)" stroke-width="2.5"/>
+  <!-- Left Kidney (larger, higher) -->
+  <ellipse cx="215" cy="140" rx="50" ry="65" fill="rgba(180,80,40,0.3)" stroke="#c86432" stroke-width="2.5"/>
+  <ellipse cx="215" cy="140" rx="44" ry="58" fill="rgba(180,80,40,0.15)" stroke="rgba(200,100,50,0.4)" stroke-width="1"/>
+  <!-- Cortex/Medulla left -->
+  <ellipse cx="215" cy="140" rx="38" ry="50" fill="rgba(120,50,20,0.3)" stroke="rgba(160,80,40,0.3)" stroke-width="1" stroke-dasharray="3,2"/>
+  <!-- Hilum left -->
+  <path d="M255,128 Q262,140 255,152" stroke="#fdcb6e" stroke-width="2" fill="none"/>
+  <text x="264" y="144" font-family="DM Sans,sans-serif" font-size="8" fill="#fdcb6e">hilum</text>
+  <!-- Renal pelvis label left -->
+  <text x="188" y="145" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="rgba(255,200,100,0.8)" text-anchor="middle">renal</text>
+  <text x="188" y="156" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="rgba(255,200,100,0.8)" text-anchor="middle">pelvis</text>
+  <!-- Right Kidney -->
+  <ellipse cx="395" cy="155" rx="50" ry="62" fill="rgba(180,80,40,0.3)" stroke="#c86432" stroke-width="2.5"/>
+  <ellipse cx="395" cy="155" rx="44" ry="55" fill="rgba(180,80,40,0.15)" stroke="rgba(200,100,50,0.4)" stroke-width="1"/>
+  <ellipse cx="395" cy="155" rx="38" ry="48" fill="rgba(120,50,20,0.3)" stroke="rgba(160,80,40,0.3)" stroke-width="1" stroke-dasharray="3,2"/>
+  <path d="M350,143 Q343,155 350,167" stroke="#fdcb6e" stroke-width="2" fill="none"/>
+  <!-- Ureters -->
+  <path d="M255,170 Q258,220 262,270 Q264,310 268,345" stroke="#74b9ff" stroke-width="3" fill="none"/>
+  <path d="M350,185 Q347,230 345,270 Q343,310 340,345" stroke="#74b9ff" stroke-width="3" fill="none"/>
+  <!-- Urinary Bladder -->
+  <ellipse cx="305" cy="370" rx="72" ry="60" fill="rgba(52,152,219,0.2)" stroke="#3498db" stroke-width="2.5"/>
+  <ellipse cx="305" cy="365" rx="60" ry="48" fill="rgba(52,152,219,0.1)" stroke="rgba(52,152,219,0.4)" stroke-width="1" stroke-dasharray="3,2"/>
+  <!-- Trigone -->
+  <polygon points="268,345 340,345 305,375" fill="rgba(155,89,182,0.25)" stroke="#9b59b6" stroke-width="1.5"/>
+  <text x="305" y="360" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#c39bd3">trigone</text>
+  <!-- Urethra -->
+  <path d="M305,415 L305,460" stroke="#74b9ff" stroke-width="3"/>
+  <text x="320" y="455" font-family="DM Sans,sans-serif" font-size="9" fill="#74b9ff">urethra (요도)</text>
+  <!-- Labels -->
+  <text x="155" y="90" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#e17055">Kidney 신장 [1]</text>
+  <text x="155" y="102" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(225,112,85,0.7)">retroperitoneal · bean-shaped</text>
+  <text x="85" y="185" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(180,160,120,0.8)">Cortex 피질 (outer)</text>
+  <text x="85" y="198" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(180,160,120,0.7)">Medulla 수질 (inner)</text>
+  <text x="150" y="230" font-family="DM Sans,sans-serif" font-size="10" fill="#74b9ff">Ureter 요관 [2]</text>
+  <text x="150" y="242" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(116,185,255,0.7)">peristaltic waves</text>
+  <text x="365" y="395" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#3498db">Urinary Bladder</text>
+  <text x="365" y="407" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(52,152,219,0.7)">방광 [3] · hollow muscular sac</text>
+  <!-- Nephron inset -->
+  <rect x="430" y="30" width="175" height="160" rx="8" fill="rgba(30,26,20,0.9)" stroke="rgba(200,180,150,0.3)" stroke-width="1"/>
+  <text x="517" y="46" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" font-weight="700" fill="rgba(255,220,150,0.9)">NEPHRON 네프론</text>
+  <!-- Glomerulus -->
+  <circle cx="480" cy="80" r="18" fill="rgba(220,60,60,0.2)" stroke="#e05050" stroke-width="1.5"/>
+  <circle cx="480" cy="80" r="12" fill="rgba(220,60,60,0.15)" stroke="rgba(220,80,80,0.4)" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="480" y="84" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#ff7675">glomerulus</text>
+  <!-- Bowman capsule -->
+  <circle cx="480" cy="80" r="22" fill="none" stroke="rgba(253,203,110,0.5)" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="505" y="65" font-family="DM Sans,sans-serif" font-size="7" fill="#fdcb6e">Bowman</text>
+  <!-- Renal tubule -->
+  <path d="M502,80 Q530,75 535,95 Q540,115 520,120 Q500,125 505,145 Q508,160 525,165" stroke="#00cec9" stroke-width="2" fill="none"/>
+  <text x="537" y="105" font-family="DM Sans,sans-serif" font-size="7" fill="#00cec9">renal</text>
+  <text x="537" y="115" font-family="DM Sans,sans-serif" font-size="7" fill="#00cec9">tubule</text>
+  <!-- Collecting tubule -->
+  <path d="M525,165 L525,185" stroke="#55efc4" stroke-width="2"/>
+  <text x="532" y="180" font-family="DM Sans,sans-serif" font-size="7" fill="#55efc4">collecting</text>
+  <!-- 3 steps -->
+  <text x="440" y="105" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,220,150,0.8)">① Filtration</text>
+  <text x="440" y="118" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,200,100,0.6)">water, salts, urea, glucose</text>
+  <text x="440" y="140" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,220,150,0.8)">② Reabsorption</text>
+  <text x="440" y="152" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,200,100,0.6)">water, glucose, Na+ back</text>
+  <text x="440" y="170" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,220,150,0.8)">③ Secretion</text>
+  <text x="440" y="182" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,200,100,0.6)">K+, acids, drugs → urine</text>
+  <text x="310" y="470" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" font-weight="700" fill="rgba(255,255,255,0.3)">비뇨계 · Urinary System (nephr/o, cyst/o, ureter/o, urethr/o)</text>
+</svg>`
+  },
+  {
+    id:'fig7-2', chapter:7,
+    chapterTitle:'Chapter 7: Urinary System',
+    section:'요검사 · Urinalysis + CKD 단계',
+    title:'Figure 7-2 · Urinalysis Reference + CKD Stages',
+    desc:{ ko:'요검사 판독 기준표 + 만성신장병 5단계 (eGFR 기준)', en:'Urinalysis interpretation guide and CKD stages by eGFR', es:'Análisis de orina y estadios ERC' },
+    svg:`<svg viewBox="0 0 620 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="620" height="480" fill="#1e1a14"/>
+  <text x="310" y="30" text-anchor="middle" font-family="Space Mono,monospace" font-size="13" font-weight="700" fill="rgba(255,220,150,0.95)">요검사 (Urinalysis) 판독표</text>
+  <!-- Table header -->
+  <rect x="15" y="40" width="590" height="24" rx="4" fill="rgba(46,124,110,0.4)"/>
+  <text x="100" y="57" font-family="Space Mono,monospace" font-size="10" font-weight="700" fill="#55efc4">TEST</text>
+  <text x="240" y="57" font-family="Space Mono,monospace" font-size="10" font-weight="700" fill="#55efc4">NORMAL</text>
+  <text x="370" y="57" font-family="Space Mono,monospace" font-size="10" font-weight="700" fill="#55efc4">ABNORMAL + 의미</text>
+  <!-- Rows -->
+  <rect x="15" y="64" width="590" height="22" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <text x="20" y="80" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,220,150,0.9)">Color 색</text>
+  <text x="240" y="80" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(200,200,200,0.8)">Amber/yellow</text>
+  <text x="370" y="80" font-family="DM Sans,sans-serif" font-size="10" fill="#ff7675">Smoky-red = blood (결석·종양·신장병)</text>
+  <rect x="15" y="86" width="590" height="22" rx="0" fill="rgba(255,255,255,0.02)"/>
+  <text x="20" y="102" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,220,150,0.9)">Appearance 외관</text>
+  <text x="240" y="102" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(200,200,200,0.8)">Clear 맑음</text>
+  <text x="370" y="102" font-family="DM Sans,sans-serif" font-size="10" fill="#ff7675">Cloudy = pyuria (농뇨) — UTI</text>
+  <rect x="15" y="108" width="590" height="22" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <text x="20" y="124" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,220,150,0.9)">pH</text>
+  <text x="240" y="124" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(200,200,200,0.8)">6.5 (range 4.6-8.0)</text>
+  <text x="370" y="124" font-family="DM Sans,sans-serif" font-size="10" fill="#fdcb6e">Alkaline → UTI (bacteria break down urea)</text>
+  <rect x="15" y="130" width="590" height="22" rx="0" fill="rgba(255,255,255,0.02)"/>
+  <text x="20" y="146" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,220,150,0.9)">Protein 단백</text>
+  <text x="240" y="146" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(200,200,200,0.8)">None/trace</text>
+  <text x="370" y="146" font-family="DM Sans,sans-serif" font-size="10" fill="#ff7675">Proteinuria → nephritis·renal failure</text>
+  <rect x="15" y="152" width="590" height="22" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <text x="20" y="168" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,220,150,0.9)">Glucose 포도당</text>
+  <text x="240" y="168" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(200,200,200,0.8)">None</text>
+  <text x="370" y="168" font-family="DM Sans,sans-serif" font-size="10" fill="#ff7675">Glycosuria → diabetes mellitus</text>
+  <rect x="15" y="174" width="590" height="22" rx="0" fill="rgba(255,255,255,0.02)"/>
+  <text x="20" y="190" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,220,150,0.9)">Ketones 케톤</text>
+  <text x="240" y="190" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(200,200,200,0.8)">None</text>
+  <text x="370" y="190" font-family="DM Sans,sans-serif" font-size="10" fill="#ff7675">Ketonuria → DM·starvation (ketoacidosis)</text>
+  <rect x="15" y="196" width="590" height="22" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <text x="20" y="212" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,220,150,0.9)">Specific gravity 비중</text>
+  <text x="240" y="212" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(200,200,200,0.8)">1.003–1.030</text>
+  <text x="370" y="212" font-family="DM Sans,sans-serif" font-size="10" fill="#fdcb6e">High=DM·stones | Low=DI (dilute)</text>
+  <rect x="15" y="218" width="590" height="22" rx="0" fill="rgba(255,255,255,0.02)"/>
+  <text x="20" y="234" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,220,150,0.9)">Bilirubin 빌리루빈</text>
+  <text x="240" y="234" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(200,200,200,0.8)">None/small</text>
+  <text x="370" y="234" font-family="DM Sans,sans-serif" font-size="10" fill="#ff7675">Bilirubinuria → liver/gallbladder disease</text>
+  <rect x="15" y="240" width="590" height="22" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <text x="20" y="256" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,220,150,0.9)">Sediment/Casts 침전물</text>
+  <text x="240" y="256" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(200,200,200,0.8)">None</text>
+  <text x="370" y="256" font-family="DM Sans,sans-serif" font-size="10" fill="#ff7675">RBC/WBC/casts → nephritis·renal disease</text>
+  <!-- CKD Stages -->
+  <text x="310" y="290" text-anchor="middle" font-family="Space Mono,monospace" font-size="12" font-weight="700" fill="rgba(255,220,150,0.95)">CKD 단계 (eGFR 기준)</text>
+  <!-- Stage bars -->
+  <rect x="20" y="300" width="580" height="26" rx="5" fill="rgba(46,213,115,0.3)" stroke="rgba(46,213,115,0.5)" stroke-width="1"/>
+  <text x="30" y="318" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#2ed573">Stage 1 — eGFR ≥ 90</text>
+  <text x="300" y="318" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(46,213,115,0.8)">정상·약한 신장 손상 · Normal or mildly decreased</text>
+  <rect x="20" y="330" width="580" height="26" rx="5" fill="rgba(116,185,255,0.2)" stroke="rgba(116,185,255,0.4)" stroke-width="1"/>
+  <text x="30" y="348" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#74b9ff">Stage 2 — eGFR 60–89</text>
+  <text x="300" y="348" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(116,185,255,0.8)">경미한 감소 · Mildly decreased</text>
+  <rect x="20" y="360" width="580" height="26" rx="5" fill="rgba(253,203,110,0.2)" stroke="rgba(253,203,110,0.4)" stroke-width="1"/>
+  <text x="30" y="378" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#fdcb6e">Stage 3 — eGFR 30–59</text>
+  <text x="300" y="378" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(253,203,110,0.8)">중등도 감소 · Moderately decreased</text>
+  <rect x="20" y="390" width="580" height="26" rx="5" fill="rgba(225,112,85,0.2)" stroke="rgba(225,112,85,0.4)" stroke-width="1"/>
+  <text x="30" y="408" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#e17055">Stage 4 — eGFR 15–29</text>
+  <text x="300" y="408" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(225,112,85,0.8)">중증 감소 · Severely decreased</text>
+  <rect x="20" y="420" width="580" height="30" rx="5" fill="rgba(220,60,60,0.3)" stroke="rgba(220,60,60,0.6)" stroke-width="1.5"/>
+  <text x="30" y="441" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#ff4757">Stage 5 — eGFR &lt;15 → ESRD (말기신장병)</text>
+  <text x="370" y="441" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,71,87,0.8)">Dialysis or Transplant 필요</text>
+  <text x="310" y="470" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" font-weight="700" fill="rgba(255,255,255,0.3)">요검사(UA) · 만성신장병(CKD) · 사구체여과율(GFR)</text>
+</svg>`
+  },
+  // ─── CH.8 FEMALE REPRODUCTIVE SYSTEM ────────────────────────
+  {
+    id:'fig8-1', chapter:8,
+    chapterTitle:'Chapter 8: Female Reproductive System',
+    section:'여성 생식기관 · Female Reproductive Organs',
+    title:'Figure 8-1/8-3 · Female Reproductive System',
+    desc:{ ko:'여성 생식기 전체 구조 — 난소, 난관, 자궁(내막·근층·외막), 자궁경부, 질, 유방', en:'Female reproductive system: ovaries, fallopian tubes, uterus layers, cervix, vagina, breast anatomy', es:'Sistema reproductivo femenino' },
+    svg:`<svg viewBox="0 0 620 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="620" height="480" fill="#1e1a14"/>
+  <!-- Uterus body -->
+  <path d="M230,210 Q200,190 195,160 Q192,130 210,115 Q225,105 260,108 L310,108 L360,108 Q395,105 410,115 Q428,130 425,160 Q420,190 390,210 Q360,235 310,240 Q260,235 230,210Z" fill="rgba(192,57,43,0.25)" stroke="#c0392b" stroke-width="2.5"/>
+  <!-- Endometrium -->
+  <path d="M258,200 Q235,185 232,162 Q230,140 248,128 L310,125 L372,128 Q390,140 388,162 Q385,185 362,200 Q340,215 310,218 Q280,215 258,200Z" fill="rgba(192,57,43,0.2)" stroke="rgba(192,57,43,0.5)" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="310" y="172" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(255,120,100,0.8)">Endometrium 자궁내막</text>
+  <!-- Myometrium label -->
+  <text x="193" y="155" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,180,150,0.7)">Myometrium</text>
+  <text x="193" y="165" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,180,150,0.7)">근층</text>
+  <!-- Perimetrium label -->
+  <text x="410" y="148" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,200,180,0.6)">Perimetrium</text>
+  <text x="410" y="158" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,200,180,0.6)">외막(serosa)</text>
+  <!-- Fundus -->
+  <text x="310" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#fdcb6e">Fundus 자궁저부</text>
+  <!-- Corpus -->
+  <text x="310" y="145" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(253,203,110,0.7)">Corpus 체부</text>
+  <!-- Cervix -->
+  <rect x="286" y="238" width="48" height="45" rx="6" fill="rgba(192,57,43,0.2)" stroke="#c0392b" stroke-width="2"/>
+  <text x="310" y="265" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#e74c3c">Cervix 경부</text>
+  <!-- Vagina -->
+  <path d="M290,283 L295,340 L310,348 L325,340 L330,283Z" fill="rgba(155,89,182,0.2)" stroke="#9b59b6" stroke-width="2"/>
+  <text x="310" y="330" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#c39bd3">Vagina 질</text>
+  <!-- Right Fallopian tube -->
+  <path d="M390,135 Q430,120 455,108 Q470,103 478,110" stroke="#f39c12" stroke-width="2.5" fill="none"/>
+  <!-- Fimbriae right -->
+  <path d="M478,110 Q482,105 486,112 M478,110 Q483,113 488,108 M478,110 Q479,115 484,115" stroke="#f39c12" stroke-width="1.5" fill="none"/>
+  <!-- Left Fallopian tube -->
+  <path d="M230,135 Q190,120 165,108 Q150,103 142,110" stroke="#f39c12" stroke-width="2.5" fill="none"/>
+  <path d="M142,110 Q138,105 134,112 M142,110 Q137,113 132,108 M142,110 Q141,115 136,115" stroke="#f39c12" stroke-width="1.5" fill="none"/>
+  <!-- Right Ovary -->
+  <ellipse cx="490" cy="128" rx="28" ry="20" fill="rgba(243,156,18,0.25)" stroke="#f39c12" stroke-width="2"/>
+  <!-- Follicle -->
+  <circle cx="485" cy="122" r="7" fill="rgba(243,156,18,0.2)" stroke="rgba(243,156,18,0.6)" stroke-width="1.5"/>
+  <text x="490" y="128" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#fdcb6e">ovum</text>
+  <!-- Corpus luteum -->
+  <circle cx="498" cy="135" r="5" fill="rgba(255,200,0,0.3)" stroke="#fdcb6e" stroke-width="1.2"/>
+  <!-- Left Ovary -->
+  <ellipse cx="130" cy="128" rx="28" ry="20" fill="rgba(243,156,18,0.25)" stroke="#f39c12" stroke-width="2"/>
+  <circle cx="125" cy="122" r="7" fill="rgba(243,156,18,0.2)" stroke="rgba(243,156,18,0.6)" stroke-width="1.5"/>
+  <!-- Labels -->
+  <text x="500" y="95" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#f39c12">Ovary 난소</text>
+  <text x="500" y="107" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(243,156,18,0.7)">ovarian follicle 난포</text>
+  <text x="500" y="117" font-family="DM Sans,sans-serif" font-size="8" fill="#fdcb6e">corpus luteum 황체</text>
+  <text x="95" y="95" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#f39c12">Ovary 난소</text>
+  <text x="470" y="155" font-family="DM Sans,sans-serif" font-size="9" fill="#e67e22">Fallopian tube 난관</text>
+  <text x="470" y="166" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(230,126,34,0.7)">fimbriae 채부</text>
+  <!-- Menstrual cycle mini diagram -->
+  <rect x="15" y="370" width="580" height="100" rx="8" fill="rgba(30,26,20,0.8)" stroke="rgba(200,180,150,0.25)" stroke-width="1"/>
+  <text x="305" y="388" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" font-weight="700" fill="rgba(255,220,150,0.9)">월경 주기 (28일) · Menstrual Cycle</text>
+  <!-- Phase boxes -->
+  <rect x="25" y="396" width="80" height="35" rx="4" fill="rgba(192,57,43,0.2)" stroke="rgba(192,57,43,0.4)" stroke-width="1"/>
+  <text x="65" y="411" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#e74c3c">Day 1-5</text>
+  <text x="65" y="423" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(231,76,60,0.8)">월경 Menstruation</text>
+  <text x="65" y="433" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(231,76,60,0.6)">endometrium sheds</text>
+  <rect x="115" y="396" width="110" height="35" rx="4" fill="rgba(46,124,110,0.2)" stroke="rgba(46,124,110,0.4)" stroke-width="1"/>
+  <text x="170" y="411" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#2e7c6e">Day 6-12</text>
+  <text x="170" y="423" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(46,124,110,0.8)">Follicular Phase</text>
+  <text x="170" y="433" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(46,124,110,0.6)">estrogen ↑ · endometrium repairs</text>
+  <rect x="235" y="396" width="80" height="35" rx="4" fill="rgba(243,156,18,0.25)" stroke="rgba(243,156,18,0.5)" stroke-width="1.5"/>
+  <text x="275" y="411" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#f39c12">Day 13-14</text>
+  <text x="275" y="423" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(243,156,18,0.9)">⭐ OVULATION 배란</text>
+  <text x="275" y="433" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(243,156,18,0.7)">LH surge → follicle rupture</text>
+  <rect x="325" y="396" width="130" height="35" rx="4" fill="rgba(108,92,231,0.2)" stroke="rgba(108,92,231,0.4)" stroke-width="1"/>
+  <text x="390" y="411" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#a29bfe">Day 15-28</text>
+  <text x="390" y="423" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(162,155,254,0.8)">Luteal Phase 황체기</text>
+  <text x="390" y="433" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(162,155,254,0.6)">corpus luteum → progesterone ↑</text>
+  <rect x="465" y="396" width="120" height="35" rx="4" fill="rgba(116,185,255,0.15)" stroke="rgba(116,185,255,0.3)" stroke-width="1"/>
+  <text x="525" y="411" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#74b9ff">If no fertilization</text>
+  <text x="525" y="423" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(116,185,255,0.8)">P4/E2 drop → Day 1</text>
+  <text x="525" y="433" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(116,185,255,0.6)">PMS → menstruation</text>
+  <text x="310" y="358" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" font-weight="700" fill="rgba(255,255,255,0.3)">여성생식계 · Gynecology (hyster/o, oophor/o, salping/o, metr/o)</text>
+</svg>`
+  },
+  // ─── CH.9 MALE REPRODUCTIVE SYSTEM ─────────────────────────
+  {
+    id:'fig9-1', chapter:9,
+    chapterTitle:'Chapter 9: Male Reproductive System',
+    section:'남성 생식기관 · Male Reproductive System',
+    title:'Figure 9-1/9-2 · Male Reproductive System + Sperm Path',
+    desc:{ ko:'남성 생식기 — 고환, 부고환, 정관, 전립선, 음경 + 정자 경로', en:'Male reproductive system: testes, epididymis, vas deferens, prostate gland, penis, and sperm pathway', es:'Sistema reproductivo masculino' },
+    svg:`<svg viewBox="0 0 620 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="620" height="480" fill="#1e1a14"/>
+  <!-- Sperm path flow (left side) -->
+  <text x="170" y="30" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" font-weight="700" fill="rgba(255,220,150,0.95)">정자 경로 · Sperm Pathway</text>
+  <!-- Step boxes -->
+  <rect x="20" y="42" width="300" height="32" rx="6" fill="rgba(52,152,219,0.2)" stroke="#3498db" stroke-width="1.5"/>
+  <text x="170" y="63" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#74b9ff">① Seminiferous Tubules 세정관</text>
+  <line x1="170" y1="74" x2="170" y2="90" stroke="rgba(116,185,255,0.5)" stroke-width="2"/>
+  <text x="185" y="85" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(116,185,255,0.6)">formed here 정자 생성</text>
+  <rect x="20" y="90" width="300" height="32" rx="6" fill="rgba(52,152,219,0.18)" stroke="#3498db" stroke-width="1.5"/>
+  <text x="170" y="111" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#74b9ff">② Epididymis 부고환</text>
+  <text x="170" y="123" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(116,185,255,0.6)">mature + stored · ~16 ft coiled</text>
+  <line x1="170" y1="128" x2="170" y2="144" stroke="rgba(116,185,255,0.5)" stroke-width="2"/>
+  <rect x="20" y="144" width="300" height="32" rx="6" fill="rgba(52,152,219,0.16)" stroke="#3498db" stroke-width="1.5"/>
+  <text x="170" y="165" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#74b9ff">③ Vas Deferens 정관</text>
+  <text x="170" y="178" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(116,185,255,0.6)">ductus deferens · cut in vasectomy</text>
+  <line x1="170" y1="180" x2="170" y2="196" stroke="rgba(116,185,255,0.5)" stroke-width="2"/>
+  <!-- Seminal vesicles -->
+  <rect x="20" y="196" width="300" height="32" rx="6" fill="rgba(108,92,231,0.18)" stroke="#6c5ce7" stroke-width="1.5"/>
+  <text x="170" y="213" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#a29bfe">④ Seminal Vesicles 정낭</text>
+  <text x="170" y="225" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(162,155,254,0.6)">secrete sugary fluid for sperm nourishment</text>
+  <line x1="170" y1="228" x2="170" y2="244" stroke="rgba(108,92,231,0.4)" stroke-width="2"/>
+  <rect x="20" y="244" width="300" height="32" rx="6" fill="rgba(108,92,231,0.15)" stroke="#6c5ce7" stroke-width="1.5"/>
+  <text x="170" y="261" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#a29bfe">⑤ Ejaculatory Duct 사정관</text>
+  <line x1="170" y1="276" x2="170" y2="292" stroke="rgba(108,92,231,0.4)" stroke-width="2"/>
+  <!-- Prostate -->
+  <rect x="20" y="292" width="300" height="32" rx="6" fill="rgba(46,213,115,0.18)" stroke="#2ed573" stroke-width="1.5"/>
+  <text x="170" y="309" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#2ed573">⑥ Prostate Gland 전립선</text>
+  <text x="170" y="322" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(46,213,115,0.6)">alkaline fluid · surrounds upper urethra</text>
+  <line x1="170" y1="324" x2="170" y2="340" stroke="rgba(46,213,115,0.4)" stroke-width="2"/>
+  <rect x="20" y="340" width="300" height="32" rx="6" fill="rgba(46,213,115,0.12)" stroke="#2ed573" stroke-width="1"/>
+  <text x="170" y="357" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#55efc4">⑦ Bulbourethral Glands 요도구선</text>
+  <text x="170" y="370" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(85,239,196,0.6)">Cowper glands · lubricating fluid</text>
+  <line x1="170" y1="372" x2="170" y2="388" stroke="rgba(85,239,196,0.4)" stroke-width="2"/>
+  <rect x="20" y="388" width="300" height="32" rx="6" fill="rgba(220,60,60,0.2)" stroke="#e05050" stroke-width="2"/>
+  <text x="170" y="409" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#ff7675">⑧ Urethra → Outside 요도 → 외부</text>
+  <text x="170" y="425" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,118,117,0.7)">SEMEN = sperm + seminal fluid ejaculated</text>
+  <!-- Right side: key structures diagram -->
+  <text x="490" y="30" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" font-weight="700" fill="rgba(255,220,150,0.9)">주요 구조 · Key Structures</text>
+  <!-- Testes -->
+  <ellipse cx="450" cy="100" rx="40" ry="50" fill="rgba(52,152,219,0.2)" stroke="#3498db" stroke-width="2"/>
+  <ellipse cx="535" cy="100" rx="40" ry="50" fill="rgba(52,152,219,0.2)" stroke="#3498db" stroke-width="2"/>
+  <!-- Seminiferous tubules inside -->
+  <ellipse cx="450" cy="100" rx="30" ry="38" fill="rgba(52,152,219,0.1)" stroke="rgba(52,152,219,0.3)" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="450" y="95" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(116,185,255,0.8)">seminiferous</text>
+  <text x="450" y="105" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(116,185,255,0.8)">tubules</text>
+  <text x="535" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(116,185,255,0.7)">interstitial</text>
+  <text x="535" y="108" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(116,185,255,0.7)">(Leydig) cells</text>
+  <text x="535" y="118" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#fdcb6e">testosterone ↑</text>
+  <text x="492" y="165" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#3498db">Testes 고환</text>
+  <!-- Epididymis -->
+  <path d="M488,60 Q508,55 515,70 Q520,85 510,95" stroke="#f39c12" stroke-width="2.5" fill="none"/>
+  <text x="525" y="62" font-family="DM Sans,sans-serif" font-size="8" fill="#f39c12">Epididymis</text>
+  <text x="525" y="72" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(243,156,18,0.7)">부고환 (저장)</text>
+  <!-- Prostate -->
+  <ellipse cx="492" cy="245" rx="45" ry="30" fill="rgba(46,213,115,0.2)" stroke="#2ed573" stroke-width="2"/>
+  <text x="492" y="250" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#2ed573">Prostate</text>
+  <text x="492" y="262" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(46,213,115,0.7)">전립선</text>
+  <!-- Urethra through prostate -->
+  <line x1="492" y1="200" x2="492" y2="215" stroke="rgba(255,255,255,0.3)" stroke-width="3"/>
+  <line x1="492" y1="275" x2="492" y2="310" stroke="rgba(255,255,255,0.3)" stroke-width="3"/>
+  <text x="508" y="208" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,255,255,0.5)">urethra</text>
+  <!-- BPH vs Cancer note -->
+  <rect x="415" y="320" width="195" height="70" rx="6" fill="rgba(30,26,20,0.9)" stroke="rgba(200,180,150,0.25)" stroke-width="1"/>
+  <text x="512" y="337" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" font-weight="700" fill="rgba(255,220,150,0.8)">Prostate 비교</text>
+  <text x="420" y="352" font-family="DM Sans,sans-serif" font-size="8" fill="#fdcb6e">BPH (비대증):</text>
+  <text x="420" y="363" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,200,100,0.7)">center overgrowth → urinary obstruction</text>
+  <text x="420" y="375" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,200,100,0.7)">tx: TURP · finasteride · tamsulosin</text>
+  <text x="420" y="386" font-family="DM Sans,sans-serif" font-size="8" fill="#ff7675">Cancer (암): peripheral → palpable DRE</text>
+  <text x="310" y="465" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" font-weight="700" fill="rgba(255,255,255,0.3)">남성생식계 · Male Reproductive (orch/o, prostat/o, vas/o, semin/i)</text>
+</svg>`
+  },
+  // ─── CH.10 NERVOUS SYSTEM ────────────────────────────────────
+  {
+    id:'fig10-1', chapter:10,
+    chapterTitle:'Chapter 10: Nervous System',
+    section:'신경계 구조 · Nervous System Overview',
+    title:'Figure 10-1/10-5/10-9 · Nervous System: Neuron + Brain + Divisions',
+    desc:{ ko:'신경계 전체 — 뉴런 구조, 뇌 부위별 기능, CNS/PNS/ANS 구분', en:'Nervous system overview: neuron anatomy, brain functional areas, CNS/PNS/ANS divisions', es:'Sistema nervioso: neurona, cerebro, divisiones' },
+    svg:`<svg viewBox="0 0 620 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="620" height="480" fill="#1e1a14"/>
+  <!-- NEURON diagram (left) -->
+  <text x="130" y="28" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" font-weight="700" fill="rgba(255,220,150,0.9)">뉴런 · NEURON</text>
+  <!-- Dendrites -->
+  <path d="M60,80 Q80,65 95,78" stroke="#a29bfe" stroke-width="2" fill="none"/>
+  <path d="M65,90 Q85,78 98,88" stroke="#a29bfe" stroke-width="2" fill="none"/>
+  <path d="M68,102 Q88,95 100,100" stroke="#a29bfe" stroke-width="1.5" fill="none"/>
+  <path d="M72,115 Q90,112 102,114" stroke="#a29bfe" stroke-width="1.5" fill="none"/>
+  <text x="55" y="78" font-family="DM Sans,sans-serif" font-size="9" fill="#a29bfe" text-anchor="end">Dendrites</text>
+  <text x="55" y="90" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(162,155,254,0.6)" text-anchor="end">수상돌기</text>
+  <!-- Cell body -->
+  <circle cx="118" cy="100" r="22" fill="rgba(108,92,231,0.3)" stroke="#6c5ce7" stroke-width="2.5"/>
+  <circle cx="115" cy="97" r="8" fill="rgba(253,203,110,0.3)" stroke="#fdcb6e" stroke-width="1.5"/>
+  <text x="118" y="104" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#fdcb6e">nucleus</text>
+  <text x="118" y="132" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#a29bfe">Cell Body</text>
+  <text x="118" y="142" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(162,155,254,0.6)">세포체</text>
+  <!-- Axon -->
+  <line x1="140" y1="100" x2="220" y2="100" stroke="rgba(255,255,255,0.7)" stroke-width="4"/>
+  <text x="180" y="88" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,255,255,0.7)">Axon 축삭</text>
+  <!-- Myelin segments -->
+  <rect x="148" y="93" width="16" height="14" rx="7" fill="rgba(85,239,196,0.3)" stroke="#55efc4" stroke-width="1.2"/>
+  <rect x="168" y="93" width="16" height="14" rx="7" fill="rgba(85,239,196,0.3)" stroke="#55efc4" stroke-width="1.2"/>
+  <rect x="188" y="93" width="16" height="14" rx="7" fill="rgba(85,239,196,0.3)" stroke="#55efc4" stroke-width="1.2"/>
+  <rect x="208" y="93" width="10" height="14" rx="5" fill="rgba(85,239,196,0.3)" stroke="#55efc4" stroke-width="1.2"/>
+  <text x="180" y="122" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#55efc4">Myelin sheath 수초</text>
+  <!-- Node of Ranvier -->
+  <text x="165" y="140" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(85,239,196,0.5)">nodes of Ranvier</text>
+  <!-- Terminal end fibers -->
+  <path d="M222,100 Q232,88 240,82" stroke="rgba(255,118,117,0.8)" stroke-width="2" fill="none"/>
+  <path d="M222,100 Q234,98 242,96" stroke="rgba(255,118,117,0.8)" stroke-width="2" fill="none"/>
+  <path d="M222,100 Q232,112 240,118" stroke="rgba(255,118,117,0.8)" stroke-width="2" fill="none"/>
+  <!-- Synapse -->
+  <circle cx="248" cy="82" r="6" fill="rgba(253,121,168,0.3)" stroke="#fd79a8" stroke-width="1.5"/>
+  <circle cx="250" cy="96" r="6" fill="rgba(253,121,168,0.3)" stroke="#fd79a8" stroke-width="1.5"/>
+  <circle cx="248" cy="118" r="6" fill="rgba(253,121,168,0.3)" stroke="#fd79a8" stroke-width="1.5"/>
+  <text x="265" y="96" font-family="DM Sans,sans-serif" font-size="8" fill="#fd79a8">Synapse 시냅스</text>
+  <text x="265" y="106" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(253,121,168,0.6)">neurotransmitters</text>
+  <!-- Impulse direction arrow -->
+  <path d="M75,155 L240,155" stroke="rgba(253,203,110,0.6)" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="240,151 250,155 240,159" fill="rgba(253,203,110,0.6)"/>
+  <text x="162" y="148" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(253,203,110,0.7)">→ impulse direction (stimulus→dendrite→axon→synapse)</text>
+  <!-- BRAIN diagram (right) -->
+  <text x="460" y="28" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" font-weight="700" fill="rgba(255,220,150,0.9)">뇌 구조 · BRAIN</text>
+  <!-- Cerebrum -->
+  <ellipse cx="460" cy="105" rx="110" ry="80" fill="rgba(108,92,231,0.2)" stroke="#6c5ce7" stroke-width="2"/>
+  <!-- Gyri (wavy lines) -->
+  <path d="M360,90 Q380,80 400,90 Q420,100 440,88 Q460,76 480,90 Q500,104 520,92 Q540,80 555,95" stroke="rgba(162,155,254,0.4)" stroke-width="1.5" fill="none"/>
+  <path d="M358,110 Q378,100 398,110 Q418,120 438,108 Q458,96 478,110 Q498,124 518,112 Q538,100 555,112" stroke="rgba(162,155,254,0.3)" stroke-width="1.5" fill="none"/>
+  <!-- Lobes labels -->
+  <text x="400" y="78" font-family="DM Sans,sans-serif" font-size="8" fill="#74b9ff">Frontal</text>
+  <text x="400" y="87" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(116,185,255,0.6)">전두엽</text>
+  <text x="460" y="65" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#a29bfe">Parietal</text>
+  <text x="460" y="74" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(162,155,254,0.6)">두정엽</text>
+  <text x="518" y="78" font-family="DM Sans,sans-serif" font-size="8" fill="#fd79a8">Occipital</text>
+  <text x="518" y="87" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(253,121,168,0.6)">후두엽</text>
+  <text x="520" y="108" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,150,100,0.7)">Temporal</text>
+  <text x="520" y="117" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,150,100,0.5)">측두엽</text>
+  <!-- Thalamus -->
+  <ellipse cx="440" cy="148" rx="22" ry="14" fill="rgba(253,203,110,0.25)" stroke="#fdcb6e" stroke-width="1.5"/>
+  <text x="440" y="153" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#fdcb6e">Thalamus</text>
+  <!-- Hypothalamus -->
+  <ellipse cx="440" cy="168" rx="18" ry="10" fill="rgba(243,156,18,0.2)" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="440" y="172" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6" fill="#f39c12">Hypothalamus</text>
+  <!-- Cerebellum -->
+  <ellipse cx="490" cy="165" rx="45" ry="32" fill="rgba(46,213,115,0.2)" stroke="#2ed573" stroke-width="2"/>
+  <text x="490" y="170" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#2ed573">Cerebellum</text>
+  <text x="490" y="181" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(46,213,115,0.7)">소뇌 · balance/coordination</text>
+  <!-- Pons + Medulla -->
+  <rect x="425" y="185" width="40" height="20" rx="4" fill="rgba(85,239,196,0.2)" stroke="#55efc4" stroke-width="1.5"/>
+  <text x="445" y="198" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#55efc4">Pons 교뇌</text>
+  <rect x="425" y="205" width="40" height="22" rx="4" fill="rgba(85,239,196,0.15)" stroke="#55efc4" stroke-width="1.5"/>
+  <text x="445" y="215" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6" fill="#55efc4">Medulla</text>
+  <text x="445" y="224" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6" fill="rgba(85,239,196,0.6)">oblongata 연수</text>
+  <!-- Spinal cord -->
+  <rect x="440" y="227" width="10" height="50" rx="4" fill="rgba(162,155,254,0.3)" stroke="#a29bfe" stroke-width="1.5"/>
+  <text x="458" y="255" font-family="DM Sans,sans-serif" font-size="7" fill="#a29bfe">Spinal</text>
+  <text x="458" y="263" font-family="DM Sans,sans-serif" font-size="7" fill="#a29bfe">cord 척수</text>
+  <!-- Function labels -->
+  <text x="370" y="135" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(162,155,254,0.8)">CEREBRUM:</text>
+  <text x="370" y="145" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(162,155,254,0.6)">thinking·memory</text>
+  <text x="370" y="155" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(162,155,254,0.6)">personality·movement</text>
+  <!-- CNS/PNS/ANS table (bottom) -->
+  <rect x="15" y="295" width="590" height="170" rx="8" fill="rgba(30,26,20,0.9)" stroke="rgba(200,180,150,0.2)" stroke-width="1"/>
+  <text x="310" y="314" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" font-weight="700" fill="rgba(255,220,150,0.9)">신경계 구분 · Nervous System Divisions</text>
+  <!-- 3 columns -->
+  <rect x="25" y="322" width="175" height="130" rx="5" fill="rgba(108,92,231,0.12)" stroke="rgba(108,92,231,0.3)" stroke-width="1"/>
+  <text x="112" y="338" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" font-weight="700" fill="#a29bfe">CNS 중추신경계</text>
+  <text x="30" y="356" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(162,155,254,0.9)">🧠 Brain 뇌</text>
+  <text x="30" y="370" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(162,155,254,0.7)">  cerebrum·cerebellum</text>
+  <text x="30" y="382" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(162,155,254,0.7)">  thalamus·hypothalamus</text>
+  <text x="30" y="394" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(162,155,254,0.7)">  brainstem (pons·medulla)</text>
+  <text x="30" y="408" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(162,155,254,0.9)">🦴 Spinal Cord 척수</text>
+  <text x="30" y="422" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(162,155,254,0.7)">  CSF cushions both</text>
+  <text x="30" y="436" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(162,155,254,0.7)">  meninges 3 layers (DPA)</text>
+  <text x="30" y="445" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(162,155,254,0.5)">  dura·arachnoid·pia mater</text>
+  <rect x="220" y="322" width="175" height="130" rx="5" fill="rgba(46,124,110,0.12)" stroke="rgba(46,124,110,0.3)" stroke-width="1"/>
+  <text x="307" y="338" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" font-weight="700" fill="#2e7c6e">PNS 말초신경계</text>
+  <text x="226" y="356" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(46,213,115,0.9)">12 Cranial nerves 뇌신경</text>
+  <text x="226" y="368" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(46,213,115,0.6)">  olfactory·optic·vagus (X)...</text>
+  <text x="226" y="382" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(46,213,115,0.9)">31 Spinal nerves 척수신경</text>
+  <text x="226" y="396" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(46,213,115,0.7)">Plexuses 신경총:</text>
+  <text x="226" y="408" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(46,213,115,0.6)">  cervical·brachial·lumbosacral</text>
+  <text x="226" y="422" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(46,213,115,0.7)">Afferent (sensory) 구심성</text>
+  <text x="226" y="434" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(46,213,115,0.7)">Efferent (motor) 원심성</text>
+  <rect x="415" y="322" width="180" height="130" rx="5" fill="rgba(192,57,43,0.12)" stroke="rgba(192,57,43,0.3)" stroke-width="1"/>
+  <text x="505" y="338" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" font-weight="700" fill="#c0392b">ANS 자율신경계</text>
+  <text x="420" y="355" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#e05050">Sympathetic 교감신경</text>
+  <text x="420" y="367" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(220,80,80,0.7)">  fight or flight 투쟁·도주</text>
+  <text x="420" y="379" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(220,80,80,0.6)">  HR↑ BP↑ dilate airways</text>
+  <text x="420" y="391" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(220,80,80,0.6)">  digestion inhibited</text>
+  <text x="420" y="407" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#74b9ff">Parasympathetic 부교감</text>
+  <text x="420" y="419" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(116,185,255,0.7)">  rest and digest 휴식·소화</text>
+  <text x="420" y="431" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(116,185,255,0.6)">  HR↓ BP↓ digestion↑</text>
+  <text x="420" y="443" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(116,185,255,0.6)">  bladder contracts</text>
+  <text x="310" y="470" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" font-weight="700" fill="rgba(255,255,255,0.3)">신경계 · Nervous System (neur/o, encephal/o, myel/o, mening/o, cerebr/o)</text>
+</svg>`
+  },
+
 ];
 
 // ============================================================
