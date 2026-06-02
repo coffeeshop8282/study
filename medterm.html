@@ -947,6 +947,60 @@ header {
 ::selection { background: rgba(124,92,46,0.18); }
 /* quiz en input */
 #quizEnInput:focus { border-color: var(--accent) !important; }
+
+/* ── NOTES PANEL ── */
+.notes-chapter { margin-bottom: 32px; }
+.notes-ch-header {
+  background: var(--surface2);
+  border-left: 4px solid var(--teal);
+  padding: 10px 16px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 12px;
+}
+.notes-ch-header h2 { font-size: 15px; font-weight: 700; color: var(--teal); margin: 0; }
+.notes-ch-header p { font-size: 11px; color: var(--text3); margin: 4px 0 0; }
+.notes-section { margin-bottom: 18px; }
+.notes-section-title {
+  font-size: 12px; font-weight: 700; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border); padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+.notes-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 14px; margin-bottom: 8px;
+}
+.notes-card h3 { font-size: 13px; font-weight: 700; color: var(--text); margin: 0 0 5px; }
+.notes-card p  { font-size: 12px; color: var(--text2); line-height: 1.7; margin: 0 0 4px; }
+.notes-card ul { font-size: 12px; color: var(--text2); line-height: 1.7; margin: 4px 0 0; padding-left: 18px; }
+.notes-card li { margin-bottom: 3px; }
+.notes-card .ko { font-size: 11px; color: var(--teal); background: rgba(0,206,201,0.1); border-radius: 4px; padding: 1px 6px; margin-left: 5px; }
+.notes-card .clinical {
+  background: rgba(255,118,117,0.08); border: 1px solid rgba(255,118,117,0.25);
+  border-radius: 6px; padding: 8px 10px; margin-top: 8px; font-size: 11px;
+  color: rgba(255,118,117,0.9); line-height: 1.6;
+}
+.notes-card .clinical::before { content: '🏥 임상: '; font-weight: 700; }
+.notes-quiz {
+  background: rgba(253,203,110,0.08); border: 1px solid rgba(253,203,110,0.25);
+  border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; font-size: 12px;
+}
+.notes-quiz .q { font-weight: 700; color: var(--gold); margin-bottom: 4px; }
+.notes-quiz .a { color: var(--text2); }
+.notes-closer {
+  background: rgba(108,92,231,0.08); border: 1px solid rgba(108,92,231,0.25);
+  border-radius: 8px; padding: 10px 12px; margin-bottom: 8px;
+}
+.notes-closer h4 { font-size: 12px; font-weight: 700; color: #a29bfe; margin: 0 0 5px; }
+.notes-closer p, .notes-closer li { font-size: 12px; color: var(--text2); line-height: 1.7; }
+.notes-path {
+  background: rgba(46,213,115,0.08); border: 1px solid rgba(46,213,115,0.25);
+  border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; font-size: 12px; color: var(--text2);
+}
+.notes-path-title { font-weight: 700; color: #2ed573; margin-bottom: 5px; font-size: 12px; }
+.notes-path-step { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 3px; }
+.notes-path-num { background: rgba(46,213,115,0.3); border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: #2ed573; flex-shrink: 0; margin-top: 2px; }
+
 </style>
 </head>
 <body>
@@ -986,6 +1040,7 @@ header {
   <button class="chapter-tab" data-chapter="figures" id="tabFigures">🔬 해부도</button>
   <button class="chapter-tab" data-chapter="photos" id="tabPhotos">📸 사진 카드</button>
   <button class="chapter-tab" data-chapter="mustknow" id="tabMustKnow">⭐ 필수 암기</button>
+  <button class="chapter-tab" data-chapter="notes" id="tabNotes">📖 챕터 노트</button>
 </div>
 
 <div class="panels">
@@ -1197,6 +1252,884 @@ header {
     </div>
     <div id="mustKnowContent"></div>
   </div>
+
+
+  <!-- ═══ NOTES PANEL ═══ -->
+  <div class="panel" id="panelNotes" style="display:none">
+  <div style="max-width:860px;margin:0 auto;padding:8px 0 40px">
+
+  <!-- ═══ CHAPTER 1 ═══ -->
+  <div class="notes-chapter">
+    <div class="notes-ch-header">
+      <h2>Chapter 1 — Basic Word Structure <span class="ko">기초 단어 구조</span></h2>
+      <p>의학 용어의 구성 요소: Combining form · Suffix · Prefix</p>
+    </div>
+
+    <div class="notes-section">
+      <div class="notes-section-title">핵심 개념 Key Concepts</div>
+      <div class="notes-card">
+        <h3>Word Structure 단어 구조</h3>
+        <ul>
+          <li><b>Root (어근)</b> — 단어의 핵심 의미 부분 (예: <i>cardi</i> = heart)</li>
+          <li><b>Combining form (결합형)</b> — 어근 + 모음(o) (예: <i>cardi/o</i>) → 뒤에 자음으로 시작하는 접미사 올 때 연결</li>
+          <li><b>Suffix (접미사)</b> — 단어 끝에 붙어 의미 추가 (예: <i>-itis</i> = inflammation)</li>
+          <li><b>Prefix (접두사)</b> — 단어 앞에 붙어 의미 수정 (예: <i>hyper-</i> = excessive)</li>
+        </ul>
+        <div class="clinical">대부분의 의학 용어는 그리스어(Greek) 또는 라틴어(Latin) 기원이며, 단어 구성 요소를 알면 처음 보는 용어도 뜻을 추측할 수 있다.</div>
+      </div>
+
+      <div class="notes-card">
+        <h3>분석 방법 — How to Analyze Medical Terms</h3>
+        <ul>
+          <li>뒤에서 앞으로 (suffix → prefix 순서) 읽는다</li>
+          <li>예: <i>electrocardiogram</i> = electr/o(전기) + cardi/o(심장) + -gram(기록) = 심전도</li>
+          <li>예: <i>cephalic</i> = cephal/o(head) + -ic(pertaining to) = 머리에 관한</li>
+        </ul>
+      </div>
+
+      <div class="notes-card">
+        <h3>주요 접미사 Key Suffixes</h3>
+        <ul>
+          <li><b>-itis</b> 염증 inflammation — <i>arthritis</i> 관절염</li>
+          <li><b>-ectomy</b> 절제술 surgical removal — <i>nephrectomy</i> 신장절제술</li>
+          <li><b>-scopy</b> 내시경 검사 visual examination — <i>cystoscopy</i> 방광경검사</li>
+          <li><b>-plasty</b> 성형술 surgical repair — <i>rhinoplasty</i> 코성형술</li>
+          <li><b>-ology</b> 학문 study of — <i>cardiology</i> 심장학</li>
+          <li><b>-algia</b> 통증 pain — <i>neuralgia</i> 신경통</li>
+          <li><b>-megaly</b> 비대 enlargement — <i>cardiomegaly</i> 심장비대</li>
+          <li><b>-pathy</b> 질환 disease — <i>neuropathy</i> 신경병증</li>
+          <li><b>-gram</b> 기록/영상 record — <i>electrocardiogram</i> 심전도</li>
+          <li><b>-oma</b> 종양 tumor/mass — <i>hematoma</i> 혈종</li>
+          <li><b>-opsy</b> 검사 to view — <i>biopsy</i> 생검</li>
+        </ul>
+      </div>
+
+      <div class="notes-card">
+        <h3>주요 접두사 Key Prefixes</h3>
+        <ul>
+          <li><b>hyper-</b> 과도한/높은 excessive/above — <i>hyperglycemia</i> 고혈당</li>
+          <li><b>hypo-</b> 부족한/낮은 deficient/under — <i>hypoglycemia</i> 저혈당</li>
+          <li><b>epi-</b> 위에/~위 upon/above — <i>epigastric</i> 상복부의</li>
+          <li><b>peri-</b> 주위 surrounding — <i>pericardium</i> 심낭</li>
+          <li><b>trans-</b> 가로지르는 through/across — <i>transurethral</i> 경요도</li>
+          <li><b>sub-</b> 아래 under — <i>subcutaneous</i> 피하의</li>
+          <li><b>dia-</b> 완전히/통해 through/complete — <i>diagnosis</i> 진단</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="notes-section">
+      <div class="notes-section-title">📝 퀴즈 연습 Quiz Practice</div>
+      <div class="notes-quiz"><div class="q">Q. "erythrocyte" = 어떤 의미?</div><div class="a">A. erythr/o (red) + -cyte (cell) = 적혈구 (red blood cell)</div></div>
+      <div class="notes-quiz"><div class="q">Q. "leukopenia" = 어떤 의미?</div><div class="a">A. leuk/o (white) + -penia (deficiency) = 백혈구감소증</div></div>
+      <div class="notes-quiz"><div class="q">Q. "gastrectomy" = 어떤 의미?</div><div class="a">A. gastr/o (stomach) + -ectomy (removal) = 위절제술</div></div>
+      <div class="notes-quiz"><div class="q">Q. "carcinogenic" = 어떤 의미?</div><div class="a">A. carcin/o (cancer) + -genic (producing) = 발암성의</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ CHAPTER 2 ═══ -->
+  <div class="notes-chapter">
+    <div class="notes-ch-header">
+      <h2>Chapter 2 — Terms Pertaining to the Body as a Whole <span class="ko">신체 구조 용어</span></h2>
+      <p>세포→조직→기관→계통 구조 · 신체강 · 방향 용어 · 체면</p>
+    </div>
+
+    <div class="notes-section">
+      <div class="notes-section-title">세포 구조 Cell Structure</div>
+      <div class="notes-card">
+        <h3>Major Parts of a Cell 세포의 주요 부분</h3>
+        <ul>
+          <li><b>Cell membrane 세포막</b> — 세포를 둘러싸고 보호; 물질 통과 조절</li>
+          <li><b>Nucleus 핵</b> — 세포의 조절 센터; 염색체 포함; 세포분열 지시</li>
+          <li><b>Chromosomes 염색체</b> — 핵 안 막대형 구조; DNA(유전자) 포함; 정상 체세포 46개(23쌍); 성세포(난자·정자)는 23개</li>
+          <li><b>Cytoplasm 세포질</b> — 핵 바깥, 세포막 안의 모든 물질; 세포 기능 수행</li>
+          <li><b>Mitochondria 미토콘드리아</b> — 소시지 모양; 세포의 에너지 생산소(ATP); 이화작용(catabolism) 일어남</li>
+          <li><b>Endoplasmic reticulum 내형질세망</b> — 세포 내 터널 시스템; 단백질 합성; 리보솜 부착</li>
+        </ul>
+        <div class="clinical">Karyotype(핵형) — 세포 핵의 염색체 사진; 염색체 수와 구조 이상 확인에 사용. 예: Down syndrome = 21번 염색체가 3개(trisomy-21) → 총 47개.</div>
+      </div>
+
+      <div class="notes-card">
+        <h3>Anabolism vs Catabolism 동화작용 vs 이화작용</h3>
+        <ul>
+          <li><b>Anabolism 동화작용</b> — ana-(위로) + bol(던지다) + -ism; 소단위(amino acids) → 대분자(proteins) 합성; 내형질세망에서 일어남</li>
+          <li><b>Catabolism 이화작용</b> — cata-(아래로) + bol + -ism; 복합 영양소 → 단순물질 + 에너지 방출; 미토콘드리아에서 일어남</li>
+          <li><b>Metabolism 신진대사</b> — 세포 내 모든 화학 과정; 동화 + 이화 포함</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="notes-section">
+      <div class="notes-section-title">신체강 Body Cavities</div>
+      <div class="notes-card">
+        <h3>Body Cavities 신체강 — 내부 기관을 담는 공간</h3>
+        <ul>
+          <li><b>Cranial cavity 두개강</b> — Brain 뇌</li>
+          <li><b>Spinal cavity 척수강</b> — Spinal cord nerves 척수신경</li>
+          <li><b>Thoracic cavity 흉강</b> — Lungs, heart, esophagus, trachea, bronchial tubes, thymus gland, aorta</li>
+          <li><b>Abdominal cavity 복강</b> — Stomach, small &amp; large intestines, spleen, pancreas, liver, gallbladder. 복막(peritoneum)이 감싸고 있음</li>
+          <li><b>Pelvic cavity 골반강</b> — Portions of intestines, bladder, rectum, urethra, ureters; 여성: uterus, vagina</li>
+        </ul>
+        <p style="font-size:11px;color:var(--text3);margin-top:6px">※ Cranial + Spinal = <b>Dorsal cavities</b> / Thoracic + Abdominal + Pelvic = <b>Ventral cavities</b></p>
+        <div class="clinical">Mediastinum(종격동) — 흉강 내 폐 사이 공간; 심장, 식도, 기관이 위치. Pleural cavity(흉막강) — 폐를 감싸는 이중막(pleura) 사이 공간.</div>
+      </div>
+    </div>
+
+    <div class="notes-section">
+      <div class="notes-section-title">복부 구역 Abdominopelvic Regions &amp; Quadrants</div>
+      <div class="notes-card">
+        <h3>9 Regions 9개 구역</h3>
+        <ul>
+          <li><b>Hypochondriac R/L 우/좌 늑골하부</b> — 늑연골 아래 위쪽 좌우</li>
+          <li><b>Epigastric 상복부</b> — 위 위쪽 중앙 (epi- = above, gastr/o = stomach)</li>
+          <li><b>Lumbar R/L 우/좌 허리부</b> — 중간 좌우 허리 부위</li>
+          <li><b>Umbilical 배꼽부</b> — 중앙 배꼽 주위</li>
+          <li><b>Inguinal R/L 우/좌 서혜부</b> — 하부 좌우 사타구니 근처</li>
+          <li><b>Hypogastric 치골부</b> — 배꼽 아래 중앙 (hypo- = below)</li>
+        </ul>
+      </div>
+      <div class="notes-card">
+        <h3>4 Quadrants 4사분면</h3>
+        <ul>
+          <li><b>RUQ</b> — Liver (right lobe), gallbladder, part of pancreas</li>
+          <li><b>LUQ</b> — Liver (left lobe), stomach, spleen, part of pancreas</li>
+          <li><b>RLQ</b> — Appendix, right ovary, right fallopian tube, right ureter</li>
+          <li><b>LLQ</b> — Left ovary, left fallopian tube, left ureter</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="notes-section">
+      <div class="notes-section-title">방향 용어 Directional Terms</div>
+      <div class="notes-card">
+        <h3>Positional &amp; Directional Terms</h3>
+        <ul>
+          <li><b>Anterior / Ventral 전방/복측</b> — front of body</li>
+          <li><b>Posterior / Dorsal 후방/등측</b> — back of body</li>
+          <li><b>Superior / Cephalic 상위</b> — above another structure</li>
+          <li><b>Inferior / Caudal 하위</b> — below another structure</li>
+          <li><b>Medial 내측</b> — toward the midline</li>
+          <li><b>Lateral 외측</b> — toward the side</li>
+          <li><b>Proximal 근위</b> — near point of attachment to trunk</li>
+          <li><b>Distal 원위</b> — far from point of attachment</li>
+          <li><b>Superficial 표면</b> — on the surface</li>
+          <li><b>Deep 심부</b> — away from surface</li>
+          <li><b>Supine 앙와위</b> — lying on the back</li>
+          <li><b>Prone 복와위</b> — lying on the belly</li>
+        </ul>
+      </div>
+      <div class="notes-card">
+        <h3>Planes of the Body 체면</h3>
+        <ul>
+          <li><b>Frontal / Coronal plane 관상면</b> — 신체를 전방/후방으로 나누는 수직면</li>
+          <li><b>Sagittal / Lateral plane 시상면</b> — 신체를 좌/우로 나누는 세로 수직면</li>
+          <li><b>Transverse / Axial plane 횡단면</b> — 수평 단면; 상/하로 나눔 (CT scan에서 사용)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="notes-section">
+      <div class="notes-section-title">척추 구분 Divisions of the Back</div>
+      <div class="notes-card">
+        <h3>Spinal Column Regions 척추 구역</h3>
+        <ul>
+          <li><b>Cervical C1-C7</b> — 목 영역 (7개)</li>
+          <li><b>Thoracic T1-T12</b> — 흉부 (12개); 각 척추가 갈비뼈와 연결됨</li>
+          <li><b>Lumbar L1-L5</b> — 허리 (5개); Lumbar puncture는 L3-L5 사이에서 시행</li>
+          <li><b>Sacral S1-S5</b> — 천골; 5개 뼈가 융합되어 1개 구조 형성</li>
+          <li><b>Coccygeal 미골</b> — 꼬리뼈; 4개 뼈 융합</li>
+        </ul>
+        <div class="clinical">Disk(추간판) — 척추뼈 사이의 연골 패드. Herniated disk(추간판탈출증) — 디스크가 탈출되어 신경 압박 → 방사통 유발.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CHAPTER 3 ═══ -->
+  <div class="notes-chapter">
+    <div class="notes-ch-header">
+      <h2>Chapter 3 — Suffixes <span class="ko">접미사</span></h2>
+      <p>의학 용어의 접미사 체계 — 의미를 결정짓는 핵심 어미</p>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">수술/처치 관련 Surgical Suffixes</div>
+      <div class="notes-card">
+        <h3>Surgical &amp; Procedural Suffixes</h3>
+        <ul>
+          <li><b>-ectomy</b> 절제술 excision/removal — <i>appendectomy</i> 충수절제술</li>
+          <li><b>-tomy</b> 절개술 incision — <i>laparotomy</i> 개복술</li>
+          <li><b>-stomy</b> 인공개구술 new opening — <i>colostomy</i> 결장루</li>
+          <li><b>-plasty</b> 성형/재건술 surgical repair — <i>rhinoplasty</i> 코성형술</li>
+          <li><b>-rrhaphy</b> 봉합술 suture — <i>herniorrhaphy</i> 탈장봉합술</li>
+          <li><b>-pexy</b> 고정술 fixation — <i>orchiopexy</i> 고환고정술</li>
+          <li><b>-desis</b> 유합/고정 binding — <i>arthrodesis</i> 관절고정술</li>
+          <li><b>-centesis</b> 천자 surgical puncture — <i>thoracentesis</i> 흉강천자</li>
+        </ul>
+      </div>
+      <div class="notes-card">
+        <h3>Diagnostic Suffixes</h3>
+        <ul>
+          <li><b>-scopy</b> 내시경검사 visual examination — <i>colonoscopy</i> 대장내시경</li>
+          <li><b>-graphy</b> 촬영 process of recording — <i>mammography</i> 유방촬영술</li>
+          <li><b>-gram</b> 영상/기록 record/image — <i>electrocardiogram</i> 심전도</li>
+          <li><b>-opsy</b> 생검 to view — <i>biopsy</i> 생검</li>
+          <li><b>-meter</b> 측정기 instrument to measure — <i>spirometer</i> 폐활량계</li>
+          <li><b>-metry</b> 측정 process of measuring — <i>spirometry</i> 폐활량검사</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">병리/상태 관련 Pathological Suffixes</div>
+      <div class="notes-card">
+        <h3>Pathological &amp; Condition Suffixes</h3>
+        <ul>
+          <li><b>-itis</b> 염증 inflammation — <i>tonsillitis</i> 편도염</li>
+          <li><b>-osis</b> 비정상적 상태/증가 abnormal condition — <i>fibrosis</i> 섬유증</li>
+          <li><b>-emia</b> 혈액 상태 blood condition — <i>anemia</i> 빈혈</li>
+          <li><b>-penia</b> 결핍 deficiency — <i>thrombocytopenia</i> 혈소판감소증</li>
+          <li><b>-megaly</b> 비대 enlargement — <i>hepatomegaly</i> 간비대</li>
+          <li><b>-pathy</b> 질환 disease — <i>cardiomyopathy</i> 심근병증</li>
+          <li><b>-malacia</b> 연화 softening — <i>chondromalacia</i> 연골연화증</li>
+          <li><b>-lysis</b> 파괴/용해 destruction/separation — <i>hemolysis</i> 용혈</li>
+          <li><b>-sclerosis</b> 경화 hardening — <i>arteriosclerosis</i> 동맥경화증</li>
+          <li><b>-stenosis</b> 협착 narrowing/tightening — <i>pyloric stenosis</i> 유문협착</li>
+          <li><b>-ptosis</b> 하수/탈출 drooping/prolapse — <i>blepharoptosis</i> 안검하수</li>
+          <li><b>-oma</b> 종양 tumor — <i>lymphoma</i> 림프종</li>
+          <li><b>-plasia</b> 세포 성장 formation/development — <i>hyperplasia</i> 과형성</li>
+          <li><b>-stasis</b> 정지/조절 stopping/controlling — <i>hemostasis</i> 지혈</li>
+          <li><b>-phobia</b> 공포증 fear — <i>acrophobia</i> 고소공포증</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">혈구 Blood Cells</div>
+      <div class="notes-card">
+        <h3>Types of Blood Cells 혈구 종류</h3>
+        <ul>
+          <li><b>Erythrocyte 적혈구</b> (erythr/o = red) — 산소 운반; hemoglobin 포함</li>
+          <li><b>Leukocyte 백혈구</b> (leuk/o = white) — 면역 방어
+            <ul>
+              <li>Neutrophil 호중구 — 세균 식균작용(phagocytosis); 염증 시 증가</li>
+              <li>Eosinophil 호산구 — 알레르기 반응 시 증가</li>
+              <li>Lymphocyte 림프구 — 항체 생성(면역)</li>
+              <li>Monocyte 단핵구 — 큰 단핵 식세포</li>
+            </ul>
+          </li>
+          <li><b>Thrombocyte 혈소판</b> (thromb/o = clot) — 혈액응고; platelet이라고도 함</li>
+        </ul>
+        <div class="clinical">Thrombocytopenia 혈소판감소증 — 혈소판 부족 → 출혈 경향. Leukemia 백혈병 — 미성숙 백혈구 급증 (악성). Leukocytosis 백혈구증가증 — 감염에 대한 정상 반응.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CHAPTER 4 ═══ -->
+  <div class="notes-chapter">
+    <div class="notes-ch-header">
+      <h2>Chapter 4 — Prefixes <span class="ko">접두사</span></h2>
+      <p>의학 용어 앞에 붙어 의미를 수정하는 접두사 + 임상 적용</p>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">전체 접두사 목록 All Prefixes</div>
+      <div class="notes-card">
+        <h3>Complete Prefix List</h3>
+        <ul>
+          <li><b>a-, an-</b> 없음/없이 no, not, without — <i>apnea</i> 무호흡, <i>anoxia</i> 무산소증</li>
+          <li><b>ab-</b> ~에서 떨어진 away from — <i>abductor</i> 외전근(몸에서 멀리)</li>
+          <li><b>ad-</b> ~쪽으로 toward — <i>adductor</i> 내전근(몸 쪽으로) ⚠️ ab- vs ad- 혼동 주의</li>
+          <li><b>ana-</b> 위로/분리 up, apart — <i>anabolism</i> 동화작용</li>
+          <li><b>ante-</b> 앞에/전에 before, forward — <i>antepartum</i> 분만 전</li>
+          <li><b>anti-</b> 대항하여 against — <i>antisepsis</i> 방부, <i>antibiotic</i> 항생제</li>
+          <li><b>auto-</b> 자신 self, own — <i>autoimmune</i> 자가면역</li>
+          <li><b>bi-</b> 둘/양측 two — <i>bilateral</i> 양측의</li>
+          <li><b>brady-</b> 느린 slow — <i>bradycardia</i> 서맥</li>
+          <li><b>cata-</b> 아래로 down — <i>catabolism</i> 이화작용</li>
+          <li><b>con-</b> 함께 with, together — <i>congenital</i> 선천성</li>
+          <li><b>contra-</b> 반대로 against, opposite — <i>contralateral</i> 반대측의</li>
+          <li><b>de-</b> 아래로/결여 down, lack of — <i>dehydration</i> 탈수</li>
+          <li><b>dia-</b> 완전히/통해 through, complete — <i>diagnosis</i> 진단, <i>dialysis</i> 투석</li>
+          <li><b>dys-</b> 나쁜/어려운/비정상 bad, painful, difficult — <i>dyspnea</i> 호흡곤란, <i>dysuria</i> 배뇨통</li>
+          <li><b>ec-, ecto-</b> 밖으로 out, outside — <i>ectopic</i> 자궁외의</li>
+          <li><b>endo-</b> 안에 in, within — <i>endoscopy</i> 내시경, <i>endometrium</i> 자궁내막</li>
+          <li><b>epi-</b> 위에/~위 upon, on, above — <i>epigastric</i> 상복부의, <i>epidermis</i> 표피</li>
+          <li><b>eu-</b> 좋은/정상 good, normal — <i>euphoria</i> 행복감, <i>eupnea</i> 정상호흡</li>
+          <li><b>ex-</b> 밖으로 out, outside, away — <i>excision</i> 절제</li>
+          <li><b>hemi-</b> 반 half — <i>hemiplegia</i> 반신마비</li>
+          <li><b>hyper-</b> 과도한/높은 excessive, above — <i>hypertension</i> 고혈압, <i>hyperglycemia</i> 고혈당</li>
+          <li><b>hypo-</b> 부족한/낮은 deficient, under — <i>hypotension</i> 저혈압, <i>hypoglycemia</i> 저혈당</li>
+          <li><b>in-</b> 아닌 not / 안으로 into — <i>incision</i> 절개</li>
+          <li><b>infra-</b> 아래에 beneath, under — <i>infraorbital</i> 안와하의</li>
+          <li><b>inter-</b> 사이에 between — <i>intercostal</i> 늑간의</li>
+          <li><b>intra-</b> 안에 in, within, into — <i>intravenous</i> 정맥내, <i>intrathecal</i> 척수강내</li>
+          <li><b>macro-</b> 큰 large — <i>macroscopic</i> 육안으로 보이는</li>
+          <li><b>mal-</b> 나쁜 bad — <i>malignant</i> 악성의, <i>malaise</i> 불쾌감</li>
+          <li><b>meta-</b> 변화/너머 beyond, change — <i>metastasis</i> 전이, <i>metabolism</i> 신진대사</li>
+          <li><b>micro-</b> 작은 small — <i>microscopic</i> 현미경적</li>
+          <li><b>neo-</b> 새로운 new — <i>neoplasm</i> 신생물(종양)</li>
+          <li><b>pan-</b> 모든 all — <i>pancytopenia</i> 범혈구감소증</li>
+          <li><b>para-</b> 비정상/옆에 abnormal, beside — <i>paraplegia</i> 하반신마비</li>
+          <li><b>per-</b> 통해 through — <i>percutaneous</i> 경피의</li>
+          <li><b>peri-</b> 주위에 surrounding — <i>pericardium</i> 심낭</li>
+          <li><b>poly-</b> 많은 many, much — <i>polydipsia</i> 다음증, <i>polyuria</i> 다뇨증</li>
+          <li><b>post-</b> 후에 after, behind — <i>postmortem</i> 사후의</li>
+          <li><b>pre-</b> 앞에/전에 before, in front of — <i>prenatal</i> 출생 전</li>
+          <li><b>pro-</b> 앞에/전방 before, forward — <i>prognosis</i> 예후</li>
+          <li><b>re-</b> 다시 back, again — <i>relapse</i> 재발</li>
+          <li><b>retro-</b> 뒤로/후방 behind, backward — <i>retroperitoneal</i> 후복막의</li>
+          <li><b>sub-</b> 아래에 under — <i>subcutaneous</i> 피하의, <i>sublingual</i> 설하의</li>
+          <li><b>supra-</b> 위에 above, upper — <i>supraorbital</i> 안와상의</li>
+          <li><b>syn-, sym-</b> 함께 together, with — <i>syndrome</i> 증후군, <i>symbiosis</i> 공생</li>
+          <li><b>tachy-</b> 빠른 fast — <i>tachycardia</i> 빈맥, <i>tachypnea</i> 빠른호흡</li>
+          <li><b>trans-</b> 가로지르는 across, through — <i>transurethral</i> 경요도의</li>
+          <li><b>ultra-</b> 초과/초 beyond, excess — <i>ultrasonography</i> 초음파검사</li>
+          <li><b>uni-</b> 하나 one — <i>unilateral</i> 편측의</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="notes-section">
+      <div class="notes-section-title">🔍 임상 심화 Closer Look</div>
+      <div class="notes-closer">
+        <h4>Rh Condition (Rh 조건)</h4>
+        <ul>
+          <li><b>Antigen 항원</b> — 체내 이물질로 항체 생성을 자극하는 물질</li>
+          <li><b>Antibody 항체</b> — 백혈구(leukocyte)가 항원에 반응하여 만드는 단백질</li>
+          <li><b>Rh Condition 발생 기전:</b>
+            <ul>
+              <li>Rh- 어머니 + Rh+ 태아 → 분만 시 태아 혈액이 모체 혈류로 유입 → 어머니 항체 형성(감작)</li>
+              <li><b>첫 번째 임신</b>: 태아 영향 없음 (항체 적음)</li>
+              <li><b>두 번째 Rh+ 임신</b>: 어머니 항체가 태아 RBC 공격 → <b>Hemolytic Disease of the Newborn (HDN)</b></li>
+            </ul>
+          </li>
+          <li><b>Jaundice 황달</b> — HDN의 증상; RBC 파괴 → hemoglobin → bilirubin 증가 → 피부 황색화; Phototherapy(광선치료)로 치료</li>
+          <li><b>예방</b>: 분만·유산 72시간 내에 Rh- 어머니에게 <b>Rh immune globulin</b> 주사 → 항체 형성 차단</li>
+        </ul>
+      </div>
+      <div class="notes-closer">
+        <h4>TURP — Transurethral Resection of the Prostate 경요도 전립선 절제술</h4>
+        <ul>
+          <li>요도(urethra)를 통해 기구 삽입 → 전립선 조직 일부 제거</li>
+          <li>적응증: Benign Prostatic Hyperplasia (BPH) 전립선 비대증 — 전립선 조직 증가 → 배뇨 장애</li>
+          <li>Trans-(통과) + urethral(요도) + resection(절제) + prostate(전립선)</li>
+        </ul>
+      </div>
+      <div class="notes-closer">
+        <h4>Ultrasonography 초음파 검사</h4>
+        <ul>
+          <li>초음파를 이용해 기관·조직의 영상을 생성하는 진단 기법</li>
+          <li><b>Echocardiogram</b> 심초음파 — 심장의 초음파 영상</li>
+          <li><b>Sonogram</b> 태아 초음파 — 태아 초음파 영상</li>
+        </ul>
+      </div>
+      <div class="notes-closer">
+        <h4>Syndrome vs Sign vs Symptom</h4>
+        <ul>
+          <li><b>Sign 징후</b> — 검사자가 객관적으로 확인하는 소견 (예: 발열, 발진, 비정상 혈구 수)</li>
+          <li><b>Symptom 증상</b> — 환자가 주관적으로 느끼는 변화 (예: 식욕 감소, 복통, 피로)</li>
+          <li><b>Syndrome 증후군</b> — 함께 나타나며 특정 질환을 나타내는 징후·증상의 집합. 예: Reye syndrome — 구토, 뇌부종, 저혈당, 간기능 이상 (아스피린 복용 후 바이러스 감염 소아에서)</li>
+        </ul>
+      </div>
+      <div class="notes-closer">
+        <h4>Congenital Anomaly 선천성 기형</h4>
+        <ul>
+          <li>태어날 때부터 가진 구조/기관의 불규칙성</li>
+          <li>예: Syndactyly 합지증 (손발가락 유합), 심장 결손, 내반족</li>
+          <li>일부는 유전성; 일부는 임신 중 인자(예: 알코올 → 태아알코올증후군)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CHAPTER 5 ═══ -->
+  <div class="notes-chapter">
+    <div class="notes-ch-header">
+      <h2>Chapter 5 — Digestive System <span class="ko">소화기계</span></h2>
+      <p>소화계 기관 · 기능 · 병리 · 임상 절차</p>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">소화계 기능 GI Functions</div>
+      <div class="notes-card">
+        <h3>4 Main Functions 4가지 주요 기능</h3>
+        <ul>
+          <li><b>Ingestion 섭취</b> — 음식을 입으로 받아들임</li>
+          <li><b>Digestion 소화</b> — 복합 음식물을 기계적·화학적으로 분해하며 GI tract 이동</li>
+          <li><b>Absorption 흡수</b> — 소화된 음식물이 소장 상피를 통해 혈류로 이동 → 전신 세포로 운반</li>
+          <li><b>Elimination 배설</b> — 흡수되지 않은 고형 폐기물을 항문으로 배출</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">소화관 구조 GI Tract Organs</div>
+      <div class="notes-card">
+        <h3>Food Pathway 음식물 경로</h3>
+        <div class="notes-path">
+          <div class="notes-path-title">Oral cavity → GI tract 경로</div>
+          <div class="notes-path-step"><div class="notes-path-num">1</div><div><b>Oral cavity 구강</b> — 치아(mastication 저작), 혀, 타액선; 전분 분해(amylase)</div></div>
+          <div class="notes-path-step"><div class="notes-path-num">2</div><div><b>Pharynx 인두</b> — Deglutition(연하/삼킴) 발생; 음식이 인두로 이동</div></div>
+          <div class="notes-path-step"><div class="notes-path-num">3</div><div><b>Esophagus 식도</b> — 인두→위 연결 근육관; 연동운동(peristalsis)으로 이송</div></div>
+          <div class="notes-path-step"><div class="notes-path-num">4</div><div><b>Stomach 위</b> — 위산·효소로 화학적 소화; pylorus(유문)로 소장에 전달</div></div>
+          <div class="notes-path-step"><div class="notes-path-num">5</div><div><b>Small intestine 소장</b> — duodenum(십이지장)·jejunum(공장)·ileum(회장); 대부분의 영양소 흡수; villi(융모)가 표면적 증가</div></div>
+          <div class="notes-path-step"><div class="notes-path-num">6</div><div><b>Large intestine 대장</b> — cecum(맹장)→colon(결장: ascending·transverse·descending·sigmoid)→rectum(직장)→anus(항문); 수분 재흡수, 대변 형성</div></div>
+        </div>
+      </div>
+      <div class="notes-card">
+        <h3>Accessory Organs 부속 기관</h3>
+        <ul>
+          <li><b>Liver 간</b> — 담즙(bile) 생성; 혈당 조절; 혈액응고 단백질 합성; bilirubin 방출; 독소 제거</li>
+          <li><b>Gallbladder 담낭</b> — 담즙 저장 → 지방 소화 시 십이지장으로 방출; 담석 형성 부위</li>
+          <li><b>Pancreas 췌장</b> — 외분비: 소화효소(amylase, lipase) 분비 → 십이지장으로; 내분비: insulin·glucagon → 혈당 조절</li>
+        </ul>
+        <div class="clinical">Hyperbilirubinemia 고빌리루빈혈증 — 담즙(bilirubin)이 배출 안 되고 혈류에 남으면 황달(jaundice) 발생 → 피부·공막이 황색화됨.</div>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">소화기계 병리 GI Pathology</div>
+      <div class="notes-card">
+        <h3>Common GI Conditions</h3>
+        <ul>
+          <li><b>Cholelithiasis 담석증</b> — cholecyst/o(담낭) + lith/o(돌) + -iasis; 담낭 내 결석</li>
+          <li><b>Cirrhosis 간경변증</b> — 간세포 파괴 후 섬유조직으로 대체; 주 원인: 알코올, 바이러스 간염</li>
+          <li><b>Celiac disease 복강병</b> — 글루텐(gluten)에 대한 면역 반응 → 소장 융모 손상 → 흡수 장애</li>
+          <li><b>Volvulus 장염전</b> — 장이 꼬임; 폐쇄 및 괴사 위험; cecal volvulus = 맹장 염전</li>
+          <li><b>Pyloric stenosis 유문협착증</b> — 위의 유문 개구부 협착; 신생아에서 발생 가능; 분출성 구토</li>
+          <li><b>Aphthous stomatitis 아프타성 구내염</b> — 구강 내 통증성 궤양 (구내염)</li>
+          <li><b>Cheilosis 구순증</b> — 입술의 비정상 상태 (갈라짐·균열); 비타민 결핍 관련</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">임상 검사·절차 Clinical Procedures</div>
+      <div class="notes-card">
+        <h3>GI Diagnostic Procedures</h3>
+        <ul>
+          <li><b>Upper GI series 상부 GI 시리즈</b> — 바륨(조영제) 복용 후 식도·위·십이지장 X-ray 촬영</li>
+          <li><b>Lower GI series / Barium enema 하부 GI 시리즈</b> — 바륨 관장 후 대장 X-ray</li>
+          <li><b>GI endoscopy 내시경</b> — 내시경으로 GI tract 직접 시각화</li>
+          <li><b>ERCP</b> (Endoscopic Retrograde Cholangiopancreatography) — 내시경으로 담관·췌관 조영; 담관결석 진단·제거</li>
+          <li><b>CT scan 컴퓨터단층촬영</b> — 복부 단면 영상; 여러 방향 촬영</li>
+          <li><b>MRI 자기공명영상</b> — 복부 연조직 상세 영상</li>
+          <li><b>Abdominal ultrasonography 복부 초음파</b> — 복부 장기 음파 영상</li>
+          <li><b>Laparoscopy 복강경</b> — 작은 절개로 내시경 삽입 → 복강 직접 시각화; 최소침습수술</li>
+          <li><b>Paracentesis 복강천자</b> — 복강에서 체액 흡인; ascites(복수) 완화</li>
+          <li><b>Liver biopsy 간 생검</b> — 경피적으로 간 조직 채취 → 현미경 검사</li>
+          <li><b>Nasogastric intubation 비위관 삽관</b> — 코→위 관 삽입; 음식 또는 약물 투여, 위 감압</li>
+          <li><b>Stool guaiac (Hemoccult) 대변잠혈검사</b> — 대변의 숨겨진 혈액 검출</li>
+          <li><b>Stool culture 대변 배양</b> — 대변을 배양하여 세균 분석</li>
+          <li><b>Liver function tests 간기능 검사</b> — 혈청 내 간 효소 측정</li>
+          <li><b>Serum bilirubin 혈청 빌리루빈</b> — 혈액 내 담즙 색소 측정</li>
+        </ul>
+        <div class="clinical">Gastric bypass 위우회술 — 비만 치료를 위해 위장을 작게 만들고 소장의 일부를 우회시키는 수술. 흡수 면적 감소로 체중 감소 효과.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CHAPTER 6 ═══ -->
+  <div class="notes-chapter">
+    <div class="notes-ch-header">
+      <h2>Chapter 6 — Additional Suffixes &amp; Digestive Terminology <span class="ko">추가 접미사 및 소화기 용어</span></h2>
+      <p>추가 접미사 + 소화기계 심화 용어</p>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">추가 접미사 Additional Suffixes</div>
+      <div class="notes-card">
+        <h3>Additional Suffixes (Ch.6)</h3>
+        <ul>
+          <li><b>-spasm</b> 경련 involuntary contraction — <i>pylorospasm</i> 유문경련</li>
+          <li><b>-stenosis</b> 협착 narrowing, stricture — <i>pyloric stenosis</i> 유문협착</li>
+          <li><b>-emesis</b> 구토 vomiting — <i>hematemesis</i> 토혈</li>
+          <li><b>-phagia</b> 삼킴/식이 eating, swallowing — <i>dysphagia</i> 연하장애, <i>polyphagia</i> 다식증</li>
+          <li><b>-ectasis, -ectasia</b> 확장 stretching, dilation — <i>bronchiectasis</i> 기관지확장증</li>
+          <li><b>-pepsia</b> 소화 digestion — <i>dyspepsia</i> 소화불량</li>
+          <li><b>-rrhea</b> 분비/유출 flow, discharge — <i>diarrhea</i> 설사, <i>steatorrhea</i> 지방변</li>
+          <li><b>-rrhaphy</b> 봉합 suture — <i>herniorrhaphy</i> 탈장봉합술</li>
+          <li><b>-rrhagia, -rrhage</b> 출혈 bursting forth of blood — <i>hemorrhage</i> 출혈</li>
+          <li><b>-plasty</b> 성형술 surgical repair — <i>palatoplasty</i> 구개성형술</li>
+          <li><b>-ptysis</b> 뱉음 spitting — <i>hemoptysis</i> 객혈</li>
+          <li><b>-tresia</b> 개구 opening — <i>esophageal atresia</i> 식도폐쇄증</li>
+          <li><b>-stasis</b> 정지/조절 stopping, controlling — <i>hemostasis</i> 지혈</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">소화기계 중요 용어 Key GI Terms</div>
+      <div class="notes-card">
+        <h3>Important Terms (Ch.6)</h3>
+        <ul>
+          <li><b>Sublingual 설하의</b> — sub-(아래) + lingu/o(혀); 혀 아래; 빠른 약물 흡수 경로</li>
+          <li><b>Periodontal membrane 치주막</b> — peri-(주위) + odont/o(치아); 치아 주위 조직</li>
+          <li><b>Sialadenectomy 타액선절제술</b> — sialaden/o(타액선) + -ectomy; 타액선 제거</li>
+          <li><b>Lipase 리파아제</b> — lip/o(지방) + -ase(효소); 지방 소화 효소 (췌장 분비)</li>
+          <li><b>Oropharynx 구인두</b> — or/o(입) + pharynx(인두); 입 근처 인두 부위</li>
+          <li><b>Steatorrhea 지방변</b> — steat/o(지방) + -rrhea(분비); 대변에 지방 과다 → 흡수장애 징후</li>
+          <li><b>Splenic flexure 비장 굴곡부</b> — 대장이 비장 근처에서 구부러지는 부위</li>
+          <li><b>Cholecystolithiasis 담낭담석증</b> — 담낭 내 결석</li>
+          <li><b>Pancreatoduodenectomy 췌십이지장절제술</b> — 췌장과 십이지장 동시 절제; Whipple procedure</li>
+          <li><b>Choledochal 총담관의</b> — choledoch/o = common bile duct(총담관)</li>
+          <li><b>Proctosigmoidoscopy 직장S상결장내시경</b> — proct/o(직장) + sigmoid + -scopy; 직장·S상 결장 시각 검사</li>
+          <li><b>Colectomy 결장절제술</b> — col/o(대장) + -ectomy; 대장의 전체 또는 일부 제거</li>
+          <li><b>Esophageal atresia 식도폐쇄증</b> — 식도가 선천적으로 닫혀 있는 상태</li>
+          <li><b>Dyspepsia 소화불량</b> — dys-(어려운) + -pepsia(소화)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CHAPTER 7 ═══ -->
+  <div class="notes-chapter">
+    <div class="notes-ch-header">
+      <h2>Chapter 7 — Urinary System <span class="ko">비뇨계</span></h2>
+      <p>신장 구조·기능 · 요검사 · 병리 · 임상 절차</p>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">신장 기능 Kidney Functions</div>
+      <div class="notes-card">
+        <h3>Functions of the Kidneys 신장의 기능</h3>
+        <ul>
+          <li><b>Remove nitrogenous wastes 질소 노폐물 제거</b> — urea, creatinine, uric acid</li>
+          <li><b>Balance water and electrolytes 수분·전해질 균형</b> — Na+(sodium), K+(potassium)</li>
+          <li><b>Release hormones 호르몬 분비</b>:
+            <ul>
+              <li>Renin 레닌 — 혈압 조절 효소 (혈관 수축 촉진)</li>
+              <li>Erythropoietin (EPO) — 골수에서 적혈구 생산 자극</li>
+              <li>Calciferol 칼시페롤 — 활성형 비타민D; 소장에서 칼슘 흡수 촉진</li>
+            </ul>
+          </li>
+          <li><b>Homeostasis 항상성</b> — 신체 내부 환경의 평형 유지 (home/o = sameness)</li>
+        </ul>
+        <div class="clinical">하루 200 quarts(약 189L)의 혈액이 여과되나, 98-99%의 수분과 염분은 재흡수되고 실제로 하루 약 2 quarts(1500mL)의 소변만 배출된다.</div>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">소변 생성 3단계 Urine Formation</div>
+      <div class="notes-card">
+        <h3>3 Steps of Urine Formation</h3>
+        <div class="notes-path">
+          <div class="notes-path-title">Nephron에서 소변이 만들어지는 과정</div>
+          <div class="notes-path-step"><div class="notes-path-num">1</div><div><b>Glomerular Filtration 사구체 여과</b> — 혈압에 의해 물·소금·당·요소·크레아티닌이 사구체(glomerulus)를 통해 Bowman capsule로 여과. 단백질·혈구는 통과 못함 (크기가 큼)</div></div>
+          <div class="notes-path-step"><div class="notes-path-num">2</div><div><b>Tubular Reabsorption 세뇨관 재흡수</b> — 세뇨관을 통과하면서 대부분의 물, 모든 당(glucose), 거의 모든 Na+가 혈류로 재흡수</div></div>
+          <div class="notes-path-step"><div class="notes-path-num">3</div><div><b>Tubular Secretion 세뇨관 분비</b> — K+(포타슘), 산(acids), 약물 등이 혈류에서 세뇨관으로 분비. 최종 소변 = 95% 물 + 5% 요소·크레아티닌·염분·산</div></div>
+        </div>
+        <div class="clinical">Nephron 네프론 = Glomerulus(사구체) + Renal tubule(세뇨관); 신장당 약 100만 개(1 million). 수집관(collecting tubule) → 신우(renal pelvis) → 요관(ureter) → 방광(bladder) → 요도(urethra) → 외부 배출.</div>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">요검사 Urinalysis (UA)</div>
+      <div class="notes-card">
+        <h3>Urinalysis Components 요검사 항목</h3>
+        <ul>
+          <li><b>1. Color 색</b> — 정상: 호박색(amber)/짚색. 연한색=수분 많음. 붉은색/갈색=혈뇨(hematuria)</li>
+          <li><b>2. Appearance 외관</b> — 정상: 맑음(clear). 탁함(cloudy/turbid) = 농뇨(pyuria) → UTI</li>
+          <li><b>3. pH</b> — 정상: 6.5 (약산성). 알칼리성 = UTI (세균이 요소 분해 → 암모니아)</li>
+          <li><b>4. Protein 단백</b> — 정상: 없음/미량. 양성(albuminuria) = 사구체 손상 → 단백 유출. Microalbuminuria = DM의 초기 신장 이상 징후</li>
+          <li><b>5. Glucose 포도당</b> — 정상: 없음. 당뇨(glycosuria) = 당뇨병 의심</li>
+          <li><b>6. Specific Gravity 비중</b> — 정상: 1.003-1.030. 높음=DM, 결석; 낮음=요붕증(DI)</li>
+          <li><b>7. Ketone bodies 케톤체</b> — 정상: 없음. 케톤뇨(ketonuria) = DM 또는 굶주림 시 지방 분해 → 혈액 산성화(ketoacidosis) → 혼수·사망 위험</li>
+          <li><b>8. Sediment and casts 침전물·원주</b> — 비정상 입자(상피세포, WBC/RBC, 세균, 결정체, 원주) = 병리 소견</li>
+          <li><b>9. PKU (Phenylketonuria)</b> — 선천성 아미노산 대사 이상; 신생아 발뒤꿈치 채혈 검사; 조기 발견 시 식이요법으로 관리</li>
+          <li><b>10. Bilirubin 빌리루빈</b> — bilirubinuria = 간질환 환자에서 증가</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">비뇨계 병리 Urinary Pathology</div>
+      <div class="notes-card">
+        <h3>Kidney Pathologic Conditions</h3>
+        <ul>
+          <li><b>Glomerulonephritis 사구체신염</b> — 사구체 염증; 연쇄구균 감염 후 발생 가능; 혈뇨·단백뇨·RBC 원주 → 신부전·요독증</li>
+          <li><b>Interstitial nephritis 간질성 신염</b> — 세뇨관 사이 결합조직 염증; NSAIDs (아스피린, 이부프로펜) 사용 후 발생 가능; 발열·발진·호산구 증가</li>
+          <li><b>Nephrolithiasis 신장결석</b> — 요산 또는 칼슘염 결석; 요관·방광에 끼일 수 있음; 신산통(renal colic) 유발; lithotripsy 또는 수술로 제거</li>
+          <li><b>Nephrotic syndrome 신증후군</b> — 소변 내 단백 과다 손실 → 부종(edema) + 저알부민혈증(hypoalbuminemia)</li>
+          <li><b>Polycystic kidney disease (PKD)</b> — 유전성; 신장 내 다발성 낭종; 거대 신장 → 신부전</li>
+          <li><b>Pyelonephritis 신우신염</b> — 신우·신실질 세균 감염; 농뇨(pyuria); 항생제 치료</li>
+          <li><b>Renal cell carcinoma 신장세포암</b> — 성인 신장 악성 종양; 혈뇨·통증; 신장절제술</li>
+          <li><b>Wilms tumor 윌름스종양</b> — 소아 신장 악성 종양; 수술+방사선+항암</li>
+          <li><b>Renal failure 신부전</b> — 여과 기능 저하; 고혈압·당뇨가 주 원인; CKD 5단계 분류</li>
+          <li><b>Diabetes insipidus (DI) 요붕증</b> — ADH 결핍/저항 → 대량의 묽은 소변(polyuria) + polydipsia. insipidus = 싱거운(tasteless) ← 묽은 소변</li>
+          <li><b>Diabetes mellitus (DM) 당뇨병</b> — 인슐린 결핍/저항 → 고혈당(hyperglycemia) → 당뇨(glycosuria) + 다뇨(polyuria) + 다음(polydipsia). mellitus = 달콤한(sweet) ← 당이 포함된 소변</li>
+        </ul>
+        <div class="clinical">BUN (Blood Urea Nitrogen) — 혈중 요소 질소 측정. 신부전 시 상승. CKD Stage 5 (ESRD) = eGFR &lt;15 → 투석 또는 신장 이식 필요.</div>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">임상 절차 Clinical Procedures</div>
+      <div class="notes-card">
+        <h3>Urologic Procedures</h3>
+        <ul>
+          <li><b>Cystoscopy 방광경검사</b> — 내시경으로 요도·방광 직접 시각화; 생검·용종제거 가능</li>
+          <li><b>Hemodialysis (HD) 혈액투석</b> — 인공신장기로 혈액의 질소 노폐물 제거; 주 3-4회, 3-4시간; AV fistula(동정맥루) 통해 접근</li>
+          <li><b>CAPD (Peritoneal dialysis) 복막투석</b> — 복막강에 투석액 주입·배출; 환자 스스로 가정에서 시행 가능</li>
+          <li><b>Lithotripsy (ESWL) 체외충격파쇄석술</b> — 체외에서 충격파로 결석 분쇄 → 소변으로 배출</li>
+          <li><b>Renal transplantation 신장이식</b> — 공여자(living donor) 또는 시신(cadaver)의 신장 이식; 관련 공여자일수록 성공률 높음</li>
+          <li><b>CT urography</b> — CT로 신장 단면 영상; 결석·혈뇨 평가</li>
+          <li><b>KUB</b> (Kidneys, Ureters, Bladder) — 조영제 없이 복부 X-ray; 신장 크기·위치·결석 확인</li>
+          <li><b>Retrograde pyelogram (RP)</b> — 요관을 통해 역방향 조영제 주입 후 신우·요관 X-ray; 결석·폐쇄 위치 확인</li>
+          <li><b>VCUG</b> (Voiding Cystourethrogram) — 배뇨 중 방광·요도 X-ray; 역류(reflux) 확인</li>
+          <li><b>Foley catheter 폴리 카테터</b> — 요도를 통해 방광에 삽입하는 유치 도뇨관; 풍선으로 고정</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══ CHAPTER 8 ═══ -->
+  <div class="notes-chapter">
+    <div class="notes-ch-header">
+      <h2>Chapter 8 — Female Reproductive System <span class="ko">여성 생식계</span></h2>
+      <p>여성 생식기관 · 월경·임신 · 병리 · 임상 절차</p>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">여성 생식기관 Female Organs</div>
+      <div class="notes-card">
+        <h3>Organs &amp; Structures</h3>
+        <ul>
+          <li><b>Ovaries 난소</b> — 난자(ova) 생성 + 에스트로겐·프로게스테론 분비; 아몬드 모양</li>
+          <li><b>Fallopian tubes (난관)</b> — 난소→자궁 연결; 수정 장소; 끝부분 = fimbriae(채부)</li>
+          <li><b>Uterus 자궁</b> — 배아·태아 성장 공간; 3층: endometrium(내막)·myometrium(근층)·perimetrium(외막); 상부=fundus, 중부=corpus, 하부=cervix</li>
+          <li><b>Vagina 질</b> — 자궁→외부 연결 근육관</li>
+          <li><b>Vulva 외음부</b> — 외부 여성 생식기 총칭 (labia, hymen, clitoris, vaginal orifice)</li>
+          <li><b>Ovarian follicle 난포</b> — 난소 내 난자를 감싸는 소낭; 평생 약 400개만 성숙</li>
+          <li><b>Corpus luteum 황체</b> — 난포 파열 후 형성; 에스트로겐·프로게스테론 분비; 황색(luteum=yellow)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">월경 주기 Menstrual Cycle (28일)</div>
+      <div class="notes-card">
+        <h3>4 Phases of Menstrual Cycle</h3>
+        <div class="notes-path">
+          <div class="notes-path-step"><div class="notes-path-num">1</div><div><b>Day 1-5: Menstruation 월경</b> — 자궁내막 탈락·출혈; 에스트로겐·프로게스테론 낮음</div></div>
+          <div class="notes-path-step"><div class="notes-path-num">2</div><div><b>Day 6-12: Follicular phase 난포기</b> — 자궁내막 수복; 난포에서 에스트로겐↑; 난자 성장</div></div>
+          <div class="notes-path-step"><div class="notes-path-num">3</div><div><b>Day 13-14: Ovulation 배란</b> — LH surge(급증) → 난포 파열 → 난자 방출; 수정 가능 시기</div></div>
+          <div class="notes-path-step"><div class="notes-path-num">4</div><div><b>Day 15-28: Luteal phase 황체기</b> — 황체 형성 → 프로게스테론↑ → 자궁내막 증식 (임신 대비); 수정 안 되면 → 황체 퇴화 → 호르몬↓ → 월경 시작</div></div>
+        </div>
+        <div class="clinical">PMS (Premenstrual syndrome) 월경전 증후군 — 황체기 말 호르몬 감소로 인한 우울·유방 압통·과민성. Menarche 초경 = 첫 월경. Menopause 폐경 = 모든 난자 방출 후 월경 종료.</div>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">호르몬 Hormones</div>
+      <div class="notes-card">
+        <h3>Female Hormones</h3>
+        <ul>
+          <li><b>FSH</b> (Follicle-stimulating hormone) — 뇌하수체 분비; 난자 성숙 자극</li>
+          <li><b>LH</b> (Luteinizing hormone) — 뇌하수체 분비; 배란 촉진; LH surge = 배란 유발</li>
+          <li><b>Estrogen 에스트로겐</b> — 난소·태반 분비; 자궁내막 증식; 여성 2차 성징 발달</li>
+          <li><b>Progesterone 프로게스테론</b> — 황체·태반 분비; 임신 중 자궁내막·태반 유지; 낮으면 자연유산·월경불규칙</li>
+          <li><b>hCG</b> (Human chorionic gonadotropin) — 태반 분비; 임신 검사에서 검출; 황체 유지 자극</li>
+          <li><b>Oxytocin</b> — 분만 시 자궁 수축 유발; 수유 자극</li>
+        </ul>
+        <p style="font-size:11px;color:var(--text3);margin-top:5px">경구피임약 = 에스트로겐+프로게스테론 고농도 → FSH·LH 분비 억제 → 배란 차단 (임신 "속임")</p>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">여성 생식계 병리 Female Pathology</div>
+      <div class="notes-card">
+        <h3>Gynecologic Conditions</h3>
+        <ul>
+          <li><b>Cervical cancer 자궁경부암</b> — HPV(인유두종바이러스) 원인; CIN(자궁경부 상피내종양) → 침윤암; Pap test로 조기 발견; Gardasil 9 백신</li>
+          <li><b>Endometriosis 자궁내막증</b> — 자궁내막 조직이 자궁 밖에 위치; 월경통·불임·성교통 유발; 역행성 월경이 원인 이론</li>
+          <li><b>Fibroids / Leiomyomata 자궁근종</b> — 자궁 평활근 양성 종양; 과다월경(menorrhagia)의 주원인; tx: myomectomy, UAE, hysterectomy</li>
+          <li><b>Ovarian cancer 난소암</b> — 진행된 단계에서 발견 多; CA-125 표지자; BRCA1/BRCA2 돌연변이 시 위험↑</li>
+          <li><b>PID</b> (Pelvic inflammatory disease) 골반염 — STI로 인한 골반 염증; 난관 유착·흉터 → 자궁외임신·불임 위험↑</li>
+          <li><b>Ectopic pregnancy 자궁외임신</b> — 수정란이 난관 등 자궁 외 착상 (95%가 난관); 파열 시 응급</li>
+          <li><b>Placenta previa 전치태반</b> — 태반이 자궁경부 위에 위치 → 무통성 출혈; 제왕절개 필요</li>
+          <li><b>Preeclampsia 전자간증</b> — 임신 중 고혈압+단백뇨+부종; 자간증(eclampsia) = 경련 발생 → 산모·태아 위험</li>
+          <li><b>Breast cancer 유방암</b> — invasive ductal carcinoma(침윤성 유관암)이 가장 흔함; ER+종양 = tamoxifen·aromatase inhibitor로 치료; HER2+ = Herceptin 치료</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">임상 절차 Clinical Procedures</div>
+      <div class="notes-card">
+        <h3>Gynecologic &amp; Obstetric Procedures</h3>
+        <ul>
+          <li><b>Pap test (Pap smear)</b> — 자궁경부·질 세포 현미경 검사; 자궁경부암 95% 정확도</li>
+          <li><b>Colposcopy 질확대경검사</b> — 이상 Pap 후 확대경으로 자궁경부 검사; 생검 가능</li>
+          <li><b>D&amp;C</b> (Dilation and Curettage) — 자궁경부 확장 + 자궁내막 소파; 자궁질환 진단·과다출혈 치료</li>
+          <li><b>Amniocentesis 양수천자</b> — 양수 채취 → 태아 염색체 분석; 다운증후군·척추이분증 진단</li>
+          <li><b>CVS</b> (Chorionic villus sampling) 융모막 검사 — amniocentesis보다 이른 시기(10주+) 태아 진단</li>
+          <li><b>C-section (Cesarean section) 제왕절개</b> — 복부 절개로 태아 분만; 적응증: placenta previa, CPD, 태아곤란</li>
+          <li><b>Mammography 유방촬영술</b> — 유방암 선별검사; 3D 디지털 단층촬영이 최신 방식</li>
+          <li><b>IVF</b> (In vitro fertilization) — 체외에서 난자+정자 수정 후 자궁 이식</li>
+          <li><b>Tubal ligation 난관결찰술</b> — 난관 차단으로 불임 시술; 복강경으로 시행</li>
+          <li><b>HSG</b> (Hysterosalpingography) — 자궁·난관 조영제 X-ray; 난관 개통성·자궁강 이상 평가</li>
+        </ul>
+        <div class="clinical">Apgar score 아프가 점수 — 출생 1분·5분 후 신생아 상태 평가 (심박수·호흡·색·근긴장도·반사); 0-10점; 7점 미만 = 즉각 처치 필요.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CHAPTER 9 ═══ -->
+  <div class="notes-chapter">
+    <div class="notes-ch-header">
+      <h2>Chapter 9 — Male Reproductive System <span class="ko">남성 생식계</span></h2>
+      <p>남성 생식기관 · 정자 경로 · 병리 · STIs · 임상 절차</p>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">남성 생식기관 Male Organs</div>
+      <div class="notes-card">
+        <h3>Organs &amp; Sperm Pathway</h3>
+        <ul>
+          <li><b>Testes 고환</b> — 정자 생성(spermatogenesis) + 테스토스테론 분비; 음낭(scrotum) 내 — 체온보다 낮은 온도 필요</li>
+          <li><b>Seminiferous tubules 세정관</b> — 고환 내 좁은 코일형 관; 정자 생성 장소 (실질 조직)</li>
+          <li><b>Interstitial (Leydig) cells 사이질세포</b> — 세정관 옆 세포; 테스토스테론 생성</li>
+          <li><b>Epididymis 부고환</b> — 각 고환 위 ~16피트 코일형 관; 정자 성숙·저장</li>
+          <li><b>Vas deferens 정관</b> — 부고환→요도 연결; 정관수술(vasectomy) 시 절단</li>
+          <li><b>Seminal vesicles 정낭</b> — 방광 기저부 한 쌍의 샘; 정자 영양 공급 점액성 분비물; 정액의 주요 성분</li>
+          <li><b>Prostate gland 전립선</b> — 요도 상부를 둘러싸는 샘; 알칼리성 분비물 (질의 산성 환경에서 정자 생존 지원)</li>
+          <li><b>Bulbourethral (Cowper) glands</b> — 전립선 아래; 사정 중 요도로 윤활 분비물</li>
+          <li><b>Penis 음경</b> — 발기 조직; 요도 통과; glans penis(귀두) = 끝 민감 부위</li>
+        </ul>
+        <div class="clinical">Semen 정액 = 정자(sperm, &lt;1% 부피) + 정낭·전립선·요도구선 분비물. 정자는 3-5일 생존. 한 번 사정으로 약 3억 개 방출 → 1개만 수정 성공.</div>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">남성 생식계 병리 Male Pathology</div>
+      <div class="notes-card">
+        <h3>Pathologic Conditions</h3>
+        <ul>
+          <li><b>BPH</b> (Benign Prostatic Hyperplasia) 전립선 비대증 — 60세 이상 흔함; 요도 폐쇄 → 배뇨 장애; tx: TURP, finasteride, tamsulosin</li>
+          <li><b>Prostate cancer 전립선암</b> — 선암종(adenocarcinoma); PSA 검사로 조기 발견; DRE(직장 수지 검사)로 촉진 가능; Gleason score로 악성도 분류; brachytherapy(방사성 씨앗) 또는 수술</li>
+          <li><b>Cryptorchidism 잠복고환</b> — 고환이 음낭으로 하강하지 않음; 불임·고환암 위험; orchiopexy(고환고정술)로 교정</li>
+          <li><b>Testicular cancer 고환암</b> — 15-35세에 주로 발생; seminoma가 가장 흔함; hCG·AFP 종양 표지자</li>
+          <li><b>Varicocele 정계정맥류</b> — 고환 위 정맥 확장; 정자감소증(oligospermia)·불임 관련</li>
+          <li><b>Hydrocele 음낭수종</b> — 음낭 내 투명 액체 낭; 대개 특발성; 자연 소실 또는 천자·절제</li>
+          <li><b>Testicular torsion 고환 염전</b> — 정삭 꼬임 → 혈류 차단; 소아에서 발생; 수 시간 내 응급 수술 필요</li>
+          <li><b>Hypospadias 요도하열</b> — 선천성; 요도 개구부가 음경 하면에 위치; 수술로 교정</li>
+          <li><b>Phimosis 포경</b> — 포피 개구부 협착; 포피절제술(circumcision)로 치료</li>
+          <li><b>Azoospermia 무정자증</b> vs <b>Aspermia 무정액증</b> — azoospermia = 정액에 정자 없음; aspermia = 정액 자체 없음</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">성병 STIs (Sexually Transmitted Infections)</div>
+      <div class="notes-card">
+        <h3>Common STIs</h3>
+        <ul>
+          <li><b>Gonorrhea 임질</b> — 임균(gonococcal) STI; 배뇨통+화농성 요도분비물; 여성은 무증상 多 → PID·불임; gon/o = seed (옛날 정액으로 오인)</li>
+          <li><b>Chlamydia 클라미디아</b> — 가장 흔한 STI; 무증상 多; 치료 안 하면 PID·불임; 항생제로 치료</li>
+          <li><b>Syphilis 매독</b> — 나선균(spirochete); 1기=경성하감(chancre) 궤양; 2기=발진; 3기=뇌·심장 손상; 페니실린으로 치료</li>
+          <li><b>Herpes genitalis 생식기 헤르페스</b> — HSV-2(주로); 수포·궤양; 재발 반복; 완치 없음(항바이러스제 관리); 신생아 헤르페스 위험 → C-section 고려</li>
+          <li><b>HPV</b> (Human papillomavirus) — 100+ 유형; 일부 = 생식기 사마귀; 일부 = 자궁경부암 원인; Gardasil 9 백신으로 예방</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">임상 절차 Clinical Procedures</div>
+      <div class="notes-card">
+        <h3>Male Urologic Procedures</h3>
+        <ul>
+          <li><b>TURP</b> (Transurethral Resection of the Prostate) — 경요도 전립선 절제; BPH 치료; resectoscope(절제경)으로 전립선 조직 제거</li>
+          <li><b>PSA test</b> (Prostate-Specific Antigen) — 혈중 PSA 측정; 정상 &lt;4.0 ng/mL; 상승 = BPH 또는 전립선암 의심</li>
+          <li><b>DRE</b> (Digital Rectal Examination) 직장 수지 검사 — 항문으로 손가락 삽입 → 전립선 촉진</li>
+          <li><b>Vasectomy 정관수술</b> — 정관 절제·결찰 → 불임; 호르몬·성욕·발기력 영향 없음; vasovasostomy로 역전 가능</li>
+          <li><b>Orchiopexy 고환고정술</b> — 잠복고환을 음낭으로 이동시켜 고정</li>
+          <li><b>TRUS</b> (Transrectal Ultrasound) — 직장을 통한 초음파; 전립선 평가·생검 안내</li>
+          <li><b>Semen analysis 정액분석</b> — 정자 수·운동성·형태 검사; 불임 진단·정관수술 효과 확인</li>
+          <li><b>PSMA PET scan</b> — 전립선암 전이 감지용 방사성 영상검사; 매우 민감한 신규 방법</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CHAPTER 10 ═══ -->
+  <div class="notes-chapter">
+    <div class="notes-ch-header">
+      <h2>Chapter 10 — Nervous System <span class="ko">신경계</span></h2>
+      <p>CNS·PNS·ANS 구조 · 뉴런 · 뇌 기능 · 병리 · 임상 절차</p>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">신경계 분류 Nervous System Divisions</div>
+      <div class="notes-card">
+        <h3>CNS / PNS / ANS</h3>
+        <ul>
+          <li><b>CNS</b> (Central nervous system) 중추신경계 — 뇌(brain) + 척수(spinal cord)</li>
+          <li><b>PNS</b> (Peripheral nervous system) 말초신경계 — 뇌신경 12쌍 + 척수신경 31쌍 + 자율신경</li>
+          <li><b>Afferent (sensory) nerves 구심성/감각신경</b> — 피부·감각기→CNS 방향 (피부 자극 받으면 뇌로 전달)</li>
+          <li><b>Efferent (motor) nerves 원심성/운동신경</b> — CNS→근육·기관 방향 (뇌 명령을 근육에 전달)</li>
+          <li><b>Sympathetic nerves 교감신경</b> — 스트레스·위기 시: 심박수↑, 기도 확장, 혈압↑, 소화 억제 (fight or flight)</li>
+          <li><b>Parasympathetic nerves 부교감신경</b> — 일상 균형: 심박수↓, 혈압↓, 소화↑ (rest and digest)</li>
+          <li><b>Vagus nerve 미주신경</b> — 제10 뇌신경; 유일하게 머리·목 밖까지 "방랑"→흉강·복강 도달</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">뉴런 구조 Neuron Structure</div>
+      <div class="notes-card">
+        <h3>Parts of a Neuron &amp; Synapse</h3>
+        <div class="notes-path">
+          <div class="notes-path-title">신경 자극 전달 경로</div>
+          <div class="notes-path-step"><div class="notes-path-num">1</div><div><b>Dendrites 수상돌기</b> — 첫 자극 수용; 세포체로 임펄스 전달</div></div>
+          <div class="notes-path-step"><div class="notes-path-num">2</div><div><b>Cell body 세포체</b> — 핵(nucleus) 포함; 뇌·척수 밖 세포체 집합 = ganglia(신경절)</div></div>
+          <div class="notes-path-step"><div class="notes-path-num">3</div><div><b>Axon 축삭</b> — 세포체에서 임펄스 전달; myelin sheath(수초)로 절연 → 전도 속도 증가</div></div>
+          <div class="notes-path-step"><div class="notes-path-num">4</div><div><b>Terminal end fibers 말단 섬유</b> → <b>Synapse 시냅스</b> — 뉴런 간 간극; 신경전달물질(neurotransmitters) 방출로 자극 전달</div></div>
+        </div>
+        <p style="font-size:11px;color:var(--text3)">Neurotransmitters: acetylcholine, dopamine, serotonin, norepinephrine, endorphins<br>
+        White matter 백색질 = myelin 있는 축삭 / Gray matter 회색질 = myelin 없는 세포체</p>
+        <div class="clinical">Demyelination 수초탈락 — 수초가 파괴됨 → Multiple Sclerosis(다발성경화증)의 특징. 수초 손상 → 임펄스 전도 장애 → 근력약화, 이상감각, 시력장애.</div>
+      </div>
+      <div class="notes-card">
+        <h3>Glial Cells 신경교세포 (지지 세포)</h3>
+        <ul>
+          <li><b>Astrocytes 별아교세포</b> — 별 모양; 모세혈관↔뉴런 사이 물·염분 운반; Blood-Brain Barrier(BBB) 형성</li>
+          <li><b>Microglia 소교세포</b> — 식세포(phagocyte); CNS 감염·염증 시 뉴런 보호</li>
+          <li><b>Oligodendrocytes 희소돌기아교세포</b> — CNS의 수초 형성 (PNS는 Schwann cells)</li>
+          <li><b>Ependymal cells 뇌실막세포</b> — 뇌·척수 내 막 라이닝; CSF 생성·순환</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">뇌 부위별 기능 Brain Functions</div>
+      <div class="notes-card">
+        <h3>Major Brain Structures &amp; Functions</h3>
+        <ul>
+          <li><b>Cerebrum 대뇌</b> — 사고·판단·기억·감각·수의운동; 4엽: frontal(성격), parietal(감각), temporal(청각), occipital(시각); gyri(이랑)/sulci(고랑)</li>
+          <li><b>Thalamus 시상</b> — 감각 신호 중계소("triage center"); 의식·각성 수준 조절</li>
+          <li><b>Hypothalamus 시상하부</b> — 체온·수면·식욕·감정·성욕 조절; 뇌하수체 호르몬 분비 조절</li>
+          <li><b>Cerebellum 소뇌</b> — 수의운동 조율; 균형·자세 유지</li>
+          <li><b>Brainstem 뇌간</b> = Midbrain(중뇌) + Pons(교뇌, "bridge") + Medulla oblongata(연수): 호흡·심장·혈관 운동 센터; 신경섬유 교차(decussation) 일어남</li>
+          <li><b>CSF</b> (Cerebrospinal fluid) 뇌척수액 — 무색 투명; 뇌·척수 쿠션 역할; 심실(ventricles)에서 생성·순환; LP(요추천자)로 채취</li>
+          <li><b>Meninges 뇌막</b> — 뇌·척수 감싸는 3겹: Dura mater(경막, 외) → Arachnoid membrane(지주막, 중) → Pia mater(연막, 내); Subarachnoid space = CSF 있음</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">신경계 병리 Neurologic Pathology</div>
+      <div class="notes-card">
+        <h3>Major Neurologic Conditions</h3>
+        <ul>
+          <li><b>Multiple sclerosis (MS) 다발성경화증</b> — CNS 수초 파괴 → 경화 반(sclerotic plaques); 이상감각·근력약화·시력장애; 재발-완화 반복; MRI로 반 확인</li>
+          <li><b>Alzheimer disease (AD) 알츠하이머병</b> — 진행성 치매; 신경섬유다발(neurofibrillary tangles)·노인반(senile plaques); 피질 위축·뇌구 확장</li>
+          <li><b>Parkinson disease 파킨슨병</b> — 기저핵 도파민(dopamine) 결핍; 안정시 진전(pill-rolling tremor)·서동증·근강직·가면 얼굴; levodopa 치료</li>
+          <li><b>Epilepsy 간질(뇌전증)</b> — 뇌 전기 이상 방전; tonic-clonic(grand mal) = 경련·의식소실; absence(petit mal) = 순간 의식 끊김; 전조(aura) 선행; 항경련제 치료</li>
+          <li><b>CVA (Stroke) 뇌졸중</b> — 뇌 혈액 공급 중단; 3유형: thrombotic(혈전)·embolic(색전)·hemorrhagic(출혈); TIA = 일과성 허혈발작(경고 신호); tPA(혈전용해제) 치료</li>
+          <li><b>Meningitis 뇌막염</b> — 수막 염증; 세균성(pyogenic) 또는 바이러스성; 발열·두통·목경직; LP로 CSF 검사</li>
+          <li><b>ALS</b> (Amyotrophic lateral sclerosis) 루게릭병 — 운동신경세포 퇴화; 근력약화·근위축·연하곤란·호흡근 마비; 원인·치료 불명</li>
+          <li><b>Myasthenia gravis (MG) 중증근무력증</b> — 자가면역; 항체가 아세틸콜린 수용체 차단 → 수의근 약화; 안검하수(ptosis)·복시; anticholinesterase 약물</li>
+          <li><b>Hydrocephalus 수두증</b> — 뇌실 내 CSF 과다 축적; 두위 확대(선천성); ventriculoperitoneal shunt로 배액</li>
+          <li><b>Spina bifida 척추이분증</b> — 척추 불완전 유합(신경관 결손); myelomeningocele = 척수·수막 돌출(가장 심각); AFP 혈액검사로 선별</li>
+          <li><b>Herpes zoster (Shingles) 대상포진</b> — varicella-zoster 바이러스 재활성화; 피부분절 따라 통증성 수포; Shingrix 백신(50세 이상 권장)</li>
+          <li><b>Migraine 편두통</b> — 편측성 혈관성 두통; 전조(aura): 섬광·지그재그; 광공포·음공포; sumatriptan 치료</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes-section">
+      <div class="notes-section-title">임상 절차 Clinical Procedures</div>
+      <div class="notes-card">
+        <h3>Neurologic Procedures</h3>
+        <ul>
+          <li><b>LP</b> (Lumbar puncture) / Spinal tap 요추천자 — L3-L5 사이 바늘 삽입 → CSF 채취; 뇌막염·MS·종양 진단; CSF 압력 측정</li>
+          <li><b>EEG</b> (Electroencephalography) 뇌파검사 — 뇌 전기 활동 기록; 발작·뇌 손상·종양 진단</li>
+          <li><b>MRI 뇌 자기공명영상</b> — 연조직 최고 영상; MS 반, 뇌종양, 뇌졸중, 뇌염 진단</li>
+          <li><b>PET scan 양전자방출단층촬영</b> — 방사성 포도당 주입 → 대사 활동 영상화; 알츠하이머·뇌전증·뇌종양 평가</li>
+          <li><b>Cerebral angiography 뇌혈관조영술</b> — 조영제 주입 → 뇌혈관 X-ray 영상; 동맥류·폐쇄·출혈 진단</li>
+          <li><b>Stereotactic radiosurgery (Gamma Knife)</b> 감마나이프 — 다중 고에너지 방사선으로 깊은 뇌종양 표적 치료; 절개 없음</li>
+          <li><b>Intrathecal injection 척수강내 주사</b> — 수막강 내 약물 직접 투여 (항암제 등)</li>
+        </ul>
+        <div class="clinical">Blood-Brain Barrier (BBB) 혈뇌장벽 — 모세혈관 내피세포+별아교세포가 혈액과 뇌세포 사이 장벽 형성. 항암제 같은 물질이 뇌에 접근하기 어렵게 만들어 뇌종양 치료를 어렵게 함.</div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /content -->
+  </div><!-- /panelNotes -->
 
 </div><!-- /panels -->
 
